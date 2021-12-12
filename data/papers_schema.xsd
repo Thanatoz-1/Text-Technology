@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://research-trends.de/yx.0.0"
+	xmlns="http://research-trends.de/yx.0.0"
+	elementFormDefault="qualified">
+<xs:element name="conferences">
+	<xs:complexType><xs:sequence>
+		<xs:element ref="conference" maxOccurs="unbounded"/>
+	</xs:sequence></xs:complexType>
+</xs:element>
+<!--one conference-->
+<xs:element name="conference">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="metadata"/>
+			<xs:element ref="papers"/>
+	</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+
+<!--the metadata of the conference: name and year-->
+<xs:element name="metadata">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="confName">
+				<!--the abbreviation of the conference-->
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="abbr" type="xs:string" use="required"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="year" type="xs:gYear"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+
+<!--the papers-->
+<xs:element name="papers">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="paper" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="paper">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="title" type="xs:string"/>
+			<xs:element name="abstract" type="xs:string"/>
+			<xs:element ref="authors"/>
+			<xs:element ref="keywords"/>
+			<!--TODO: endswith pdf?-->
+			<xs:element name="url" type="xs:anyURI"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+<xs:element name="authors">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="author" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+<xs:element name="author">
+	<xs:complexType><xs:sequence>
+		<xs:element name="name" type="xs:string"/>
+		<xs:element name="affiliations">
+			<xs:complexType><xs:sequence>
+				<xs:element name="affiliation" type="xs:string" maxOccurs="unbounded"/>
+			</xs:sequence></xs:complexType>
+		</xs:element>
+	</xs:sequence></xs:complexType>
+</xs:element>
+
+<xs:element name="keywords">
+	<xs:complexType><xs:sequence>
+		<xs:element name="keyword" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence></xs:complexType>
+</xs:element>
+
+</xs:schema>
