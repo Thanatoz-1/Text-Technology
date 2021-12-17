@@ -3,29 +3,43 @@ from django.db import models
 # Create your models here.
 class Author(models.Model):
     name = models.CharField(max_length=128)
+    count = models.IntegerField(default=1)
 
     def __str__(self):
         return self.name
 
+
 class Affiliation(models.Model):
     name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name
+
+class Conference(models.Model):
+    name = models.CharField(max_length=128)
+    year = models.IntegerField()
+    abbr = models.CharField(max_length=64)
+    
+    def __str__(self):
+        return self.abbr
+
+
+class Keyword(models.Model):
+    name = models.CharField(max_length=128)
+    description = models.CharField(max_length=4096, null=True)
     
     def __str__(self):
         return self.name
 
-class Keyword(models.Model):
-    name = models.CharField(max_length=128)
-    description = models.CharField(max_length=4096)
-
-    def __str__(self):
-        return self.name
 
 class Paper(models.Model):
-    title = models.CharField(max_length=512)
+    title = models.CharField(max_length=1024) 
     abstract = models.CharField(max_length=65536)
+    
+    conference = models.ForeignKey(Conference, on_delete=models.CASCADE, related_name="papers")
     authors = models.ManyToManyField(Author, related_name="papers")
-    affliations = models.ManyToManyField(Affiliation, related_name="paper")
-    keywords = models.ManyToManyField(Keyword, blank=True, related_name="papers")
-
+    affiliations = models.ManyToManyField(Affiliation, related_name="papers")
+    keys = models.ManyToManyField(Keyword, related_name="papers")
+    
     def __str__(self):
-        return f'Title: {self.title}\nAbstract: {self.abstract}'
+        return self.title
