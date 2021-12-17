@@ -1,5 +1,42 @@
 {% extends "ver0/layout.html" %}
 
+{% block display_chart %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let ctx = document.getElementById("chart").getContext("2d");
+
+        let chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["LSTM", "TDNN"],
+                datasets: [
+                    {
+                        label: ["# of papers"],
+                        backgroundColor: ["#3e95cd", "#8e5ea2"],
+                        data: [28, 26]
+                    }
+                ]
+            },
+            options: {
+                responsive: false,
+                title: {
+                    display: true,
+                    text: 'Research Interests Distribution'
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                        }
+                    }]
+                }
+            }
+        });
+    })
+</script>
+{% endblock %}
+
 {% block searchbox %}
-<p>test</p>
+<p>need a form, display topk</p>
+<canvas id="chart" width="500" , height="300"></canvas>
 {% endblock %}

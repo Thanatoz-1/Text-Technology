@@ -1,5 +1,44 @@
 {% extends "ver0/layout.html" %}
 
+{% block display_chart %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let ctx = document.getElementById("chart").getContext("2d");
+
+        let chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [2019, 2020, 2021],
+                datasets: [{
+                    data: [3, 2, 3],
+                    label: 'LSTM',
+                    borderColor: '#3e95cd',
+                    fill: false
+                }, {
+                    data: [0, 4, 2],
+                    label: 'TDNN',
+                    borderColor: '#8e5ea2',
+                    fill: false
+                }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Keywords over years'
+                }, 
+                legend: {
+                    position: 'left'
+                }
+            }
+        });
+    })
+</script>
+{% endblock %}
+
 {% block searchbox %}
-<p>need a form, display topk</p>
+<p>TODO: connect to db, display</p>
+<div class="chart-container" style="width:500px;height:500px;">
+    <canvas id="chart"></canvas>
+</div>
 {% endblock %}
