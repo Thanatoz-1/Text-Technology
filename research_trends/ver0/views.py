@@ -12,11 +12,14 @@ def ran_color():
     color = "#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
     return color
 
-def cal_keywords_distribution(start_year=2019, end_year=2021, topk=5):
+def fetch_keyword_paper_tuple(start_year=2019, end_year=2021, topk=5):
     """
-    return a dictionary, the key of each entry is a keyword, 
-    the value is the change of replated papers' number from
-    start_year to min_year 
+    return a list of tuple(keyword, total_paper_num, paper_num_over_year)
+    keyword: the name of a keyword 
+    total_paper_num: total num of paper containing the keyword published from 
+        start_year to end_year 
+    paper_num_over_year: length equals to (end_year-start_year+1), annually
+        published papers related to the keyword
     """
     # TODO: sanity check for the year range
     key_paper = []
@@ -27,6 +30,7 @@ def cal_keywords_distribution(start_year=2019, end_year=2021, topk=5):
             num_papers.append(keyword.papers.filter(conference__year=year).count())
         key_paper.append((keyword.name, sum(num_papers), num_papers))
     return key_paper
+
 
 def display_topk(key_paper, start_year, end_year, k):
     """
@@ -51,7 +55,7 @@ def display_topk(key_paper, start_year, end_year, k):
 
 def keywords_page(request):
     st_year, ed_year, topk = 2019, 2021, 2
-    key_paper = cal_keywords_distribution(st_year, ed_year)
+    key_paper = fetch_keyword_paper_tuple(st_year, ed_year)
     plot_data = display_topk(key_paper, st_year, ed_year, topk)
     print(plot_data)
     return render(request, "ver0/keywords.html", {
