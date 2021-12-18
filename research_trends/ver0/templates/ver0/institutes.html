@@ -4,17 +4,15 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let ctx = document.getElementById("chart").getContext("2d");
+        // todo: build a pie char?
+        const pie_data = JSON.parse(document.getElementById('pie_data').textContent);
 
         let chart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["LSTM", "TDNN"],
+                labels: pie_data["labels"],
                 datasets: [
-                    {
-                        label: ["# of papers"],
-                        backgroundColor: ["#3e95cd", "#8e5ea2"],
-                        data: [28, 26]
-                    }
+                    pie_data["datasets"]
                 ]
             },
             options: {
@@ -38,5 +36,6 @@
 
 {% block searchbox %}
 <p>need a form, display topk</p>
+{{ pie_data|json_script:"pie_data"}}
 <canvas id="chart" width="500" , height="300"></canvas>
 {% endblock %}

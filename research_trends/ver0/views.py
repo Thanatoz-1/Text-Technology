@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from .models import *
 import random
+from collections import Counter
+
 # the homepage, readme and documentation
 def index(request):
     return render(request, "ver0/index.html")
@@ -62,8 +64,35 @@ def keywords_page(request):
         "keyword_data" : plot_data
     })
 
+def display_interest_pie(pie_model, name = None):
+    # TODO: add a form to collect names
+    name = pie_model.objects.all()[0]
+    keys_counter = Counter()
+
+    for paper in name.papers.all():
+        for key in paper.keys.all():
+            keys_counter[key.name] += 1
+
+    # TODO: allow user to choose top k
+    list_keys_count = keys_counter.most_common(5)
+    keys, counts = zip(*list_keys_count)
+    plot_data = {}
+    plot_data["labels"] = keys 
+
+    datasets = {}
+    datasets["label"] = "# of papers"
+    datasets["data"] = counts
+    datasets["backgroundColor"] = [ran_color() for x in counts]
+    plot_data["datasets"] = datasets
+    return plot_data
+
 def researchers_page(request):
-    return render(request, "ver0/researchers.html")
+    return render(request, "ver0/researchers.html", {
+        "pie_data" : display_interest_pie(Author)
+    })
+
 
 def institutes_page(request):
-    return render(request, "ver0/institutes.html")
+    return render(request, "ver0/institutes.html", {
+        "pie_data" : display_interest_pie(Affiliation)
+    })
