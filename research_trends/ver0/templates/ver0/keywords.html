@@ -4,23 +4,13 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let ctx = document.getElementById("chart").getContext("2d");
+        const keyword_data = JSON.parse(document.getElementById('keyword_data').textContent);
 
         let chart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [2019, 2020, 2021],
-                datasets: [{
-                    data: [3, 2, 3],
-                    label: 'LSTM',
-                    borderColor: '#3e95cd',
-                    fill: false
-                }, {
-                    data: [0, 4, 2],
-                    label: 'TDNN',
-                    borderColor: '#8e5ea2',
-                    fill: false
-                }
-                ]
+                labels: keyword_data["labels"],
+                datasets: keyword_data["datasets"]
             },
             options: {
                 title: {
@@ -29,6 +19,13 @@
                 }, 
                 legend: {
                     position: 'left'
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            stepSize:1
+                        }
+                    }]
                 }
             }
         });
@@ -38,6 +35,8 @@
 
 {% block searchbox %}
 <p>TODO: connect to db, display</p>
+
+{{ keyword_data|json_script:"keyword_data"}}
 <div class="chart-container" style="width:500px;height:500px;">
     <canvas id="chart"></canvas>
 </div>
