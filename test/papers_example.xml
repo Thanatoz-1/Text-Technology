@@ -29,20 +29,14 @@ error metric and a subjective listening experiment, which show that
 the LSTM based models outperform the global filters.
                 </abstract>
                 <authors>
-                    <author>
-                        <name>Michael Pucher</name>
-                        <affiliations>
-                            <affiliation>Acoustics Research Institute (ARI)</affiliation>
-                            <affiliation>Austrian Academy of Sciences (ÖAW)</affiliation>
-                        </affiliations>
-                    </author>
-                    <author>
-                        <name>Thomas Woltron</name>
-                        <affiliations>
-                            <affiliation>University of Applied Sciences Wiener Neustadt</affiliation>
-                        </affiliations>
-                    </author>
+                    <author>Michael Pucher</author>
+                    <author>Thomas Woltron</author>
                 </authors>
+                <affiliations>
+                    <affiliation>Acoustics Research Institute (ARI)</affiliation>
+                    <affiliation>Austrian Academy of Sciences (ÖAW)</affiliation>
+                    <affiliation>University of Applied Sciences Wiener Neustadt</affiliation>
+                </affiliations>
                 <keywords>
                     <keyword>voice conversion</keyword>
                     <keyword>bone-conducted speech</keyword>

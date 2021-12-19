@@ -54,6 +54,7 @@
 			<xs:element name="title" type="xs:string"/>
 			<xs:element name="abstract" type="xs:string"/>
 			<xs:element ref="authors"/>
+			<xs:element ref="affiliations"/>
 			<xs:element ref="keywords"/>
 			<!--TODO: endswith pdf?-->
 			<xs:element name="url" type="xs:anyURI"/>
@@ -62,20 +63,14 @@
 </xs:element>
 
 <xs:element name="authors">
-	<xs:complexType>
-		<xs:sequence>
-			<xs:element ref="author" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-</xs:element>
-<xs:element name="author">
 	<xs:complexType><xs:sequence>
-		<xs:element name="name" type="xs:string"/>
-		<xs:element name="affiliations">
-			<xs:complexType><xs:sequence>
-				<xs:element name="affiliation" type="xs:string" maxOccurs="unbounded"/>
-			</xs:sequence></xs:complexType>
-		</xs:element>
+		<xs:element name="author" type="xs:string" maxOccurs="unbounded"/>
+	</xs:sequence></xs:complexType>
+</xs:element>
+
+<xs:element name="affiliations">
+	<xs:complexType><xs:sequence>
+		<xs:element name="affiliation" type="xs:string" maxOccurs="unbounded"/>
 	</xs:sequence></xs:complexType>
 </xs:element>
 
