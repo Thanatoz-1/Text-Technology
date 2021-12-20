@@ -2,9 +2,16 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
+from django import forms
 from .models import *
 import random
 from collections import Counter
+
+class KeywordsFilterForm(forms.Form):
+    topk = forms.IntegerField(label="topk")
+    keywords = forms.CharField(label="keywords")
+    st_year = forms.IntegerField(label="start year", min_value=2010, max_value=2021)
+    ed_year = forms.IntegerField(label="end year", min_value=2010, max_value=2021)
 
 # the homepage, readme and documentation
 def index(request):
@@ -34,7 +41,7 @@ def fetch_keyword_paper_tuple(start_year=2019, end_year=2021, topk=5):
     return key_paper
 
 
-def display_topk(key_paper, start_year, end_year, k):
+def display_topk(key_paper, start_year, end_year, k, key_set=None):
     """
     return a dict obj for char display
     """
@@ -45,6 +52,9 @@ def display_topk(key_paper, start_year, end_year, k):
     plot_data["labels"] = list(range(start_year, end_year+1))
     datasets = []
     for key, _, nums in key_paper:
+        print(key, key_set)
+        if key_set is not None and key not in key_set:
+            continue
         key_data = {}
         key_data["data"] = nums 
         key_data["label"] = key 
@@ -57,11 +67,24 @@ def display_topk(key_paper, start_year, end_year, k):
 
 def keywords_page(request):
     st_year, ed_year, topk = 2019, 2021, 2
+    keywords = None 
+    if request.method == "POST":
+        form = KeywordsFilterForm(request.POST)
+    
+        if form.is_valid():
+            topk = form.cleaned_data["topk"]
+            keywords = str(form.cleaned_data["keywords"]).split(';')
+            st_year = form.cleaned_data["st_year"]
+            ed_year = form.cleaned_data["ed_year"]
+        
     key_paper = fetch_keyword_paper_tuple(st_year, ed_year)
-    plot_data = display_topk(key_paper, st_year, ed_year, topk)
-    print(plot_data)
+    plot_data = display_topk(key_paper, st_year, ed_year, topk, keywords)
     return render(request, "ver0/keywords.html", {
-        "keyword_data" : plot_data
+        "keyword_data" : plot_data,
+        "form": KeywordsFilterForm(),
+        "topk": topk, 
+        "st_year": st_year, 
+        "ed_year": ed_year
     })
 
 def display_interest_pie(pie_model, name = None):

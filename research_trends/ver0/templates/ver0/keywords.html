@@ -34,8 +34,12 @@
 {% endblock %}
 
 {% block searchbox %}
-<p>TODO: connect to db, display</p>
-
+<p>topk: {{topk}} start year: {{st_year}} end year: {{ed_year}}</p>
+<form action="{% url 'ver0:keywords' %}" method="post">
+    {% csrf_token %} 
+    {{form}}
+    <input type="submit">
+</form>
 {{ keyword_data|json_script:"keyword_data"}}
 <div class="chart-container" style="width:500px;height:500px;">
     <canvas id="chart"></canvas>
