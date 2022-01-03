@@ -24,3 +24,6 @@ except Exception as e:
 from api.mod.api.v1.views import blueprint_agent
 
 app.register_blueprint(blueprint_agent, url_prefix="/app/v1")
+logging.info(
+    f"Following are the app routes: {[str(p) for p in app.url_map.iter_rules()]}"
+)
