@@ -1,3 +1,11 @@
 # Text Technology Project
 
-Welcome to the repo of Text Technology prject. Once we are done discussing our idea, we can add stuff here. 
+Text technology Project
+
+## Using the API
+Please install requirements.txt running anything on your machine.
+
+So baseline API could be started using the following command:
+```python
+python run.py
+```
