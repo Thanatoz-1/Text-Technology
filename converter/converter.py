@@ -6,8 +6,12 @@ from xml.etree.ElementTree import Element, SubElement, Comment, tostring
 from xml.etree import ElementTree
 from xml.dom import minidom
 from copy import deepcopy
+import logging 
 
 class Paper:
+    keys = ["conf", "year", "title", "abstract", "authors", "affiliations", "keywords", "url"]
+    status = dict(ok=0, missing_key=1, invalid_value=2)
+
     def __init__(self):
         pass
     
@@ -20,12 +24,29 @@ class Paper:
         self.affiliations = res_dict['affiliations']
         self.keywords = res_dict['keywords']
         self.url = res_dict['url']
+
+    @staticmethod
+    def validate(res_dict):
+        """
+        validate whether the res_dict has the needed keys and types
+        TODO: validate using a xsd file
+        """
+        for key in Paper.keys:
+            if key not in res_dict:
+                logging.warning(f'key [{key}] is missing in sample {res_dict}')
+                return Paper.status['missing_key']
+        if type(res_dict['year']) is not int:
+            logging.warning(f'key [year] should be int in sample {res_dict}')
+            return Paper.status['invalid_value']
+        return Paper.status['ok']
+                
         
 class Converter:
     conf_to_abbr = {
         'INTERSPEECH': 'interspeech',
         'Association for Computational Linguistics': 'acl'
     }
+
     
     def __init__(self, query_results):
         """
@@ -44,7 +65,24 @@ class Converter:
                     'url':'https://isitnewyearsday.com'}]
         """
         self.query_results = query_results
+        self.error = set()
+        self._input_validation()
         self.root = None
+
+    def _input_validation(self):
+        all_ok = []
+        for paper in self.query_results:
+            status = Paper.validate(paper)
+            if status != Paper.status['ok']:
+                self.error.add(status)
+            else:
+                all_ok.append(paper)
+            
+        ori_len = len(self.query_results)
+        new_len = len(all_ok)
+        if new_len != ori_len:
+            logging.info(f'{ori_len - new_len} results have been removed due to missing keys')
+            self.query_results = all_ok
     
     def dump(self):
         """
