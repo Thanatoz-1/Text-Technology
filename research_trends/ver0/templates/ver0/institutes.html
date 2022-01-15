@@ -8,7 +8,7 @@
         const pie_data = JSON.parse(document.getElementById('pie_data').textContent);
 
         let chart = new Chart(ctx, {
-            type: 'bar',
+            type: 'pie',
             data: {
                 labels: pie_data["labels"],
                 datasets: [
@@ -21,13 +21,10 @@
                     display: true,
                     text: 'Research Interests Distribution'
                 },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            min: 0,
-                        }
-                    }]
+                legend: {
+                    position: 'left'
                 }
+                
             }
         });
     })

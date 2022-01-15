@@ -2,16 +2,12 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
-from django import forms
 from .models import *
 import random
 from collections import Counter
-
-class KeywordsFilterForm(forms.Form):
-    topk = forms.IntegerField(label="topk")
-    keywords = forms.CharField(label="keywords")
-    st_year = forms.IntegerField(label="start year", min_value=2010, max_value=2021)
-    ed_year = forms.IntegerField(label="end year", min_value=2010, max_value=2021)
+from .packages import *
+import time
+from django.db.models import Q, Count
 
 # the homepage, readme and documentation
 def index(request):
@@ -21,7 +17,63 @@ def ran_color():
     color = "#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
     return color
 
-def fetch_keyword_paper_tuple(start_year=2019, end_year=2021, topk=5):
+def naive_method(start_year, end_year, topk):
+    key_paper = []
+    st = time.time()
+    keywords = Keyword.objects.all()
+    ed = time.time()
+    print(f'fetch all keywords {ed - st}')
+    st = time.time()
+    total = 0
+    cnt = 0
+    for keyword in keywords:
+        num_papers = []
+        for year in range(start_year, end_year+1):
+            year_st = time.time()
+            num_papers.append(keyword.papers.filter(conference__year=year).count())
+            year_ed = time.time()
+            total += (year_ed - year_st)
+            cnt += 1
+        key_paper.append((keyword.name, sum(num_papers), num_papers))
+    ed = time.time()
+    print(f'loop over keywords {total}, cnt {cnt}, avg{total*1.0/cnt}')
+
+def method_a(st, ed, topk):
+    tst = time.time()
+    ted = time.time()
+    print(f'---fetch keywords {ted - tst} ----')
+    tst = time.time()
+    key_year_count = Paper.objects.values('keys', 'conference__year').filter(Q(conference__year__gte=st)&Q(conference__year__lte=ed)).annotate(total=Count('id')).order_by('keys', 'conference__year')
+    ted = time.time()
+    print(f'----fetch key year count {ted - tst} ----')
+    # key_year_count = list(key_year_count)
+    
+    prev_key = None
+    prev_yr = 0
+    key_paper = []
+    tst = time.time()
+    for sample in key_year_count:
+        key = sample['keys']
+        yr = sample['conference__year']
+        count = sample['total']
+        if key is None: continue 
+        # key = keywords[key].name
+        # print(prev_key, key, yr, count)
+        if key != prev_key:
+            key_paper.append([key, count, [0]*(ed-st+1)])
+            key_paper[-1][2][yr-st] = count
+            prev_yr = yr 
+            prev_key = key
+        if yr != prev_yr:
+            assert key == key_paper[-1][0]
+            key_paper[-1][1] += count 
+            key_paper[-1][2][yr-st] = count
+    ted = time.time()
+    print(f'----loop over results {ted - tst}----')
+    print(f'year range {st} - {ed}')
+    return key_paper
+
+def fetch_keyword_paper_tuple(start_year=2015, end_year=2020, topk=5):
     """
     return a list of tuple(keyword, total_paper_num, paper_num_over_year)
     keyword: the name of a keyword 
@@ -31,14 +83,8 @@ def fetch_keyword_paper_tuple(start_year=2019, end_year=2021, topk=5):
         published papers related to the keyword
     """
     # TODO: sanity check for the year range
-    key_paper = []
-    keywords = Keyword.objects.all()
-    for keyword in keywords:
-        num_papers = []
-        for year in range(start_year, end_year+1):
-            num_papers.append(keyword.papers.filter(conference__year=year).count())
-        key_paper.append((keyword.name, sum(num_papers), num_papers))
-    return key_paper
+
+    return method_a(start_year, end_year, topk)
 
 
 def display_topk(key_paper, start_year, end_year, k, key_set=None):
@@ -51,13 +97,14 @@ def display_topk(key_paper, start_year, end_year, k, key_set=None):
     plot_data = {}
     plot_data["labels"] = list(range(start_year, end_year+1))
     datasets = []
+    keywords = Keyword.objects.all()
     for key, _, nums in key_paper:
-        print(key, key_set)
+        print(key, len(nums), nums)
         if key_set is not None and key not in key_set:
             continue
         key_data = {}
         key_data["data"] = nums 
-        key_data["label"] = key 
+        key_data["label"] = keywords[key].name
         key_data["fill"] = False 
         # TODO: random color
         key_data["borderColor"] = ran_color()
@@ -66,7 +113,7 @@ def display_topk(key_paper, start_year, end_year, k, key_set=None):
     return plot_data
 
 def keywords_page(request):
-    st_year, ed_year, topk = 2019, 2021, 2
+    st_year, ed_year, topk = 2015, 2020, 5
     keywords = None 
     if request.method == "POST":
         form = KeywordsFilterForm(request.POST)
@@ -74,10 +121,17 @@ def keywords_page(request):
         if form.is_valid():
             topk = form.cleaned_data["topk"]
             keywords = str(form.cleaned_data["keywords"]).split(';')
+            if keywords == ['x']:
+                keywords = None
+                # print('keyword is none')
             st_year = form.cleaned_data["st_year"]
             ed_year = form.cleaned_data["ed_year"]
-        
+
+    st = time.time()
+    print(f'------------------fetch_keyword_paper_tuple() start------------------------')
     key_paper = fetch_keyword_paper_tuple(st_year, ed_year)
+    ed = time.time()
+    print(f'------------------fetch_keyword_paper_tuple(): {ed-st}------------------------')
     plot_data = display_topk(key_paper, st_year, ed_year, topk, keywords)
     return render(request, "ver0/keywords.html", {
         "keyword_data" : plot_data,
