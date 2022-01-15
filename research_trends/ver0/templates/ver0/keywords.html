@@ -17,14 +17,14 @@
                 title: {
                     display: true,
                     text: 'Keywords over years'
-                }, 
+                },
                 legend: {
                     position: 'left'
                 },
                 scales: {
                     yAxes: [{
                         ticks: {
-                            stepSize:10
+                            stepSize: 10
                         }
                     }]
                 }
@@ -36,8 +36,9 @@
 
 {% block searchbox %}
 <p>topk: {{topk}} start year: {{st_year}} end year: {{ed_year}}</p>
+
 <form action="{% url 'ver0:keywords' %}" method="post">
-    {% csrf_token %} 
+    {% csrf_token %}
     {{form}}
     <input type="submit">
 </form>
