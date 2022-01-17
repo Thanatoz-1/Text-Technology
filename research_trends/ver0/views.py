@@ -79,8 +79,8 @@ def method_a(st, ed, topk):
             key_paper[-1][1] += count
             key_paper[-1][2][yr - st] = count
     ted = time.time()
-    print(f"----loop over results {ted - tst}----")
-    print(f"year range {st} - {ed}")
+    # print(f'----loop over results {ted - tst}----')
+    # print(f'year range {st} - {ed}')
     return key_paper
 
 
@@ -110,7 +110,6 @@ def display_topk(key_paper, start_year, end_year, k, key_set=None):
     datasets = []
     keywords = Keyword.objects.all()
     for key, _, nums in key_paper:
-        print(key, len(nums), nums)
         if key_set is not None and key not in key_set:
             continue
         key_data = {}
@@ -135,7 +134,6 @@ def keywords_page(request):
             keywords = str(form.cleaned_data["keywords"]).split(";")
             if keywords == ["x"]:
                 keywords = None
-                # print('keyword is none')
             st_year = form.cleaned_data["st_year"]
             ed_year = form.cleaned_data["ed_year"]
 
@@ -161,8 +159,7 @@ def keywords_page(request):
         },
     )
 
-
-def display_interest_pie(pie_model, name=None):
+def display_interest_pie(pie_model, name = None):
     # TODO: add a form to collect names
     name = pie_model.objects.all()[0]
     keys_counter = Counter()
@@ -184,11 +181,64 @@ def display_interest_pie(pie_model, name=None):
     plot_data["datasets"] = datasets
     return plot_data
 
+# TODO: make it static var
+def generate_empty_pie(name='none'):
+    plot_data = {}
+    plot_data['labels'] = []
+    datasets = {}
+    datasets["label"] = []
+    datasets["data"] = []
+    datasets["backgroundColor"] = []
+    plot_data["datasets"] = datasets
+    plot_data["author"] = name
+    return plot_data
+    
+
+def display_researcher_pie(author_name, topk):
+    author = Author.objects.filter(name=author_name)
+    if author.count() == 0:
+        return generate_empty_pie(author_name)
+    elif author.count() == 1:
+        author = author[0]
+    else:
+        # TODO: what if more than one user 
+        author = author[0]
+    
+    keys_counter = Counter()
+
+    for paper in author.papers.all():
+        for key in paper.keys.all():
+            keys_counter[key.name] += 1
+
+    # TODO: allow user to choose top k
+    list_keys_count = keys_counter.most_common(topk)
+    keys, counts = zip(*list_keys_count)
+    plot_data = {}
+    plot_data["labels"] = keys 
+
+    datasets = {}
+    datasets["label"] = "# of papers"
+    datasets["data"] = counts
+    datasets["backgroundColor"] = [ran_color() for x in counts]
+    plot_data["datasets"] = datasets
+    plot_data["author"] = author_name
+    return plot_data
 
 def researchers_page(request):
-    return render(
-        request, "ver0/researchers.html", {"pie_data": display_interest_pie(Author)}
-    )
+    author = 'Jay Mahadeokar'
+    topk = 5
+    
+    if request.method == "POST":
+        form = ResearchFilterForm(request.POST)
+    
+        if form.is_valid():
+            topk = form.cleaned_data["topk"]
+            author = form.cleaned_data["author"]
+
+    return render(request, "ver0/researchers.html", {
+        "pie_data" : display_researcher_pie(author, topk),
+        "form": ResearchFilterForm()
+    })
 
 
 def institutes_page(request):

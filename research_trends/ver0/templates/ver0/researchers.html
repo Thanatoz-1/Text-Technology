@@ -3,36 +3,45 @@
 {% block display_chart %}
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        let ctx = document.getElementById("chart").getContext("2d");
         // todo: build a pie char?
         const pie_data = JSON.parse(document.getElementById('pie_data').textContent);
-
-        let chart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: pie_data["labels"],
-                datasets: [
-                    pie_data["datasets"]
-                ]
-            },
-            options: {
-                responsive: false,
-
-                title: {
-                    display: true,
-                    text: 'Research Interests Distribution'
+        if (pie_data["labels"].length == 0) {
+            alert("Sorry, the author [" + pie_data['author'] + "] is not in our database.")
+        } else {
+            let ctx = document.getElementById("chart").getContext("2d");
+            let chart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: pie_data["labels"],
+                    datasets: [
+                        pie_data["datasets"]
+                    ]
                 },
-                legend: {
-                    position: 'left'
+                options: {
+                    responsive: false,
+
+                    title: {
+                        display: true,
+                        text: 'The research interest distribution of ' + pie_data['author']
+                    },
+                    legend: {
+                        position: 'left'
+                    }
                 }
-            }
-        });
+            });
+        }
+
     })
 </script>
 {% endblock %}
 
 {% block searchbox %}
-<p>need a form, display topk</p>
+<form action="{% url 'ver0:researchers' %}" method="post">
+    {% csrf_token %} 
+    {{form}}
+    <input type="submit">
+</form>
+
 {{ pie_data|json_script:"pie_data"}}
 <canvas id="chart" width="500" , height="300"></canvas>
 {% endblock %}
