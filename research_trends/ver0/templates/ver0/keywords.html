@@ -1,0 +1,49 @@
+{% extends "ver0/layout.html" %}
+
+{% block display_chart %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let ctx = document.getElementById("chart").getContext("2d");
+        const keyword_data = JSON.parse(document.getElementById('keyword_data').textContent);
+
+        let chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: keyword_data["labels"],
+                datasets: keyword_data["datasets"]
+            },
+            options: {
+                // responsive: True,
+                title: {
+                    display: true,
+                    text: 'Keywords over years'
+                }, 
+                legend: {
+                    position: 'left'
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            stepSize:10
+                        }
+                    }]
+                }
+            }
+        });
+    })
+</script>
+{% endblock %}
+
+{% block searchbox %}
+<p>topk: {{topk}} start year: {{st_year}} end year: {{ed_year}}</p>
+<form action="{% url 'ver0:keywords' %}" method="post">
+    {% csrf_token %} 
+    {{form}}
+    <input type="submit">
+</form>
+{{ keyword_data|json_script:"keyword_data"}}
+<div class="chart-container" style="width:1000px;height:1000px;">
+    <canvas id="chart"></canvas>
+</div>
+
+{% endblock %}
