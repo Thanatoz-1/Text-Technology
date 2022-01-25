@@ -53,7 +53,7 @@ Since **Django** can automatically migrate a **Json** file into any backend rela
 
 ### Database Design
 Here's the database design:
-![database](../imgs/database.png)
+![database](../static/database.png)
 Since a **paper** instance need to reference instances in other tables, we first load **conference**, **author**, **affiliations**, and **keywords** into four independant tables, and assign an unique ID for each instance. 
 
 Then we finialize the **paper** table, replace the dependant  field's value with its ID in the corresponding table. 
