@@ -17,15 +17,15 @@ sh run.sh 2010 2022
 - detailed implementation and comments: `collect/spider/getpdf/spiders/pdf_spider.py`
   
 ## Step2: process pdf files
-- This tool further extract the **affliations** and **inder terms** from the paper pdf files.
+- This tool further extract the **affliations** and **index terms** from the paper pdf files.
 - requirements: 
-  - [grobid service api](https://grobid.readthedocs.io/en/latest/Grobid-service/)
-  - [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) + [lxml](https://lxml.de/) packages for easier xml parsing
+  - [Grobid service api](https://grobid.readthedocs.io/en/latest/Grobid-service/)
+  - [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) + [lxml](https://lxml.de/) packages for easier XML parsing
 - code path: `collect/pdf_parser`
 - [workflow and implementation docuement](pdf_parser/How%20Pdf%20Parser%20Works.md)
 - usage:
   1. launch the Grobid server at `http://localhost:8070` 
-  2. prepare all the XML files generated at [step 1](#step1-crawl-a-website) under the **xmls** directo
+  2. prepare all the XML files generated at [step 1](#step1-crawl-a-website) under the **xmls** directory
   3. might need to edit the `start_year` and `end_year` in [main.py](pdf_parser/main.py) depending on which year's data do we have under the **xmls** directory. 
   4. `mkdir backup` for backing up intermediate results
   5. `python main.py`, results are stored in `all_years.xml`

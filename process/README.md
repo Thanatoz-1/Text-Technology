@@ -56,7 +56,7 @@ Here's the database design:
 ![database](../static/database.png)
 Since a **paper** instance need to reference instances in other tables, we first load **conference**, **author**, **affiliations**, and **keywords** into four independant tables, and assign an unique ID for each instance. 
 
-Then we finialize the **paper** table, replace the dependant  field's value with its ID in the corresponding table. 
+Then we finalize the **paper** table, replace the dependent  field's value with its ID in the corresponding table. 
 
 Each row is a JSON object, and one table is stored in one single JSON file. So together there're five JSON files in total.
 
