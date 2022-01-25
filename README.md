@@ -52,7 +52,7 @@ As briefly mentioned above, we used [Grobid API](https://grobid.readthedocs.io/e
 The code for the processing and collection could be found at `collect/pdf_parser` 
 
 ## Data Processing 
-#### Keywords Extraction
+#### Step1: Keyword Extraction
 Apart from extracting different information using the above mentioned techniques, we also tried to perform few techniques to enhance our collection of keywords to make the spectrum of keywords even wider. We applied the following techniques for Keyword extraction.
 - Tf-IDf based Keyword
 - Capitalized words extraction
@@ -61,12 +61,12 @@ Apart from extracting different information using the above mentioned techniques
 
 Since the index terms dataset is sparse and has long-tail phenomemnon, the need for trying other techniques still prevails for the dataset. 
 
-#### Text Normalisation
+#### Step2: Text Normalization
 The text normalisation for all methods includes:
 - lowercase(except for the **All-Cap** method), tokenisation, punctuation removement, lowercase using **gensim simple_preprocess** function 
 - lemmatization using **spacy**, we keep only the open classes including noun, verb, adj, and adv.
 
-### step2: xml to json 
+### step3: XML to JSON 
 
 We use a relational database and **Django** for **accessing the appliaction**, therefore we needed to decouple the XML files into 5 tables: **conference**, **author**, **affiliations**, **keywords**, and **paper**. 
 Since **Django** comes with its own modelling functionality for **Json** file into the databases, so we used **JSON** to represent these 5 tables. 
@@ -93,3 +93,9 @@ Once all the packages have been installed, you can run our application by runnin
 ```bash
 python manage.py runserver
 ```
+## System Diagram
+
+
+![system](./static/system_diagram.svg)
+
+---
