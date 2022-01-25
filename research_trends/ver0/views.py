@@ -5,40 +5,26 @@ from django.http.response import HttpResponseRedirect
 from .models import *
 import random
 from collections import Counter
-from .packages import *
+from .query_forms import *
 import time
 from django.db.models import Q, Count
+import mimetypes
 
-# the homepage, readme and documentation
 def index(request):
+    """ The home page, hosting the documentation
+    """
     return render(request, "ver0/index.html")
 
 def ran_color():
+    """ Generate a color id for each data point. 
+    It's used at the front-end side for plotting charts.
+    """
     color = "#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
     return color
 
-def naive_method(start_year, end_year, topk):
-    key_paper = []
-    st = time.time()
-    keywords = Keyword.objects.all()
-    ed = time.time()
-    print(f'fetch all keywords {ed - st}')
-    st = time.time()
-    total = 0
-    cnt = 0
-    for keyword in keywords:
-        num_papers = []
-        for year in range(start_year, end_year+1):
-            year_st = time.time()
-            num_papers.append(keyword.papers.filter(conference__year=year).count())
-            year_ed = time.time()
-            total += (year_ed - year_st)
-            cnt += 1
-        key_paper.append((keyword.name, sum(num_papers), num_papers))
-    ed = time.time()
-    print(f'loop over keywords {total}, cnt {cnt}, avg{total*1.0/cnt}')
-
-def method_a(st, ed, topk):
+def _fetch_keyword_paper_tuple_impl(st, ed, topk):
+    """ An optimized method to obtain keyword paper tuple
+    """
     tst = time.time()
     ted = time.time()
     print(f'---fetch keywords {ted - tst} ----')
@@ -84,12 +70,12 @@ def fetch_keyword_paper_tuple(start_year=2015, end_year=2020, topk=5):
     """
     # TODO: sanity check for the year range
 
-    return method_a(start_year, end_year, topk)
+    return _fetch_keyword_paper_tuple_impl(start_year, end_year, topk)
 
 
 def display_topk(key_paper, start_year, end_year, k, key_set=None):
     """
-    return a dict obj for char display
+    return a dictionary obj for char display
     """
     # TODO: use database to fullfill this feature? 
     key_paper.sort(key=lambda x:x[1], reverse=True)
@@ -112,6 +98,9 @@ def display_topk(key_paper, start_year, end_year, k, key_set=None):
     return plot_data
 
 def keywords_page(request):
+    """ This function render the keywords page. 
+    TODO: support showing the trend of a specific keyword
+    """
     st_year, ed_year, topk = 2015, 2020, 5
     keywords = None 
     if request.method == "POST":
@@ -141,6 +130,22 @@ def keywords_page(request):
 
 # TODO: make it static var
 def generate_empty_pie(name='none', key_name='none'):
+    """ For researcher and affiliation page. 
+    If the database doesn't contain any data related to
+    the given author or affiliation, we need a empty 
+    pie object to notify the front end.
+
+    Inputs:
+    ---
+    key_name: the table name, "author" or "affiliation"
+    name: the query, an author or affiliation name given by
+        the user
+
+    Outputs:
+    ---
+    An dictionary object which includes all the data needed 
+    to draw the pit chart at the front-end side.
+    """
     plot_data = {}
     plot_data['labels'] = []
     datasets = {}
@@ -153,6 +158,28 @@ def generate_empty_pie(name='none', key_name='none'):
     
 
 def display_interest_pie(target_name, topk, model, key_name):
+    """ For research and affiliation page. 
+    Display the interest distribution pie chart for `target_name`
+    Only show the top k fileds of interests.
+
+    Inputs:
+    ---
+    target_name: the query, an author or affiliation name given by
+        the user
+    topk: only show top k fileds of interests 
+    model: the table, Django use a "Model" object to represent a table
+    key_name: the table name, could be "author" or "affiliation" 
+
+    Outputs:
+    ---
+    An dictionary object which includes all the data needed 
+    to draw the pit chart at the front-end side.
+
+    TODO:
+    - [ ] input validation 
+    - [ ] for one target name, what if the db returns multiple results?
+    - [ ] allow user to choose top k
+    """
     target = model.objects.filter(name=target_name)
     if target.count() == 0:
         return generate_empty_pie(target_name, key_name)
@@ -168,7 +195,6 @@ def display_interest_pie(target_name, topk, model, key_name):
         for key in paper.keys.all():
             keys_counter[key.name] += 1
 
-    # TODO: allow user to choose top k
     list_keys_count = keys_counter.most_common(topk)
     keys, counts = zip(*list_keys_count)
     plot_data = {}
@@ -183,6 +209,8 @@ def display_interest_pie(target_name, topk, model, key_name):
     return plot_data
 
 def researchers_page(request):
+    """ Render the researcher page.
+    """
     author = 'Jay Mahadeokar'
     topk = 5
     
@@ -200,6 +228,8 @@ def researchers_page(request):
 
 
 def affiliations_page(request):
+    """ Render the affiliation page.
+    """
     aff = "Google"
     topk = 5
 
@@ -215,3 +245,15 @@ def affiliations_page(request):
         "pie_data" : display_interest_pie(aff, topk, Affiliation, 'affiliation'),
         "form": AffiliationFilterForm()
     })
+
+def download_file(request):
+    """ WIP: a downlink, enable users to download the query results in XML format.
+    """
+    fl_path = 'x' 
+    fl_name = 'somename.py'
+
+    fl = open(fl_path, 'r')
+    mime_type = mimetypes.guess_type(fl_path)
+    response = HttpResponse(fl, content_type=mime_type)
+    response['Content-Disposition'] = 'attachment; filename=%s' % fl_name
+    return response
