@@ -6,5 +6,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("keywords", views.keywords_page, name="keywords"),
     path("researchers", views.researchers_page, name="researchers"),
-    path("institues", views.institutes_page, name="institutes")
+    path("affiliations", views.affiliations_page, name="affiliations")
 ]
+# path("link name", function, key)

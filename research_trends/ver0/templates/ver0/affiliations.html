@@ -32,6 +32,13 @@
 {% endblock %}
 
 {% block searchbox %}
+
+<form action="{% url 'ver0:affiliations' %}" method="post">
+    {% csrf_token %} 
+    {{form}}
+    <input type="submit">
+</form>
+
 <p>need a form, display topk</p>
 {{ pie_data|json_script:"pie_data"}}
 <canvas id="chart" width="500" , height="300"></canvas>
