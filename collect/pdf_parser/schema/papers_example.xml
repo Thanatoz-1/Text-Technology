@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<conferences xmlns="http://research-trends.de/yx.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://research-trends.de/yx.0.0 ../data/papers_schema.xsd">
+    <conference>
+        <metadata>
+            <confName abbr="interspeech">INTERSPEECH</confName>
+            <year>2021</year>
+        </metadata>
+        <papers>
+            <paper>
+                <title>onversion of Airborne to Bone-Conducted Speech with Deep Neural Networks</title>
+                <abstract>
+                    It is a common experience of most speakers that the playback of one’s
+own voice sounds strange. This can be mainly attributed to the missing
+bone-conducted speech signal that is not present in the playback signal.
+It was also shown that some phonemes have a high bone-conducted relative
+to air-conducted sound transmission, which means that the bone-conduction
+filter is phone-dependent. To achieve such a phone-dependent modeling
+we train different speaker dependent and speaker adaptive speech conversion
+systems using airborne and bone-conducted speech data from 8 speakers
+(5 male, 3 female), which allow for the conversion of airborne speech
+to bone-conducted speech. The systems are based on Long Short-Term
+Memory (LSTM) deep neural networks, where the speaker adaptive versions
+with speaker embedding can be used without bone-conduction signals
+from the target speaker. Additionally we also used models that apply
+a global filtering. The different models are then evaluated by an objective
+error metric and a subjective listening experiment, which show that
+the LSTM based models outperform the global filters.
+                </abstract>
+                <authors>
+                    <author>Michael Pucher</author>
+                    <author>Thomas Woltron</author>
+                </authors>
+                <affiliations>
+                    <affiliation>Acoustics Research Institute (ARI)</affiliation>
+                    <affiliation>Austrian Academy of Sciences (ÖAW)</affiliation>
+                    <affiliation>University of Applied Sciences Wiener Neustadt</affiliation>
+                </affiliations>
+                <keywords>
+                    <keyword>voice conversion</keyword>
+                    <keyword>bone-conducted speech</keyword>
+                    <keyword>LSTM</keyword>
+                    <keyword>deep neural networks</keyword>
+                </keywords>
+                <url>https://www.isca-speech.org/archive/pdfs/interspeech_2021/pucher21_interspeech.pdf</url>
+            </paper>
+        </papers>
+    </conference>
+</conferences>
