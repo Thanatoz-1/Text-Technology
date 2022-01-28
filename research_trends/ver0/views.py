@@ -42,6 +42,58 @@ def ran_color():
     color = "#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
     return color
 
+def plot_keyword_change_curve(curves, st, ed):
+    """ Prepare the dict object for plotting dataset in chart.js 
+    one datapoint format: [key, [num of paper at year1, num of paper at year2, ...]
+    Example curves:
+    ['ASR', [100, 24, 145]],
+    ['TTS', [32, 41, 45]],
+    ['RNN', [38, 214, 155]]
+    """
+    plot_data = {}
+    plot_data["labels"] = list(range(st, ed+1))
+    datasets = []
+    for key, papers in curves:
+        key_data = {}
+        key_data["data"] =papers 
+        key_data["label"] = key 
+        key_data["fill"] = False 
+        key_data["borderColor"] = ran_color()
+        datasets.append(key_data)
+    plot_data["datasets"] = datasets
+    return plot_data
+
+
+def fetch_display_given_keywords(st, ed, keywords):
+    """ Given a list of keywords, find the change curve with those topics 
+
+    Parameters
+    ----------
+    st: start year
+    ed: end year 
+    keyword: a list of keywords
+    """
+    # Naive method, quiry len(keywords) times 
+    # TODO: remind users than some keywords doesn't exist
+
+    curves = []
+    for key in keywords: 
+        key_year_count = Paper.objects.filter(keys__name=key).values('conference__year').filter(Q(conference__year__gte=st)&Q(conference__year__lte=ed)).annotate(total=Count('id')).order_by('conference__year')
+        if len(key_year_count) == 0:
+            continue 
+        cur_year = st
+        curve = []
+        for sample in key_year_count:
+            year = sample['conference__year']
+            num_papers = sample['total']
+            while cur_year < year:
+                curve.append(0)
+                cur_year += 1
+            curve.append(num_papers)
+            cur_year += 1
+        curves.append([key, curve])
+    return plot_keyword_change_curve(curves, st, ed)
+
 def _fetch_keyword_paper_tuple_impl(st, ed, topk):
     """ An optimized method to obtain keyword paper tuple
     Inputs:
@@ -110,7 +162,7 @@ def fetch_keyword_paper_tuple(start_year=2015, end_year=2020, topk=5):
     return _fetch_keyword_paper_tuple_impl(start_year, end_year, topk)
 
 
-def display_topk(key_paper, start_year, end_year, k, key_set=None):
+def display_topk(key_paper, st, ed, k, key_set=None):
     """
     Returns a dictionary obj for char display
 
@@ -141,22 +193,12 @@ def display_topk(key_paper, start_year, end_year, k, key_set=None):
     # TODO: use database to fullfill this feature? 
     key_paper.sort(key=lambda x:x[1], reverse=True)
     key_paper = key_paper[:k]
-    plot_data = {}
-    plot_data["labels"] = list(range(start_year, end_year+1))
-    datasets = []
     keywords = Keyword.objects.all()
+    
+    curves = []
     for key, _, nums in key_paper:
-        if key_set is not None and key not in key_set:
-            continue
-        key_data = {}
-        key_data["data"] = nums 
-        key_data["label"] = keywords[key].name
-        key_data["fill"] = False 
-        # TODO: random color
-        key_data["borderColor"] = ran_color()
-        datasets.append(key_data)
-    plot_data["datasets"] = datasets
-    return plot_data
+        curves.append([keywords[key].name, nums])
+    return plot_keyword_change_curve(curves, st, ed)
 
 def keywords_page(request):
     """ This function renders the keywords page. 
@@ -191,15 +233,20 @@ def keywords_page(request):
             keywords = str(form.cleaned_data["keywords"]).split(';')
             if keywords == ['x']:
                 keywords = None
+            else:
+                topk = len(keywords)
             st_year = form.cleaned_data["st_year"]
             ed_year = form.cleaned_data["ed_year"]
 
-    st = time.time()
-    print(f'------------------fetch_keyword_paper_tuple() start------------------------')
-    key_paper = fetch_keyword_paper_tuple(st_year, ed_year)
-    ed = time.time()
-    print(f'------------------fetch_keyword_paper_tuple(): {ed-st}------------------------')
-    plot_data = display_topk(key_paper, st_year, ed_year, topk, keywords)
+    if keywords is None:
+        print(f'------------------fetch_keyword_paper_tuple() start------------------------')
+        st = time.time()
+        key_paper = fetch_keyword_paper_tuple(st_year, ed_year)
+        ed = time.time()
+        plot_data = display_topk(key_paper, st_year, ed_year, topk, keywords)
+        print(f'------------------fetch_keyword_paper_tuple(): {ed-st}------------------------')
+    else:
+        plot_data = fetch_display_given_keywords(st_year, ed_year, keywords)
     return render(request, "ver0/keywords.html", {
         "keyword_data" : plot_data,
         "form": KeywordsFilterForm(),
