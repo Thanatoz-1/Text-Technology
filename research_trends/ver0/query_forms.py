@@ -19,13 +19,14 @@ class ResearchFilterForm(forms.Form):
     topk: only present top k fields of interest
     author: the name of one author
     """
-    topk = forms.IntegerField(label="topk", initial=5)
-    author = forms.CharField(label="author")
+    topk = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': 'topK', 'style': 'width: 300px;', 'class': 'form-control'}))
+    author = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'author', 'style': 'width: 300px;', 'class': 'form-control'}))
+    # author = forms.CharField(widget=forms.TextInput(attrs={'class': 'myfieldclass'}))
 
 class AffiliationFilterForm(forms.Form):
     """ For querying the research interest distribution of an affiliation
     topk: only present top k fields of interest
     affiliation: the name of one affiliation
     """
-    topk = forms.IntegerField(label="topk", initial=5)
-    affiliation = forms.CharField(label="affiliation")
+    topk = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': 'topK', 'style': 'width: 300px;', 'class': 'form-control'}))
+    affiliation = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'affiliation', 'style': 'width: 300px;', 'class': 'form-control'}))

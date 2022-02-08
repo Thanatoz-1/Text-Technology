@@ -33,13 +33,26 @@
 
 {% block searchbox %}
 
-<form action="{% url 'ver0:affiliations' %}" method="post">
-    {% csrf_token %} 
-    {{form}}
-    <input type="submit">
-</form>
+<div class="container">
+  <div class="row" style="margin-top: 10px;">
+    <div class="col col-lg-2">
+        <form action="{% url 'ver0:affiliations' %}" method="post">
+            {% csrf_token %} 
+            {{form}}
+            <button type='submit' class='btn btn-primary' style="margin-top: 10px;">Submit</button>
+        </form>
+    </div>
+    <div class="col">
+        <div style="width:100%; text-align: center;">
+        {{ pie_data|json_script:"pie_data"}}
+            <canvas id="chart" width="600", height="600", style="display: inline;"></canvas>
+        </div>
+    </div>
+  </div>
+</div>
 
-<p>need a form, display topk</p>
-{{ pie_data|json_script:"pie_data"}}
-<canvas id="chart" width="600" , height="600"></canvas>
+{% for paper in paper_list %}
+<li>{{paper}}</li>
+{%endfor%}
+
 {% endblock %}

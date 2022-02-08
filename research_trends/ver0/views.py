@@ -220,8 +220,6 @@ def keywords_page(request):
     }
 
     With KeywordsFilter form for querying top k keywords trends
-
-    TODO: support showing the trend of a specific keyword
     """
     st_year, ed_year, topk = 2015, 2020, 5
     keywords = None 
@@ -255,7 +253,6 @@ def keywords_page(request):
         "ed_year": ed_year
     })
 
-# TODO: make it static var
 def generate_empty_pie(name='none', key_name='none'):
     """ For researcher and affiliation page. 
     If the database doesn't contain any data related to
@@ -320,10 +317,13 @@ def display_interest_pie(target_name, topk, model, key_name):
         target = target[0]
     
     keys_counter = Counter()
+    paper_list = []
 
     for paper in target.papers.all():
         for key in paper.keys.all():
             keys_counter[key.name] += 1
+        # print(paper.title)
+        paper_list.append(paper.title)
 
     list_keys_count = keys_counter.most_common(topk)
     keys, counts = zip(*list_keys_count)
@@ -336,7 +336,7 @@ def display_interest_pie(target_name, topk, model, key_name):
     datasets["backgroundColor"] = [ran_color() for x in counts]
     plot_data["datasets"] = datasets
     plot_data[key_name] = target_name 
-    return plot_data
+    return plot_data, paper_list
 
 def researchers_page(request):
     """ Render the researcher page.
@@ -358,6 +358,7 @@ def researchers_page(request):
     author = 'Jay Mahadeokar'
     topk = 5
     
+    form = ResearchFilterForm()
     if request.method == "POST":
         form = ResearchFilterForm(request.POST)
     
@@ -365,9 +366,11 @@ def researchers_page(request):
             topk = form.cleaned_data["topk"]
             author = form.cleaned_data["author"]
 
+    pie_data, paper_list = display_interest_pie(author, topk, Author, 'author')
     return render(request, "ver0/researchers.html", {
-        "pie_data" : display_interest_pie(author, topk, Author, 'author'),
-        "form": ResearchFilterForm()
+        "pie_data" : pie_data,
+        "paper_list": paper_list,
+        "form": form
     })
 
 
@@ -392,6 +395,7 @@ def affiliations_page(request):
     aff = "Google"
     topk = 5
 
+    form = AffiliationFilterForm()
     if request.method == "POST":
         form = AffiliationFilterForm(request.POST)
     
@@ -400,9 +404,11 @@ def affiliations_page(request):
             aff = form.cleaned_data["affiliation"]
         print(f'topk {topk}, aff {aff}') 
 
+    pie_data, paper_list = display_interest_pie(aff, topk, Affiliation, 'affiliation');
     return render(request, "ver0/affiliations.html", {
-        "pie_data" : display_interest_pie(aff, topk, Affiliation, 'affiliation'),
-        "form": AffiliationFilterForm()
+        "pie_data" : pie_data,
+        "paper_list" : paper_list, 
+        "form": form
     })
 
 def download_file(request):
