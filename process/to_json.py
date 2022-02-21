@@ -88,6 +88,7 @@ for conf in confs:
     for paper in conf.findall('.//paper'):
         title = paper.find('title').text
         abst = paper.find('abstract').text
+        url = paper.find('url').text
         author = extract_ids(paper.find('authors'), 'author', author_dict)
         affs = extract_ids(paper.find('affiliations'), 'affiliation', aff_dict)
         keys = extract_ids(paper.find('keywords'), 'keyword', key_dict)
@@ -97,7 +98,8 @@ for conf in confs:
             'conference': conf_id,
             'authors': author, 
             'affiliations': affs, 
-            'keys': keys
+            'keys': keys, 
+            'url': url
         }
         paper_dict = {'model': 'ver0.paper', 'pk': paper_cnt, 'fields': field}
         papers_dict.append(paper_dict)
