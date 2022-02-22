@@ -309,7 +309,7 @@ def display_interest_pie(target_name, topk, model, key_name):
     """
     target = model.objects.filter(name=target_name)
     if target.count() == 0:
-        return generate_empty_pie(target_name, key_name)
+        return generate_empty_pie(target_name, key_name), []
     elif target.count() == 1:
         target = target[0]
     else:

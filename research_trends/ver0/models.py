@@ -35,6 +35,7 @@ class Keyword(models.Model):
 class Paper(models.Model):
     title = models.CharField(max_length=1024) 
     abstract = models.CharField(max_length=65536)
+    url = models.CharField(max_length=1024, default='') 
     
     conference = models.ForeignKey(Conference, on_delete=models.CASCADE, related_name="papers")
     authors = models.ManyToManyField(Author, related_name="papers")
