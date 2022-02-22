@@ -316,10 +316,13 @@ def display_interest_pie(target_name, topk, model, key_name):
     paper_list = []
 
     for paper in target.papers.all():
+        keynames = []
         for key in paper.keys.all():
-            keys_counter[key.name] += 1
+            keyname = key.name
+            keys_counter[keyname] += 1
+            keynames.append(keyname)
         # print(paper.title)
-        paper_list.append(paper.title)
+        paper_list.append([paper.title, paper.url, ';'.join(keynames)])
 
     list_keys_count = keys_counter.most_common(topk)
     keys, counts = zip(*list_keys_count)
@@ -388,7 +391,7 @@ def affiliations_page(request):
     With AffiliationFilterForm() to query research interest distribution of an affiliation.
     
     """
-    aff = "Google"
+    aff = "Google Research"
     topk = 5
 
     form = AffiliationFilterForm()

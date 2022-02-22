@@ -41,7 +41,7 @@
 <div class="container">
   <div class="row" style="margin-top: 10px;">
     <div class="col col-lg-2">
-        <form action="{% url 'ver0:researchers' %}" method="post">
+        <form action="{% url 'ver0:researchers' %}" method="post" autocomplete="off">
             {% csrf_token %} 
             {{form}}
             <button type='submit' class='btn btn-primary' style="margin-top: 10px;">Submit</button>
@@ -57,7 +57,10 @@
 </div>
 
 {% for paper in paper_list %}
-<li>{{paper}}</li>
+<ul><li>
+    <a href="{{paper.1}}">{{paper.0}}</a>
+    <ul><li>keywords: {{paper.2}}</li></ul>
+</li></ul>
 {%endfor%}
 
 {% endblock %}

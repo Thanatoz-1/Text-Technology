@@ -36,7 +36,7 @@
 
 {% block searchbox %}
 <p>topk: {{topk}} start year: {{st_year}} end year: {{ed_year}}</p>
-<form action="{% url 'ver0:keywords' %}" method="post">
+<form action="{% url 'ver0:keywords' %}" method="post" autocomplete="off">
     {% csrf_token %} 
     {{form}}
     <input type="submit">
