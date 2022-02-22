@@ -14,7 +14,8 @@ import json
 
 prefix = 'tables'
 def name_to_id(item_count):
-    return {x[0]:i for i, x in enumerate(item_count)}
+    # all id should starts from 1 in mysql
+    return {x[0]:i+1 for i, x in enumerate(item_count)}
 
 def load_and_count(root, item_name):
     nodes = root.findall(f'.//{item_name}')
@@ -33,7 +34,7 @@ froot = tree.getroot()
 # write to author table
 def load_author(root):
     authors = load_and_count(root, 'author')
-    author_dict = [{'model':'ver0.author', 'pk':i, 'fields': {'name':x[0], 'count':x[1]}} for i, x in enumerate(authors)]
+    author_dict = [{'model':'ver0.author', 'pk':i+1, 'fields': {'name':x[0]}} for i, x in enumerate(authors)]
     with open(f'{prefix}/author.json', 'w') as f:
         f.write(json.dumps(author_dict))
     return name_to_id(authors)
@@ -43,7 +44,7 @@ author_dict = load_author(froot)
 # write to affliation table
 def load_aff(root):
     affs = load_and_count(root, 'affiliation')
-    aff_dict = [{'model':'ver0.affiliation', 'pk':i, 'fields':{'name': x[0]}} for i, x in enumerate(affs)]
+    aff_dict = [{'model':'ver0.affiliation', 'pk':i+1, 'fields':{'name': x[0]}} for i, x in enumerate(affs)]
     with open(f'{prefix}/aff.json', 'w') as f:
         f.write(json.dumps(aff_dict))
     return name_to_id(affs)
@@ -53,7 +54,7 @@ aff_dict = load_aff(froot)
 # write to conference table
 def load_interspeech(root):
     yrs = load_and_count(root, 'year')
-    yr_dict = [{'model': 'ver0.conference', 'pk':i, 'fields':{'name':'INTERSPEECH', 'year':int(x[0]), 'abbr': 'interspeech'}} for i, x in enumerate(yrs)]
+    yr_dict = [{'model': 'ver0.conference', 'pk':i+1, 'fields':{'name':'INTERSPEECH', 'year':int(x[0]), 'abbr': 'interspeech'}} for i, x in enumerate(yrs)]
     with open(f'{prefix}/conf.json', 'w') as f:
         f.write(json.dumps(yr_dict))
     return name_to_id(yrs)
@@ -63,7 +64,7 @@ conf_dict = load_interspeech(froot)
 # write to key table 
 def load_key(root):
     keys = load_and_count(root, 'keyword')
-    key_dict = [{'model': 'ver0.keyword', 'pk':i, 'fields': {'name': x[0]}} for i, x in enumerate(keys)]
+    key_dict = [{'model': 'ver0.keyword', 'pk':i+1, 'fields': {'name': x[0]}} for i, x in enumerate(keys)]
     with open(f'{prefix}/key.json', 'w') as f:
         f.write(json.dumps(key_dict))
     return name_to_id(keys)
@@ -87,6 +88,10 @@ for conf in confs:
     # print(conf_name.confname)
     for paper in conf.findall('.//paper'):
         title = paper.find('title').text
+        if title is None:
+            print(type(title), title)
+            print('hey', paper_cnt, paper.text)
+        assert(len(title) != 0)
         abst = paper.find('abstract').text
         url = paper.find('url').text
         author = extract_ids(paper.find('authors'), 'author', author_dict)
@@ -101,7 +106,7 @@ for conf in confs:
             'keys': keys, 
             'url': url
         }
-        paper_dict = {'model': 'ver0.paper', 'pk': paper_cnt, 'fields': field}
+        paper_dict = {'model': 'ver0.paper', 'pk': paper_cnt+1, 'fields': field}
         papers_dict.append(paper_dict)
         paper_cnt += 1
         # print(paper_cnt)

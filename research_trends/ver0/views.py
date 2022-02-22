@@ -132,7 +132,6 @@ def _fetch_keyword_paper_tuple_impl(st, ed, topk):
         count = sample['total']
         if key is None: continue 
         # key = keywords[key].name
-        # print(prev_key, key, yr, count)
         if key != prev_key:
             key_paper.append([key, count, [0]*(ed-st+1)])
             key_paper[-1][2][yr-st] = count
@@ -193,11 +192,13 @@ def display_topk(key_paper, st, ed, k, key_set=None):
     # TODO: use database to fullfill this feature? 
     key_paper.sort(key=lambda x:x[1], reverse=True)
     key_paper = key_paper[:k]
-    keywords = Keyword.objects.all()
+    # keywords = Keyword.objects.all()
     
     curves = []
     for key, _, nums in key_paper:
-        curves.append([keywords[key].name, nums])
+        name = Keyword.objects.get(id=key).name
+        print(key, name, nums)
+        curves.append([name, nums])
     return plot_keyword_change_curve(curves, st, ed)
 
 def keywords_page(request):
@@ -301,11 +302,6 @@ def display_interest_pie(target_name, topk, model, key_name):
     ---
     plot_data: [Dictionary] A dictionary object which includes all the data needed 
     to draw the pie chart at the front-end side.
-
-    TODO:
-    - [ ] input validation 
-    - [ ] for one target name, what if the db returns multiple results?
-    - [ ] allow user to choose top k
     """
     target = model.objects.filter(name=target_name)
     if target.count() == 0:
@@ -404,7 +400,7 @@ def affiliations_page(request):
             aff = form.cleaned_data["affiliation"]
         print(f'topk {topk}, aff {aff}') 
 
-    pie_data, paper_list = display_interest_pie(aff, topk, Affiliation, 'affiliation');
+    pie_data, paper_list = display_interest_pie(aff, topk, Affiliation, 'affiliation')
     return render(request, "ver0/affiliations.html", {
         "pie_data" : pie_data,
         "paper_list" : paper_list, 

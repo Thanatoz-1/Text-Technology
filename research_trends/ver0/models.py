@@ -3,7 +3,6 @@ from django.db import models
 # Create your models here.
 class Author(models.Model):
     name = models.CharField(max_length=128)
-    count = models.IntegerField(default=1)
 
     def __str__(self):
         return self.name
@@ -26,7 +25,6 @@ class Conference(models.Model):
 
 class Keyword(models.Model):
     name = models.CharField(max_length=128)
-    description = models.CharField(max_length=4096, null=True)
     
     def __str__(self):
         return self.name
@@ -34,7 +32,8 @@ class Keyword(models.Model):
 
 class Paper(models.Model):
     title = models.CharField(max_length=1024) 
-    abstract = models.CharField(max_length=65536)
+    # the max length so far is less than 5k chars
+    abstract = models.TextField(max_length=8092)
     url = models.CharField(max_length=1024, default='') 
     
     conference = models.ForeignKey(Conference, on_delete=models.CASCADE, related_name="papers")
