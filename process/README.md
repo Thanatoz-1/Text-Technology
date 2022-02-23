@@ -1,7 +1,7 @@
 # Process 
 
 ## Introduction
-Since the index terms dataset is sparse and has long-tail phenomemnon, we would like to find another way to extract keywords from a paper. 
+Since the index terms dataset is sparse and has long-tail phenomenon, we would like to find another way to extract keywords from a paper. 
 
 This module includes two parts
 - Analysis: shows 4 methods to extract keywords from paper metadata: All-cap words, TfIdf, Topic Modeling, and Clustering. 
@@ -14,7 +14,7 @@ This module includes two parts
 
 ### Text Normalisation
 The text normalisation for all methods includes:
-- lowercase(except for the **All-Cap** method), tokenisation, punctuation removement, lowercase using **gensim simple_preprocess** function 
+- lowercase(except for the **All-Cap** method), tokenisation, punctuation removing, lowercase using **gensim simple_preprocess** function 
 - lemmatization using **spacy**, we keep only the open classes including noun, verb, adj, and adv.
 
 ### Methods
@@ -28,23 +28,37 @@ To keep it simple, we only apply the following methods on the **abtract** part. 
   - **sklearn**'s **LatentDirichletAllocation** module is used to compute the topics. `n_component` is set to 50, `max_iter` is set to 20. During the analysis phrase, we only look at the top 20 words for each topic.
 
 In addition to extract keywords from abtract, we also try to cluster many index terms into one group, and represent those words with the most frequent word within the group.
-- **Clustering**: 
-  - For the word vector representation, we use the pretained [GloVe](https://nlp.stanford.edu/projects/glove/) model `glove-wiki-gigaword-50`. For those phrases, its vector representation is the element-wise summation of all the words in it. If one of word in that phrases is an out-of-vocabulary(OOV) word for the pretrained model, we skip these phrase. 
-  - Cluster: we use **sklearn.cluster.KMeans** for clustering, `n_clusters` is set to 100, and `init` method is `k-means++`. 
+- **Clustering**: There are two types of clustering methods.
+  - Vector-representation-based Clustering
+    -  we use the pretained [GloVe](https://nlp.stanford.edu/projects/glove/) model `glove-wiki-gigaword-50`. For those phrases, its vector representation is the element-wise summation of all the words in it. If one of word in that phrases is an out-of-vocabulary(OOV) word for the pretrained model, we skip these phrase. 
+    - Cluster: we use **sklearn.cluster.KMeans** for clustering, `n_clusters` is set to 100, and `init` method is `k-means++`. 
+  - Weighted-Levenshtein-distance-based Clustering
+    - Substitution weight: 1.0, Insertion weight: 0.8, Deleteion weight: 1.0
+    - The cluster center is the index term with the least distance to the other cluster members.
+    - We prefer the insertion error than the other twos, because a ref index term with more insertion errors than the other two types of errors, can cover a broader topic.
+    - e.g.: ref=[noise, noise classification], hyp=[noise cancelling], although both ref index terms have 1 WER value, noise(with 1 insertion error) is a better center than noise classification(with 1 substitution error), because it covers noise cancelling, while noise classification falls into a different topic.
+
+> The implementation and analysis of the above methods can be found respectively in [all cap.ipynb](keyword_extraction/all%20cap.ipynb), [tfidf.ipynb](keyword_extraction/tfidf.ipynb), [topic_modelling.ipynb](keyword_extraction/topic%20modelling.ipynb) and [clustering.ipynb](keyword_extraction/cluster.ipynb). 
 
 ### Usage
-- The implementation and analysis of the above methods can be found respectively in [all cap.ipynb](keyword_extraction/all%20cap.ipynb), [tfidf.ipynb](keyword_extraction/tfidf.ipynb), [topic_modelling.ipynb](keyword_extraction/topic%20modelling.ipynb) and [clustering.ipynb](keyword_extraction/cluster.ipynb). 
-- To replace the keywords with all-cap words, prepare the formatted XML produced in the [Collect step](../collect/README.md), and run:
-  
-  ```
-  python all_cap.py formatted.xml output.xml
-  ```
 
-  The replaced version will be stored as `output.xml`. 
 
-### TODO 
-- [ ] Maybe we should also use word embedding for topic modelling. 
-- [ ] Backoff to clustering method if there're no all-cap words in the abstract.
+Please run the All-cap and Weighted-Levenshtein-based Clustering methods. These two jupyter-notebooks will produce two dictionaries(python dictionary binary objects):
+- `all_cap.dict`: a set of candidate all-cap keywords.
+- `cluster.dict`: maps an index term to a cluster representative
+
+We also uploaded two built mappers, they could be found in the `process/results/` directory:
+- [all_cap.dict](keyword_extraction/results/all_cap.dict): 50 all-cap keywords
+- [cluster.dict](keyword_extraction/results/cluster.dict)
+
+
+After generating the two objects, run the following code to augment the original index terms with all-cap words and cluster representatives. Together they form the keywords of a paper. 
+
+```shell
+python replace_index_term.py final.pkl all_cap.dict cluster.dict papers.xml
+```
+`final.pkl` is generated at the collect part, please check [step 2 in collect](../collect/README.md)
+`papers.xml` is the output result.
 
 ## Step 2: XML to JSON 
 
