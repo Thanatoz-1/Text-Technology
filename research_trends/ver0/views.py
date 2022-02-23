@@ -12,18 +12,54 @@ import mimetypes
 
 def index(request):
     """ The home page, hosting the documentation
+    Inputs: 
+    ---
+    A request object: [django.http.HttpRequest]
+
+    Outputs:
+    ---
+    Returns a rendered html template as a response. The render()
+    function takes a request object and maps it to the URL pattern
+    specified in the second argument place to return the result.
+
     """
     return render(request, "ver0/index.html")
 
 def ran_color():
     """ Generate a color id for each data point. 
     It's used at the front-end side for plotting charts.
+
+    Inputs:
+    ---
+    NONE
+
+    Outputs:
+    ---
+    Returns a randomly generated colour.
+
+    Example: #EB700E
     """
     color = "#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
     return color
 
 def _fetch_keyword_paper_tuple_impl(st, ed, topk):
     """ An optimized method to obtain keyword paper tuple
+    Inputs:
+    ---
+    st: [Int] The start year to filter results (value between 2010-2021)
+    example: 2017
+    ed: [Int] End year to filter result (value between 2010-2021)
+    example: 2020
+    topk: [Int] TopK results to return.
+    example: 5
+
+
+    Outputs:
+    A list tuples: [List] containing: [Tuple]:
+    Keyword [Str]
+    Total num papers [Int] containing keyword between st and ed
+    Annually published papers [Int] related to the keyword
+
     """
     tst = time.time()
     ted = time.time()
@@ -61,12 +97,13 @@ def _fetch_keyword_paper_tuple_impl(st, ed, topk):
 
 def fetch_keyword_paper_tuple(start_year=2015, end_year=2020, topk=5):
     """
-    return a list of tuple(keyword, total_paper_num, paper_num_over_year)
-    keyword: the name of a keyword 
-    total_paper_num: total num of paper containing the keyword published from 
-        start_year to end_year 
-    paper_num_over_year: length equals to (end_year-start_year+1), annually
-        published papers related to the keyword
+    Inputs:
+    ---
+    NONE
+
+    Returns: 
+    ---
+    Result of _fetch_keyword_paper_tuple_impl function
     """
     # TODO: sanity check for the year range
 
@@ -75,7 +112,31 @@ def fetch_keyword_paper_tuple(start_year=2015, end_year=2020, topk=5):
 
 def display_topk(key_paper, start_year, end_year, k, key_set=None):
     """
-    return a dictionary obj for char display
+    Returns a dictionary obj for char display
+
+    Inputs:
+    ---
+    key_paper: [list] a list of tuples containing keyword [String] and keyword counts [Int] and
+    annually published papers [Int] related to the keyword
+    start_year: [Int] start year for filter
+    Example: 2012
+    end_year: [Int] end year for filter
+    Example: 2019
+    k: [Int] K An integer to obtain slice of 0-k results in key_paper
+    Example: 5
+    key_set: [None] or [List] list of keywords
+
+    Return:
+    plot_data: [Dictionary] a dictionary object to display topk results
+    Example:
+    
+    {datasets: [list] containing key_data dictionary
+    [{'data': [integer] nums,
+     'label': [string] keyword,
+     'fill': [Bool] False,
+     'borderColor': Random color e.g. #EB700E}]
+     }
+
     """
     # TODO: use database to fullfill this feature? 
     key_paper.sort(key=lambda x:x[1], reverse=True)
@@ -98,7 +159,26 @@ def display_topk(key_paper, start_year, end_year, k, key_set=None):
     return plot_data
 
 def keywords_page(request):
-    """ This function render the keywords page. 
+    """ This function renders the keywords page. 
+    Inputs: 
+    ---
+    A request object: [django.http.HttpRequest]
+
+    Outputs:
+    ---
+     Returns a rendered html template as a response. The render()
+    function takes a request object and maps it to the URL pattern
+    specified in the second argument place to return the result. and passes dictionary:
+    {
+        "keyword_data" : plot_data,
+        "form": KeywordsFilterForm(),
+        "topk": topk, 
+        "st_year": st_year, 
+        "ed_year": ed_year
+    }
+
+    With KeywordsFilter form for querying top k keywords trends
+
     TODO: support showing the trend of a specific keyword
     """
     st_year, ed_year, topk = 2015, 2020, 5
@@ -137,13 +217,14 @@ def generate_empty_pie(name='none', key_name='none'):
 
     Inputs:
     ---
-    key_name: the table name, "author" or "affiliation"
-    name: the query, an author or affiliation name given by
-        the user
+    key_name: [String] the table name, "author" or "affiliation"
+    Example: 'author'
+    name: [String] the query, an author or affiliation name given by the user
+    Example: 'Michael Smith'
 
     Outputs:
     ---
-    An dictionary object which includes all the data needed 
+    plot_data: [Dictionary] A dictionary object which includes all the data needed 
     to draw the pit chart at the front-end side.
     """
     plot_data = {}
@@ -164,16 +245,18 @@ def display_interest_pie(target_name, topk, model, key_name):
 
     Inputs:
     ---
-    target_name: the query, an author or affiliation name given by
-        the user
-    topk: only show top k fileds of interests 
-    model: the table, Django use a "Model" object to represent a table
-    key_name: the table name, could be "author" or "affiliation" 
+    target_name: [String] the query, an author or affiliation name given by the user
+    Example: 'Carnegie Mellon University'
+    topk: [Integer] only show top k fileds of interests
+    Example: 5
+    model: [django.db.models.Model] the table, Django use a "Model" object to represent a table
+    key_name: [String] the table name, could be "author" or "affiliation" 
+    Example: 'Affiliation'
 
     Outputs:
     ---
-    An dictionary object which includes all the data needed 
-    to draw the pit chart at the front-end side.
+    plot_data: [Dictionary] A dictionary object which includes all the data needed 
+    to draw the pie chart at the front-end side.
 
     TODO:
     - [ ] input validation 
@@ -210,6 +293,20 @@ def display_interest_pie(target_name, topk, model, key_name):
 
 def researchers_page(request):
     """ Render the researcher page.
+     Inputs: 
+    ---
+    A request object: [django.http.HttpRequest]
+
+    Outputs:
+    ---
+     Returns a rendered html template as a response. The render()
+    function takes a request object and maps it to the URL pattern
+    specified in the second argument place to return the result. and passes dictionary:
+    {
+        "pie_data" : display_interest_pie(author, topk, Author, 'author'),
+        "form": ResearchFilterForm()
+    }
+    With ResearchFilterForm() to query the research interest distribution for a single given author
     """
     author = 'Jay Mahadeokar'
     topk = 5
@@ -229,6 +326,21 @@ def researchers_page(request):
 
 def affiliations_page(request):
     """ Render the affiliation page.
+    Inputs: 
+    ---
+    A request object: [django.http.HttpRequest]
+
+    Outputs:
+    ---
+     Returns a rendered html template as a response. The render()
+    function takes a request object and maps it to the URL pattern
+    specified in the second argument place to return the result. and passes dictionary:
+    {
+        "pie_data" : display_interest_pie(aff, topk, Affiliation, 'affiliation'),
+        "form": AffiliationFilterForm()
+    }
+    With AffiliationFilterForm() to query research interest distribution of an affiliation.
+    
     """
     aff = "Google"
     topk = 5
@@ -247,7 +359,14 @@ def affiliations_page(request):
     })
 
 def download_file(request):
-    """ WIP: a downlink, enable users to download the query results in XML format.
+    """ WIP: a download link, enable users to download the query results in XML format.
+    Inputs: 
+    ---
+    A request object: [django.http.HttpRequest]
+
+    Outputs:
+    ---
+    A response object: [django.http.HtttpResonse] with path to download query results in XML format.
     """
     fl_path = 'x' 
     fl_name = 'somename.py'
