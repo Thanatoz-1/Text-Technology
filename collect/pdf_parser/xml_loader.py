@@ -1,5 +1,6 @@
 import lxml
 from bs4 import BeautifulSoup
+import pickle
 
 # We use XMLLoader to load all raw xml files
 class XMLLoader:
@@ -10,29 +11,15 @@ class XMLLoader:
         self.xmls = []
         self.items = []
         
-    def read_xmls(self, xmls_path):
-        """
-        xmls_path contains all the xmls files's paths
-        one line for one xml path
-        each xml file will be parsed and stored as a BeautifulSoup
-        parsed object in self.xmls
-        """
-        print('loading...')
-        with open(xmls_path, 'r') as f:
-            for xml_path in f:
-                self.xmls.append(self._read_one_xml(xml_path))
+    def add_ans(self, i, affs, iterms):
+        self.items[i]['affiliations'] = affs
+        self.items[i]['keywords'] = iterms
+        
+    def dump(self, path):
+        with open(path, 'wb') as f:
+            pickle.dump(self.items, f)
                 
-        # serialize items, just load it to the memory
-        for bs_content in self.xmls:
-            for item in bs_content.find_all('item'):
-                title = item.title.get_text()
-                abstract = item.abstract.get_text()
-                author = item.author.get_text()
-                url = item.url.get_text()
-                self.items.append((title, abstract, author, url))
-        print('done')
-                
-    def _read_one_xml(self, xml_path):
+    def read_xml(self, year, xml_path):
         """
         return the BeautifulSoup parsed result of a given xml file
         """
@@ -40,4 +27,18 @@ class XMLLoader:
         with open(xml_path, 'r') as f:
             content = f.read()
             bs_content = BeautifulSoup(content, 'lxml')
-            return bs_content
+            
+            for item in bs_content.find_all('item'):
+                title = item.title.get_text()
+                abstract = item.abstract.get_text()
+                author = item.author.get_text().split(',')
+                url = item.url.get_text()
+                ans = {'conf': 'INTERSPEECH', 
+                   'year': year, 
+                   'title': title, 
+                   'abstract': abstract, 
+                   'authors': author, 
+                   'affiliations': [], 
+                   'keywords': [], 
+                   'url': url}
+                self.items.append(ans)
