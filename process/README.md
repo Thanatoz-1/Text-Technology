@@ -55,7 +55,7 @@ We also uploaded two built mappers, they could be found in the `process/results/
 After generating the two objects, run the following code to augment the original index terms with all-cap words and cluster representatives. Together they form the keywords of a paper. 
 
 ```shell
-python replace_index_term.py final.pkl all_cap.dict cluster.dict papers.xml
+python augment_index_terms.py final.pkl all_cap.dict cluster.dict papers.xml
 ```
 `final.pkl` is generated at the collect part, please check [step 2 in collect](../collect/README.md)
 `papers.xml` is the output result.
