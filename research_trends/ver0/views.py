@@ -363,7 +363,7 @@ def researchers_page(request):
     
         if form.is_valid():
             topk = form.cleaned_data["topk"]
-            author = form.cleaned_data["author"]
+            author = form.cleaned_data["name"]
 
     pie_data, paper_list = display_interest_pie(author, topk, Author, 'author')
     return render(request, "ver0/researchers.html", {
@@ -400,7 +400,7 @@ def affiliations_page(request):
     
         if form.is_valid():
             topk = form.cleaned_data["topk"]
-            aff = form.cleaned_data["affiliation"]
+            aff = form.cleaned_data["name"]
 
     pie_data, paper_list = display_interest_pie(aff, topk, Affiliation, 'affiliation')
     return render(request, "ver0/affiliations.html", {
