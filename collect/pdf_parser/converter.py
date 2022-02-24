@@ -132,7 +132,7 @@ class Converter:
         
     def _add_xml_node(self, parent, name, text):
         kid = SubElement(parent, name)
-        kid.text = text
+        kid.text = text.strip()
         return kid
         
     def _add_xml_list(self, parent, name, list_name, elements):

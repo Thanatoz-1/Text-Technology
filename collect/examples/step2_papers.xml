@@ -1,0 +1,2751 @@
+<?xml version="1.0" ?>
+<conferences>
+  <conference>
+    <metadata>
+      <confName abbr="interspeech">INTERSPEECH</confName>
+      <year>2010</year>
+    </metadata>
+    <papers>
+      <paper>
+        <title>HMM based TTS for mixed language text</title>
+        <abstract>In current text content especially web contents, there are many mixed language contents, i.e. Mandarin text mixed with English words. To make the synthesized speech of mixed language contents sound natural, we need to synthesize the mixed languages content with a single voice. However, this task is very challenging because we can hardly find a talent who can speak both languages well enough. The synthesized speech will sound unnatural if the HMM based TTS is directly built with the non-native speakers training corpus. In this paper, we propose to use speaker adaptation technology to leverage the native speakers data to generate more natural speech for the non-native speaker. Evaluation results show that the proposed method can significantly improve the speaker consistency and naturalness of synthesized speech for mixed language text.</abstract>
+        <authors>
+          <author>Zhiwei Shuang</author>
+          <author>Shiyin Kang</author>
+          <author>Yong Qin</author>
+          <author>Lirong Dai</author>
+          <author>Lianhong Cai</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Science and Technology of China</affiliation>
+          <affiliation>Tsinghua University</affiliation>
+          <affiliation>IBM Research China</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>mixed language</keyword>
+          <keyword>HMM</keyword>
+          <keyword>adaptation</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2010/shuang10_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Semi-supervised training of Gaussian mixture models by conditional entropy minimization</title>
+        <abstract>In this paper, we propose a new semi-supervised training method for Gaussian Mixture Models. We add a conditional entropy minimizer to the maximum mutual information criteria, which enables to incorporate unlabeled data in a discriminative training fashion. The training method is simple but surprisingly effective. The preconditioned conjugate gradient method provides a reasonable convergence rate for parameter update. The phonetic classification experiments on the TIMIT corpus demonstrate significant improvements due to unlabeled data via our training criteria.</abstract>
+        <authors>
+          <author>Jui-Ting Huang</author>
+          <author>Mark Hasegawa-Johnson</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Illinois at Urbana-Champaign</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>semi-supervised learning</keyword>
+          <keyword>conditional entropy</keyword>
+          <keyword>gaussian mixture models</keyword>
+          <keyword>phonetic classification</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2010/huang10_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Post-aspiration in standard Italian: some first cross-regional acoustic evidence</title>
+        <abstract>Voiceless geminate stops in Italian are typically described as unaspirated in all positions. However, recent acoustic phonetic analysis of part of a corpus of standard Italian speech data has shown that the geminate voiceless stops /pp tt kk/ are frequently realized with both preaspiration i.e. [hC] and post-aspiration. This paper focuses on the latter phenomenon, presenting acoustic phonetic evidence in the form of VOT duration values for /pp tt kk/ tokens recorded in 15 Italian cities (based on the CLIPS corpus of spoken Italian). The co-occurrence of post-aspiration with preaspiration is considered and results are discussed with a focus on regional patterns.</abstract>
+        <authors>
+          <author>Mary Stevens</author>
+          <author>John Hajek</author>
+        </authors>
+        <affiliations>
+          <affiliation>Ludwig-Maximilians-Universität</affiliation>
+          <affiliation>University of Melbourne</affiliation>
+        </affiliations>
+        <keywords/>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2010/stevens10_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Focus-sensitive operator or focus inducer: always and only</title>
+        <abstract>There is a long-standing debate in the literature about whether focus particles function as focus-sensitive operators or focus inducers. However, it has not yet been established which perspective is correct. The current study investigates the effect of focus particles, using four different conditions. The results show that the focus particles are focus-sensitive operators, since the focused words are not affected by the presence of the focus particles. In addition, prosodic differences can be seen between always and only. The former has more increased mean and maximal F0, duration, and intensity values than the latter. This result suggests that always bears notable prosodic features in and of itself.</abstract>
+        <authors>
+          <author>Yong-cheol Lee</author>
+          <author>Satoshi Nambu</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Pennsylvania</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>focus-particle</keyword>
+          <keyword>focus-sensitive operator</keyword>
+          <keyword>focus inducer</keyword>
+          <keyword>PENTA</keyword>
+          <keyword>intonational function</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2010/lee10_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Fuzzy support vector machines for age and gender classification</title>
+        <abstract>Support vector machine (SVM) has been proven as a powerful tool for solving age and gender classi?cation problems. However, SVM is sensitive to noise and outliers. In this paper we propose a new fuzzy SVM based on an assumption that training data points should not be treated equally to avoid the problem of sensitivity to noise and outliers. This can be achieved by assigning a fuzzy membership as a weight to each training data point. A method to calculate fuzzy memberships is also presented. Experiments performed on the aGender corpus for INTERSPEECH 2010 Paralinguistic Challenge show that the proposed fuzzy SVMcan improve age and gender classification accuracy.</abstract>
+        <authors>
+          <author>Phuoc Nguyen</author>
+          <author>Trung Le</author>
+          <author>Dat Tran</author>
+          <author>Xu Huang</author>
+          <author>Dharmendra Sharma</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Canberra</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>fuzzy support vector machine</keyword>
+          <keyword>age classification</keyword>
+          <keyword>gender classification</keyword>
+          <keyword>paralinguistic challenge</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2010/nguyen10b_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Quantized HMMs for low footprint text-to-speech synthesis</title>
+        <abstract>This paper proposes the use of Quantized HiddenMarkovModels (QHMMs) for reducing the footprint of conventional parametric HMM-based TTS system. Previously, this technique was successfully applied to automatic speech recognition in embedded devices without loss of recognition performance. In this paper we investigate the construction of different quantized HMM configurations that serve as input to the standard ML-based parameter generation algorithm. We use both subjective and objective tests to compare the resulting systems. Subjective results for specific compression configurations show no significant preference although some spectral distortion is reported. We conclude that a trade-off is necessary in order to satisfy both speech quality and low-footprint memory requirements.</abstract>
+        <authors>
+          <author>Alexander Gutkin</author>
+          <author>Xavi Gonzalvo</author>
+          <author>Stefan Breuer</author>
+          <author>Paul Taylor</author>
+        </authors>
+        <affiliations/>
+        <keywords>
+          <keyword>hmm-based speech synthesis</keyword>
+          <keyword>low-footprint</keyword>
+          <keyword>quantized hmm</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2010/gutkin10_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>A hybrid modeling strategy for GMM-SVM speaker recognition with adaptive relevance factor</title>
+        <abstract>In Gaussian mixture model (GMM) approach to speaker recognition, it has been found that the maximum a posteriori (MAP) estimation is greatly affected by undesired variability due to varying duration of utterance as well as other hidden factors related to recording devices, session environment, and phonetic contents. We propose an adaptive relevance factor (RF) to compensate for this variability. In the other side, in realistic application, it is likely that the different channel corresponds to its different training and test conditions in terms of quantity and quality of the speech signals. In this connection, we develop a hybrid model that combines multiple complementary systems, each of which focuses on specific condition(s). We show the effectiveness of the proposed method on the core task of the National Institute of Standards and Technology (NIST) speaker recognition evaluation (SRE) 2008.</abstract>
+        <authors>
+          <author>Chang Huai You</author>
+          <author>Haizhou Li</author>
+          <author>Kong Aik Lee</author>
+        </authors>
+        <affiliations/>
+        <keywords>
+          <keyword>speaker recognition</keyword>
+          <keyword>gaussian mixture model</keyword>
+          <keyword>maximum a posteriori</keyword>
+          <keyword/>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2010/you10_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Natural belief-critic: a reinforcement algorithm for parameter estimation in statistical spoken dialogue systems</title>
+        <abstract>This paper presents a novel algorithm for learning parameters in statistical dialogue systems which are modelled as Partially Observable Markov Decision Processes (POMDPs). The three main components of a POMDP dialogue manager are a dialogue model representing dialogue state information; a policy which selects the system's responses based on the inferred state; and a reward function which specifies the desired behaviour of the system. Ideally both the model parameters and the policy would be designed to maximise the reward function. However, whilst there are many techniques available for learning the optimal policy, there are no good ways of learning the optimal model parameters that scale to real-world dialogue systems. The Natural Belief-Critic (NBC) algorithm presented in this paper is a policy gradient method which offers a solution to this problem. Based on observed rewards, the algorithm estimates the natural gradient of the expected reward. The resulting gradient is then used to adapt the prior distribution of the dialogue model parameters. The algorithm is evaluated on a spoken dialogue system in the tourist information domain. The experiments show that model parameters estimated to maximise the reward function result in significantly improved performance compared to the baseline handcrafted parameters.</abstract>
+        <authors>
+          <author>F. Jurčíček</author>
+          <author>B. Thomson</author>
+          <author>S. Keizer</author>
+          <author>François Mairesse</author>
+          <author>M. Gašić</author>
+          <author>Kai Yu</author>
+          <author>Steve Young</author>
+        </authors>
+        <affiliations>
+          <affiliation>Cambridge University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>spoken dialogue systems</keyword>
+          <keyword>reinforcement learning</keyword>
+          <keyword>POMDP</keyword>
+          <keyword>dialogue management</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2010/jurcicek10_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>The effect of a word embedded in a sentence and speaking rate variation on the perceptual training of geminate and singleton consonant distinction</title>
+        <abstract>Aiming at effective perceptual training of second language learning, we carried out training experiments on Japanese geminate consonants. Native Korean learners were trained to identify geminate and singleton stop of Japanese. Since Korean language has no phonemic contrast between long and short consonants, learners have tried to learn their differences based on their categorical perception through training. To test the training efficiency and find generalization of temporal discrimination, we investigated the perceptual training with a word embedded in sentences and single/multiple speaking rate. Training experiments showed the superiority with a word embedded in sentences and multiple speaking rates. These results suggest that perceptual training which was trained by multiple speaking rates could be effective to perceive temporal discrimination of length contrast of Japanese. However, under the training stimuli was single speaking rate condition, perceptual training have generalized to the limited extent. These results suggest that context factors including speaking rate would affect to identify the length contrast of Japanese to L2 learners.</abstract>
+        <authors>
+          <author>Mee Sonu</author>
+          <author>Keiichi Tajima</author>
+          <author>Hiroaki Kato</author>
+          <author>Yoshinori Sagisaka</author>
+        </authors>
+        <affiliations>
+          <affiliation>Hosei University</affiliation>
+          <affiliation>The effect of a word embedded</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>perceptual training</keyword>
+          <keyword>singleton/geminate consonants</keyword>
+          <keyword>speaking rate variation</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2010/sonu10_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Learning words and speech units through natural interactions</title>
+        <abstract>This work provides an ecological approach to learning words and speech units through natural interactions, without the need for preprogrammed linguistic knowledge in form of phonemes. Interactions such as imitation games and multimodal word learning create an initial set of words and speech units. These sets are then used to train statistical models in an unsupervised way.</abstract>
+        <authors>
+          <author>Jonas Hörnstein</author>
+          <author>José Santos-Victor</author>
+        </authors>
+        <affiliations>
+          <affiliation>Instituto Superior Técnico</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>multimodal learning</keyword>
+          <keyword>ecological approach</keyword>
+          <keyword>motor learning</keyword>
+          <keyword>interactions</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2010/hornstein10_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>A new approach for automatic tone error detection in strong accented Mandarin based on dominant set</title>
+        <abstract>In this paper, we proposed a new approach based on dominant set [1] for tone error detection in strong accented Mandarin. First, the final boundary generated from forced alignment is regulated by the F0 contour in order to locate the final domain more accurately. After that, proper normalization techniques are explored for the tone features. Finally, clustering and classification methods based on dominant set are utilized for the tone error detection. The proposed approach is tested in comparison with the traditional k-means based method, experimental results show that it achieves more satisfying performance with an average Cross-Correlation 0.84 between human and machine, reaches to that between humans, which have verified the effectiveness of the proposed approach. The main advantage of this approach lies in not only the error pronunciation of tone can be well identified, but also the F0 pattern of the tone error can be informatively provided as the feedback.</abstract>
+        <authors>
+          <author>Taotao Zhu</author>
+          <author>Dengfeng Ke</author>
+          <author>Zhenbiao Chen</author>
+          <author>Bo Xu</author>
+        </authors>
+        <affiliations>
+          <affiliation>Chinese Academy of Sciences</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>call (computer assisted language learning)</keyword>
+          <keyword>tone error detection</keyword>
+          <keyword>dominant set</keyword>
+          <keyword>forced alignment</keyword>
+          <keyword>F0</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2010/zhu10b_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Manipulating treacheoesophageal speech</title>
+        <abstract>Speech therapy aiming at improving voice quality and speech intelligibility is often hampered by the lack of knowledge of the underlying deficits. One way to help speech therapists treating patients would be to supply synthetic bench-marks for pathological speech. In a listening experiment testing perceived intelligibility, three types of manipulations of tracheoesophageal speech were evaluated by experienced speech therapists. It was found that modeling the intensity contour of the voice source signal improved speech quality over plain analysis-synthesis. Replacing the voicing source with fully synthetic source periods decreased the perceived intelligibility markedly. Making the source fully periodic with a regular pitch had no effect on perceived intelligibility. Low quality speech benefited more from manipulations, or deteriorated less, than high quality speech.</abstract>
+        <authors>
+          <author>Rob J. J. H. van Son</author>
+          <author>Irene Jacobi</author>
+          <author>Frans Hilgers</author>
+        </authors>
+        <affiliations/>
+        <keywords>
+          <keyword>tracheoesophageal speech</keyword>
+          <keyword>pathological speech synthesis</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2010/son10_interspeech.pdf</url>
+      </paper>
+    </papers>
+  </conference>
+  <conference>
+    <metadata>
+      <confName abbr="interspeech">INTERSPEECH</confName>
+      <year>2011</year>
+    </metadata>
+    <papers>
+      <paper>
+        <title>Joint robust voicing detection and pitch estimation based on residual harmonics</title>
+        <abstract>This paper focuses on the problem of pitch tracking in noisy conditions. A method using harmonic information in the residual signal is presented. The proposed criterion is used both for pitch estimation, as well as for determining the voicing segments of speech. In the experiments, the method is compared to six stateof- the-art pitch trackers on the Keele and CSTR databases. The proposed technique is shown to be particularly robust to additive noise, leading to a significant improvement in adverse conditions.</abstract>
+        <authors>
+          <author>Thomas Drugman</author>
+          <author>Abeer Alwan</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of California</affiliation>
+          <affiliation>University of Mons</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>fundamental frequency</keyword>
+          <keyword>pitch tracking</keyword>
+          <keyword>pitch estimation</keyword>
+          <keyword>voicing decisions</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2011/drugman11_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Quality improvement of voice conversion systems based on trellis structured vector quantization</title>
+        <abstract>Common voice conversion systems employ a spectral / time domain mapping to convert speech from one speaker to another. The speech quality of conversion methods does not sound natural because the spectral / time domain patterns of two speakers' speech do not match completely. In this paper we propose a method that uses inter-frame (dynamic) characteristics in addition to intra-frame characteristics to find the converted speech frames. This method is based on VQ and uses a trellis structure to find the best conversion function. The proposed method provides high quality converted voice, low computational complexity and small trained model size in contrast to other common methods. Subjective and objective evaluations are employed to demonstrate the superiority of the proposed method over the VQ-based and GMM-based methods.</abstract>
+        <authors>
+          <author>Mahdi Eslami</author>
+          <author>Hamid Sheikhzadeh</author>
+          <author>Abolghasem Sayadiyan</author>
+        </authors>
+        <affiliations>
+          <affiliation>Amirkabir University of Technology</affiliation>
+          <affiliation>Tamin Telecom Company</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>voice conversion</keyword>
+          <keyword>trellis</keyword>
+          <keyword>vector quantization</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2011/eslami11_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Clustering with modified cosine distance learned from constraints</title>
+        <abstract>In this paper we present a modified cosine similarity metric that helps to make features more discriminative. The new metric is defined via various linear transformations of the original feature space to a space in which these samples are better separated. These transformations are learned from a set of constraints representing available domain knowledge by solving related optimization problems. We present results on two natural language call routing datasets that show significant improvements ranging from 3% to 5% absolute in the purity of clusters obtained in an unsupervised fashion.</abstract>
+        <authors>
+          <author>Leonid Rachevsky</author>
+          <author>Dimitri Kanevsky</author>
+          <author>Ruhi Sarikaya</author>
+          <author>Bhuvana Ramabhadran</author>
+        </authors>
+        <affiliations>
+          <affiliation>IBM T.J. Watson Research Center</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>constrained clustering</keyword>
+          <keyword>cosine metric</keyword>
+          <keyword>SVM</keyword>
+          <keyword>TFIDF</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2011/rachevsky11_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Hidden boosted MMI and hierarchical state posterior feature for automatic speech recognition based on hidden conditional neural fields</title>
+        <abstract>We have investigated automatic speech recognition using Hidden Conditional Neural Fields (HCNF). In this paper, we propose a new objective function, Hidden Boosted MMI (HB-MMI) that considers the number of errors in the training data even if the correct state sequence is not known for training the HCNF. The experimental results show that HB-MMI can improve recognition accuracy if overfitting does not occur. We also present an automatic speech recognition method using a hierarchical state posterior feature where the output from the first stage HCNF is used as input for the second stage HCNF. The experimental results show that the feature improves recognition accuracy. By combining both of the proposed methods, we obtain further improvements.</abstract>
+        <authors>
+          <author>Yasuhisa Fujii</author>
+          <author>Kazumasa Yamamoto</author>
+          <author>Seiichi Nakagawa</author>
+        </authors>
+        <affiliations>
+          <affiliation>Toyohashi University of Technology</affiliation>
+          <affiliation>Speech Recognition based on Hidden Conditional Neural Fields</affiliation>
+          <affiliation>Hidden Boosted MMI and Hierarchical State Posterior Feature for Automatic</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>hidden conditional neural fields</keyword>
+          <keyword>automatic speech recognition</keyword>
+          <keyword>hidden boosted mmi</keyword>
+          <keyword>state posterior feature</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2011/fujii11_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Automatic comma insertion of lecture transcripts based on multiple annotations</title>
+        <abstract>To enhance readability and usability of speech recognition results, automatic punctuation is an essential process. In this paper, we address automatic comma prediction based on conditional random fields (CRF) using lexical, syntactic and pause information. Since there is large disagreement in comma insertion between humans, we model individual tendencies of punctuation using annotations given by multiple annotators, and combine these models by voting and interpolation frameworks. Experimental evaluations on real lecture speech demonstrated that the combination of individual punctuation models achieves higher prediction accuracy for commas agreed by all annotators and those given by individual annotators.</abstract>
+        <authors>
+          <author>Yuya Akita</author>
+          <author>Tatsuya Kawahara</author>
+        </authors>
+        <affiliations>
+          <affiliation>Kyoto University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>automatic punctuation</keyword>
+          <keyword>lecture speech</keyword>
+          <keyword>conditional random fields</keyword>
+          <keyword>multiple annotations</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2011/akita11_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Evaluation of listening-oriented dialogue control rules based on the analysis of HMMs</title>
+        <abstract>We have been working on listening-oriented dialogues for the purpose of building listening agents. In our previous work [1], we trained hidden Markov models (HMMs) from listening-oriented dialogues (LoDs) between humans, and by analyzing them, discovered a distinguishing dialogue flow of LoD. For example, listeners suppress their information giving and self-disclosure, and instead, increase acknowledgments and questions to elicit speakers' utterances. As an initial step for building listening agents, we decided to create dialogue control rules based on our analysis of the HMMs. We built our rule-based system and compared it with three other systems by a Wizard of Oz (WoZ) experiment. As a result, we found that our rule-based system achieved as much user satisfaction as human listeners.</abstract>
+        <authors>
+          <author>Toyomi Meguro</author>
+          <author>Yasuhiro Minami</author>
+          <author>Ryuichiro Higashinaka</author>
+          <author>Kohji Dohsaka</author>
+        </authors>
+        <affiliations>
+          <affiliation>NTT Corporation</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>listening-oriented dialogue</keyword>
+          <keyword>dialogue system</keyword>
+          <keyword>wizard of oz</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2011/meguro11_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Analysing the correspondence between automatic prosodic segmentation and syntactic structure</title>
+        <abstract>Prosody and syntax are highly related, even if the prosodic structure cannot be directly mapped to the syntactic one and vice versa. This paper presents an experiment for exploring in what degree a powerful HMM-based automatic prosodic segmentation tool can recover the syntactic structure of an utterance in speech understanding systems. Results show that the approach is capable of recalling up to 92% of syntactic clause boundaries and up to 71% of embedded syntactic phrase boundaries based on the detection of phonological phrases. Recall rates do not depend further on the syntactic level (whether the phrase is multiply embedded or not), but clause boundaries can be well separated from lower level syntactic phrases based on the type of the aligned phonological phrase(s). These findings can be exploited in speech understanding systems, allowing for the recovery of the skeleton of the syntactic structure, based purely</abstract>
+        <authors>
+          <author>György Szaszák</author>
+          <author>Katalin Nagy</author>
+          <author>András Beke</author>
+        </authors>
+        <affiliations>
+          <affiliation>Budapest University for Technology and Economics</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>prosody</keyword>
+          <keyword>syntax</keyword>
+          <keyword>phonological phrase</keyword>
+          <keyword>syntactic analysis</keyword>
+          <keyword>speech understanding</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2011/szaszak11_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Perceptual quality dimensions of text-to-speech systems</title>
+        <abstract>The aim of this paper is to analyze the perceptual quality dimensions of state-of-the-art text-to-speech systems (TTS). Therefore, several pretests were conducted to determine a suitable set of attribute scales. The resulting 16 scales were used in a semantic differential on a diverse database containing 16 different TTS systems. A subsequent multidimensional analysis (Principal Axis Factor analysis with Promax rotation) resulted in three underlying quality dimensions. They were labeled naturalness, disturbances, and temporal distortions. A mapping of these factors onto the perceived overall quality revealed that naturalness contributes the most to the quality of TTS signals.</abstract>
+        <authors>
+          <author>Florian Hinterleitner</author>
+          <author>Sebastian Möller</author>
+          <author>Christoph Norrenbrock</author>
+          <author>Ulrich Heute</author>
+        </authors>
+        <affiliations>
+          <affiliation>CAU Kiel</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech synthesis</keyword>
+          <keyword>quality dimensions</keyword>
+          <keyword>multidimensional analysis</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2011/hinterleitner11_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Phoneme-level text to audio synchronization on speech signals with background music</title>
+        <abstract>We address the task of synchronizing a given phoneme transcription with the corresponding speech signal, when the latter is linearly mixed with background music. To that end, we propose a new method based on Non-negative Matrix Factorization in the time-frequency domain, which models the speech as a source-filter factorization that includes a synchronization parameter matrix. Phoneme models, which consist of collections of basic spectral envelopes, are learned from a training set of isolated speech. The model is subjected to an iterative Maximum Likelihood optimization that concurrently estimates pitch, synchronization parameters and the contribution of the music part. Results show the feasibility of the system for application in text-informed audio processing and automatic subtitle synchronization.</abstract>
+        <authors>
+          <author>Agnès Pedone</author>
+          <author>Juan José Burred</author>
+          <author>Simon Maller</author>
+          <author>Pierre Leveau</author>
+        </authors>
+        <affiliations/>
+        <keywords>
+          <keyword>voice synchronization</keyword>
+          <keyword>non-negative matrix factorization</keyword>
+          <keyword>source-filter model</keyword>
+          <keyword>information retrieval</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2011/pedone11_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Active learning for dialogue act classification</title>
+        <abstract>Active learning techniques were employed for classification of dialogue acts over two dialogue corpora, the English human-human Switchboard corpus and the Spanish human-machine Dihana corpus. It is shown clearly that active learning improves on a baseline obtained through a passive learning approach to tagging the same data sets. An error reduction of 7% was obtained on Switchboard, while a factor 5 reduction in the amount of labeled data needed for classification was achieved on Dihana. The passive Support Vector Machine learner used as baseline in itself significantly improves the state of the art in dialogue act classification on both corpora. On Switchboard it gives a 31% error reduction compared to the previously best reported result.</abstract>
+        <authors>
+          <author>Björn Gambäck</author>
+          <author>Fredrik Olsson</author>
+          <author>Oscar Täckström</author>
+        </authors>
+        <affiliations>
+          <affiliation>Norwegian University of Science and Technology</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>dialogue acts</keyword>
+          <keyword>active learning</keyword>
+          <keyword>svms</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2011/gamback11_interspeech.pdf</url>
+      </paper>
+    </papers>
+  </conference>
+  <conference>
+    <metadata>
+      <confName abbr="interspeech">INTERSPEECH</confName>
+      <year>2012</year>
+    </metadata>
+    <papers>
+      <paper>
+        <title>Speaker adaptation using variational Bayesian linear regression in normalized feature space</title>
+        <abstract>The purpose of this paper is tuning-free SMAPLR approach. The one of the important issues of SMAPLR approach is deciding occupancy threshold for the tree structure according to the number of adaptation data and control parameter for the hierarchical prior setting for appropriately incorporating prior information. For that purpose, we employ variational Bayesian linear regression (VBLR) approach. VBLR uses variational lower bound as an objective function. Using variational lower bound, model structure and contribution of the prior information can be decided without deciding experimentally. In this paper, we employ the VBLR adaptation in normalized feature-space. We first perform the feature space SMAPLR (fSMAPLR) to normalize the feature space. Then, VBLR is performed in previously normalized feature space. Experiments on large vocabulary continuous speech recognition using the Corpus of Spontaneous Japanese (CSJ) corpus confirm the effectiveness of the proposed method compared with other conventional adaptation methods.</abstract>
+        <authors>
+          <author>Seong-Jun Hahm</author>
+          <author>Atsunori Ogawa</author>
+          <author>Masakiyo Fujimoto</author>
+          <author>Takaaki Hori</author>
+          <author>Atsushi Nakamura</author>
+        </authors>
+        <affiliations/>
+        <keywords>
+          <keyword>speaker adaptation</keyword>
+          <keyword>SMAPLR</keyword>
+          <keyword>VBLR</keyword>
+          <keyword>normalized feature space</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2012/hahm12_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Developing a speech activity detection system for the DARPA RATS program</title>
+        <abstract>This paper describes the speech activity detection (SAD) system developed by the Patrol team for the first phase of the DARPA RATS (Robust Automatic Transcription of Speech) program, which seeks to advance state of the art detection capabilities on audio from highly degraded communication channels. We present two approaches to SAD, one based on Gaussian mixture models, and one based on multi-layer perceptrons. We show that significant gains in SAD accuracy can be obtained by careful design of acoustic front end, feature normalization, incorporation of long span features via data-driven dimensionality reducing transforms, and channel dependent modeling. We also present a novel technique for normalizing detection scores from different systems for the purpose of system combination.</abstract>
+        <authors>
+          <author>Tim Ng</author>
+          <author>Bing Zhang</author>
+          <author>Long Nguyen</author>
+          <author>Spyros Matsoukas</author>
+          <author>Xinhui Zhou</author>
+          <author>Nima Mesgarani</author>
+          <author>Karel Veselý</author>
+          <author>Pavel Matějka</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Maryland</affiliation>
+          <affiliation>Brno University of Technology</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech activity detection</keyword>
+          <keyword>noisy speech</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2012/ng12b_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Combination of sparse classification and multilayer perceptron for noise-robust ASR</title>
+        <abstract>On the AURORA-2 task good results at low SNR levels have been obtained with a system that uses state posterior estimates provided by an exemplar-based sparse classification (SC) system. At the same time, posterior estimates obtained with multilayer perceptron (MLP) yield good results at high SNRs. In this paper, we investigate the effect of combining the estimates from the SC and MLP systems at the probability level. More precisely, the probabilities are combined by a sum rule or a product rule using static and inverse-entropy based dynamic weights. In addition, we investigate a modified dynamic weighting approach which enhances the contribution of SC stream based on the information about static weights and average dynamic weights obtained on cross validation data. Our studies on AURORA-2 task shows that in all conditions the modified dynamic weighting approach yields a dual-input system that performs better than or equal to the best stand-alone system.</abstract>
+        <authors>
+          <author>Yang Sun</author>
+          <author>Mathew M. Doss</author>
+          <author>Jort F. Gemmeke</author>
+          <author>Bert Cranen</author>
+          <author>Louis ten Bosch</author>
+          <author>Lou Boves</author>
+        </authors>
+        <affiliations>
+          <affiliation>Radboud University Nijmegen</affiliation>
+          <affiliation>Idiap Research Institute</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>multiple-stream combination</keyword>
+          <keyword>noise robustness</keyword>
+          <keyword>exemplar-based system</keyword>
+          <keyword>multilayer perceptron network</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2012/sun12_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Spontaneous-speech acoustic-prosodic features of children with autism and the interacting psychologist</title>
+        <abstract>Atypical prosody, often reported in children with Autism Spectrum Disorders, is described by a range of qualitative terms that reflect the eccentricities and variability among persons in the spectrum. We investigate various word- and phonetic-level features from spontaneous speech that may quantify the cues reflecting prosody. Furthermore, we introduce the importance of jointly modeling the psychologist's vocal behavior in this dyadic interaction. We demonstrate that acoustic-prosodic features of both participants correlate with the children's rated autism severity. For increasing perceived atypicality, we find children's prosodic features that suggest emonotonicf speech, variable volume, atypical voice quality, and slower rate of speech. Additionally, we find the psychologist's features inform their perception of a child's atypical behavior. e.g., the psychologist's pitch slope and jitter are increasingly variable and their speech rate generally decreases.</abstract>
+        <authors>
+          <author>Daniel Bone</author>
+          <author>Matthew P. Black</author>
+          <author>Chi-Chun Lee</author>
+          <author>Marian E. Williams</author>
+          <author>Pat Levitt</author>
+          <author>Sungbok Lee</author>
+          <author>Shrikanth Narayanan</author>
+        </authors>
+        <affiliations>
+          <affiliation>Keck School of Medicine of USC</affiliation>
+          <affiliation>USC</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>atypical prosody</keyword>
+          <keyword>autism spectrum disorder</keyword>
+          <keyword>intonation</keyword>
+          <keyword>psychologist</keyword>
+          <keyword>voice quality</keyword>
+          <keyword>ADOS</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2012/bone12b_interspeech.pdf</url>
+      </paper>
+    </papers>
+  </conference>
+  <conference>
+    <metadata>
+      <confName abbr="interspeech">INTERSPEECH</confName>
+      <year>2013</year>
+    </metadata>
+    <papers>
+      <paper>
+        <title>Semi-supervised manifold learning approaches for spoken term verification</title>
+        <abstract>In this paper, the application of semi-supervised manifold learning techniques to the task of verifying hypothesized occurrences of spoken terms is investigated. These techniques are applied in a two stage spoken term detection framework where ASR lattices are first generated using a large vocabulary ASR system and hypothesized occurrences of spoken query terms in the lattices are verified in a second stage. The verification process is performed using a fixed dimensional feature representation derived from each hypothesized term occurrence. Two semi-supervised approaches namely, manifold regularized least squares (RLS) classification and spectral clustering, are investigated for distinguishing correct hypotheses from false alarms. It is shown that, exploiting unlabeled data in addition to labeled data using semi-supervised approaches, significantly improves the verification performance compared to the case where only the labeled data is used. This improvement in performance increases as the ratio of unlabeled to labeled data augments. It is also shown that, when training data is very limited, a comparable verification performance can be gained by exploiting only the acoustic similarity between the test samples using the spectral clustering approach.</abstract>
+        <authors>
+          <author>Atta Norouzian</author>
+          <author>Richard C. Rose</author>
+          <author>Aren Jansen</author>
+        </authors>
+        <affiliations>
+          <affiliation>Human Language Technology Center of Excellence</affiliation>
+          <affiliation>McGill University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>spoken term detection</keyword>
+          <keyword>semi-supervised learning</keyword>
+          <keyword>manifold learning</keyword>
+          <keyword>regularized least squares classifier</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2013/norouzian13_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Anchor and UBM-based multi-class MLLR m-vector system for speaker verification</title>
+        <abstract>In this paper, we propose two techniques to extend the recently introduced global Maximum Likelihood Linear Regression (MLLR) transformation (i.e. super-vector) based m-vector system for speaker verification into a multi-class MLLR m-vector system in the Universal Background Model (UBM) framework. In the first method, Gaussian mean vectors of the UBM are first grouped into several classes using conventional K-means and a proposed clustering algorithm based on Expectation Maximization (EM) and Maximum Likelihood (ML) concepts. Then, MLLR transformations are calculated for a given speech data with respect to each class, which are used in the form of super-vector for speaker representation by their m-vectors. In the second approach, several MLLR transformations are estimated with respect to pre-defined models called anchors. The proposed systems show better performance than the conventional system. Furthermore, the proposed UBMbased system does not require additional alignment of speech data with respect to the UBM for estimation of multiple MLLR transformations. We also further show that the proposed EM &amp; ML clustering algorithm is robust to random initialization and provides equal or comparable system performance compared to K-means. The experimental results are shown on NIST 2008 SRE core condition over various tasks.</abstract>
+        <authors>
+          <author>A. K. Sarkar</author>
+          <author>Claude Barras</author>
+        </authors>
+        <affiliations/>
+        <keywords>
+          <keyword>m-vector</keyword>
+          <keyword>multi-class mllr</keyword>
+          <keyword>anchor model</keyword>
+          <keyword>em clustering</keyword>
+          <keyword>speaker verification</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2013/sarkar13_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Native accent classification via i-vectors and speaker compensation fusion</title>
+        <abstract>We present a comprehensive analysis of the use of I-vector based classifiers for the classification of unlabelled acoustic data as native British accents. We demonstrate the different behaviours of various popular dimensionality reduction techniques that have been previously used in problems such as speaker and language classification. Our results show that a fusion of I-vector based systems gives state-of-the-art performance for unlabelled classification of British accent speech data, reaching .81% accuracy.</abstract>
+        <authors>
+          <author>Andrea DeMarco</author>
+          <author>Stephen J. Cox</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of East Anglia</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>accent classification</keyword>
+          <keyword>ivector representation</keyword>
+          <keyword>dimensionality reduction</keyword>
+          <keyword>SVM</keyword>
+          <keyword>LDA</keyword>
+          <keyword>discriminant analysis</keyword>
+          <keyword>NCA</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2013/demarco13_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Pitch synchronous spectral analysis for a pitch dependent recognition of voiced phonemes — PISAR</title>
+        <abstract>Humans use the pitch of their conversational partner as an important feature for improving the communication and the understanding especially in noisy situations. This knowledge is taken to investigate the idea of a pitch synchronous spectral analysis and a pitch dependent recognition of voiced speech segments. A first approach is presented for realizing this pitch dependent processing. Its applicability is shown for recognizing the voiced segments of the Timit database.</abstract>
+        <authors>
+          <author>Hans-Günter Hirsch</author>
+        </authors>
+        <affiliations>
+          <affiliation>Niederrhein University of Applied Sciences</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>pitch synchronous spectral analysis</keyword>
+          <keyword>pitch dependent recognition</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2013/hirsch13_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Text-to-speech alignment of long recordings using universal phone models</title>
+        <abstract>Large recordings like radio broadcasts or audio books are an interesting additional resource for speech research but often have nothing but an orthographic transcription available in terms of annotation. The alignment between text and speech is an important first step for further processing. Conventionally, this is done by using automatic speech recognition (ASR) on the speech corpus and then aligning recognition result and transcription. This has the drawback that an ASR system needs to be available for the target language. In this paper, we introduce an approach based on forced alignment with hidden Markov models (HMM) normally applied only to shorter utterances. We show that by using a set of generalized phone models computed over phonetic groups, forced alignment is able to reliably align text and speech while being robust against transcription errors. In contrast to ASR methods, the alignment models can be used in a language-independent way.</abstract>
+        <authors>
+          <author>Sarah Hoffmann</author>
+          <author>Beat Pfister</author>
+        </authors>
+        <affiliations>
+          <affiliation>ETH Zurich</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech corpora annotation</keyword>
+          <keyword>sentence segmentation</keyword>
+          <keyword>large corpora processing</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2013/hoffmann13b_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>GMM based speaker variability compensated system for interspeech 2013 compare emotion challenge</title>
+        <abstract>This paper describes the University of New South Wales system for the Interspeech 2013 ComParE emotion sub-challenge. The primary aim of the submission is to explore the performance of model based variability compensation techniques applied to emotion classification and as a consequence of being a part of a challenge, to enable a comparison of these methods to alternative approaches. In keeping with this focused aim, a simple frame based front-end of MFCC and ƒ¢MFCC is utilised. The systems outlined in this paper consists of a joint factor analysis based system and one based on a library of speaker-specific emotion models along with a basic GMM based system. The best combined system has an accuracy (UAR) of 47.8% as evaluated on the challenge development set and 35.7% as evaluated on the test set.</abstract>
+        <authors>
+          <author>Vidhyasaharan Sethu</author>
+          <author>Julien Epps</author>
+          <author>Eliathamby Ambikairajah</author>
+          <author>Haizhou Li</author>
+        </authors>
+        <affiliations>
+          <affiliation>National ICT Australia (NICTA)</affiliation>
+          <affiliation>The University of New South Wales</affiliation>
+          <affiliation>Human Language Technology</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>compare emotion challenge</keyword>
+          <keyword>emotion classification</keyword>
+          <keyword>speaker normalisation</keyword>
+          <keyword>joint factor analysis</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2013/sethu13_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>A cross-linguistic study on turn-taking and temporal alignment in verbal interaction</title>
+        <abstract>That speakers take turns in interaction is a fundamental fact across languages and speaker communities. How this taking of turns is organised is less clearly established. We have looked at interactions recorded in the field using the same task, in a set of three genetically and regionally diverse languages: Georgian, Cabecar, and Fongbe. As in previous studies, we find evidence for avoidance of gaps and overlaps in floor transitions in all languages, but also find contrasting differences between them on these features. Further, we observe that interlocutors align on these temporal features in all three languages. (We show this by correlating speaker averages of temporal features, which has been done before, and further ground it by ruling out potential alternative explanations, which is novel and a minor methodological contribution.) The universality of smooth turn-taking and alignment despite potentially relevant grammatical differences suggests that the different resources that each of these languages make available are nevertheless used to achieve the same effects. This finding has potential consequences both from a theoretical point of view as well as for modeling such phenomena in conversational agents.</abstract>
+        <authors>
+          <author>Spyros Kousidis</author>
+          <author>David Schlangen</author>
+          <author>Stavros Skopeteas</author>
+        </authors>
+        <affiliations>
+          <affiliation>Bielefeld University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>alignment</keyword>
+          <keyword>turn-taking</keyword>
+          <keyword>cross-linguistic</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2013/kousidis13_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Non-linguistic vocalisation recognition based on hybrid GMM-SVM approach</title>
+        <abstract>This paper describes an algorithm for detection of non-linguistic vocalisations, such as laughter or fillers, based on acoustic features. The algorithm proposed combines the benefits of Gaussian mixture models (GMM) and the advantages of support vector machines (SVMs). Three GMMs were trained for garbage, laughter, and fillers, and then an SVM model was trained in the GMM score space. Various experiments were run to tune the parameters of the proposed algorithm, using the data sets originating from the SSPNet Vocalisation Corpus (SVC) provided for the Social Signals Sub-Challenge of the INTERSPEECH 2013 Computational Paralinguistics Challenge. The results showed a remarkable growth of the unweighted average of the area under the receiver operating curve (UAAUC) compared to the baseline results (from 87.6% to over 94% for the development set), which confirmed the efficiency of the proposed method.</abstract>
+        <authors>
+          <author>Artur Janicki</author>
+        </authors>
+        <affiliations>
+          <affiliation>Warsaw University of Technology</affiliation>
+          <affiliation>Based on Hybrid GMM-SVM Approach</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>paralingustics</keyword>
+          <keyword>social signals</keyword>
+          <keyword>laughter detection</keyword>
+          <keyword>filler</keyword>
+          <keyword>support vector machines</keyword>
+          <keyword>gaussian mixture models</keyword>
+          <keyword>cepstrum</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2013/janicki13_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Binocular photometric stereo acquisition and reconstruction for 3d talking head applications</title>
+        <abstract>In order to render a high quality, versatile 3D talking head, a stable, high frame rate AV data acquisition system is constructed. It can capture 3D position, surface orientation and albedo texture of the talking head video images along with the corresponding speech signals. The system consists of a computer controlled LED lighting subsystem; high speed stereo cameras; a microphone; and a computer for synchronous recording of multi-stream AV data. The visual image data collected is processed through a binocular photometric stereo 3D reconstruction pipeline. The pipeline automatically segments out the face; computes the depth map with binocular stereo; computes the normal map with photometric stereo; generates albedo texture; and finally constructs a high-detailed 3d model with depth and normal cues as constraints. By using the data collected with the built system, we can capture high quality dynamic facial performance, synchronized with the subject's uttered speech.</abstract>
+        <authors>
+          <author>Chaoyang Wang</author>
+          <author>Lijuan Wang</author>
+          <author>Yasuyuki Matsushita</author>
+          <author>Bojun Huang</author>
+          <author>Magnetro Chen</author>
+          <author>Frank K. Soong</author>
+        </authors>
+        <affiliations>
+          <affiliation>Microsoft Research Asia</affiliation>
+          <affiliation>Shanghai Jiao Tong University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>talking head</keyword>
+          <keyword>binocular photometric stereo</keyword>
+          <keyword>facial performance capture</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2013/wang13g_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>A real-world system for simultaneous translation of German lectures</title>
+        <abstract>We present a real-time automatic speech translation system for university lectures that can interpret several lectures in parallel. University lectures are characterized by a multitude of diverse topics and a large amount of technical terms. This poses specific challenges, e.g., a very specific vocabulary and language model are needed. In addition, in order to be able to translate simultaneously, i.e., to interpret the lectures, the components of the systems need special modifications. The output of the system is delivered in the form of real-time subtitles via a web site that can be accessed by the students attending the lecture through mobile phones, tablet computers or laptops. We evaluated the system on our German to English lecture translation task at the Karlsruhe Institute of Technology. The system is now being installed in several lecture halls at KIT and is able to provide the translation to the students in several parallel sessions.</abstract>
+        <authors>
+          <author>Eunah Cho</author>
+          <author>Christian Fügen</author>
+          <author>Teresa Hermann</author>
+          <author>Kevin Kilgour</author>
+          <author>Mohammed Mediani</author>
+          <author>Christian Mohr</author>
+          <author>Jan Niehues</author>
+          <author>Kay Rottmann</author>
+          <author>Christian Saam</author>
+          <author>Sebastian Stüker</author>
+          <author>Alex Waibel</author>
+        </authors>
+        <affiliations>
+          <affiliation>Mobile Technologies GmbH</affiliation>
+          <affiliation>Karlsruhe Institute of Technology</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech translation</keyword>
+          <keyword>cloud computing</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2013/cho13_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Notes on so-called inter-speaker difference in spontaneous speech: the case of Japanese voiced obstruent</title>
+        <abstract>In spontaneous speech, seemingly einter-speakerf variation is not thoroughly speaker-dependent. It is often the cases that, in addition to the genuine speaker-dependent factors, contextual factors like speaking rate and linguistic environment also have their influence on the variation. In this paper, the variations in the vocal-tract closure articulation of Japanese voiced obstruent consonants are reanalyzed in view of the separation between speaker-dependent and contextual factors. The consonants in the Corpus of Spontaneous Japanese were analyzed by means of logistic regression using the realization of vocal-tract closure as the binary dependent variable and the TACA (time allotted for consonant articulation), a recently proposed articulatory parameter, as the independent variable. Thresholds of TACA for the realization of vocal-tract closure were computed for all speakers. The results revealed clear inverse correlation between the threshold and the mean realization rate of closure. To explain the perturbation in the correlation pattern, influence of skewed distribution of phonemes and pauses were evaluated. The results showed the expected patterns in /z/ and /b/, but not in /d/ and /g/.</abstract>
+        <authors>
+          <author>Kikuo Maekawa</author>
+        </authors>
+        <affiliations>
+          <affiliation>National Institute for Japanese Language and Linguistics</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>spontaneous speech</keyword>
+          <keyword>inter-speaker difference</keyword>
+          <keyword>corpus of spontaneous japanese (csj)</keyword>
+          <keyword>voiced obstruent</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2013/maekawa13_interspeech.pdf</url>
+      </paper>
+    </papers>
+  </conference>
+  <conference>
+    <metadata>
+      <confName abbr="interspeech">INTERSPEECH</confName>
+      <year>2014</year>
+    </metadata>
+    <papers>
+      <paper>
+        <title>On the selection of the impulse responses for distant-speech recognition based on contaminated speech training</title>
+        <abstract>Distant-speech recognition represents a technology of fundamental importance for future development of assistive applications characterized by flexible and unobtrusive interaction in home environments. State-of-the-art speech recognition still exhibits lack of robustness, and an unacceptable performance variability, due to environmental noise, reverberation effects, and speaker position. In the past, multi-condition training and contamination methods were explored to reduce the mismatch between training and test conditions. However, the performance evaluation can be biased by factors as limited number of positions of speaker and microphones, adopted set of impulse responses, vocabulary and grammars defining the recognition task. The purpose of this paper is to investigate in more detail some critical aspects that characterize such experimental context. To this purpose, our work addressed a microphone network distributed over different rooms of an apartment and a related set of speaker-microphone pairs leading to a very large set of impulse responses. Besides simulations, the experiments also tackled real speech interactions. The performance evaluation was based on a phone-loop task, in order to minimize the influence of linguistic constraints. The experimental results show how less critical is an accurate selection of impulse responses, if compared to other factors as the signal-to-noise ratio introduced by additive background noise.</abstract>
+        <authors>
+          <author>Mirco Ravanelli</author>
+          <author>Maurizio Omologo</author>
+        </authors>
+        <affiliations>
+          <affiliation>Fondazione Bruno Kessler</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>robust speech recognition</keyword>
+          <keyword>multi-condition training</keyword>
+          <keyword>reverberation</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2014/ravanelli14_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Speech emotion recognition using deep neural network and extreme learning machine</title>
+        <abstract>Speech emotion recognition is a challenging problem partly because it is unclear what features are effective for the task. In this paper we propose to utilize deep neural networks (DNNs) to extract high level features from raw data and show that they are effective for speech emotion recognition. We first produce an emotion state probability distribution for each speech segment using DNNs. We then construct utterance-level features from segment-level probability distributions. These utterance-level features are then fed into an extreme learning machine (ELM), a special simple and efficient single-hidden-layer neural network, to identify utterance-level emotions. The experimental results demonstrate that the proposed approach effectively learns emotional information from low-level features and leads to 20% relative accuracy improvement compared to the state-of-the-art approaches.</abstract>
+        <authors>
+          <author>Kun Han</author>
+          <author>Dong Yu</author>
+          <author>Ivan Tashev</author>
+        </authors>
+        <affiliations>
+          <affiliation>The Ohio State University</affiliation>
+          <affiliation>Microsoft Research</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>emotion recognition</keyword>
+          <keyword>deep neural networks</keyword>
+          <keyword>extreme learning machine</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2014/han14_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Adaptation of deep neural network acoustic models using factorised i-vectors</title>
+        <abstract>The use of deep neural networks (DNNs) in a hybrid configuration is becoming increasingly popular and successful for speech recognition. One issue with these systems is how to efficiently adapt them to reflect an individual speaker or noise condition. Recently speaker i-vectors have been successfully used as an additional input feature for unsupervised speaker adaptation. In this work the use of i-vectors for adaptation is extended to incorporate acoustic factorisation. In particular, separate i-vectors are computed to represent speaker and acoustic environment. By ensuring “orthogonality” between the individual factor representations it is possible to represent a wide range of speaker and environment pairs by simply combining i-vectors from a particular speaker and a particular environment. In this paper the i-vectors are viewed as the weights of a cluster adaptive training (CAT) system, where the underlying models are GMMs rather than HMMs. This allows the factorisation approaches developed for CAT to be directly applied. Initial experiments were conducted on a noise distorted version of the WSJ corpus. Compared to standard speaker-based i-vector adaptation, factorised i-vectors showed performance gains.</abstract>
+        <authors>
+          <author>Penny Karanasou</author>
+          <author>Yongqiang Wang</author>
+          <author>Mark J. F. Gales</author>
+          <author>Philip C. Woodland</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Cambridge</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>i-vectors</keyword>
+          <keyword>adaptation</keyword>
+          <keyword>acoustic factorisation</keyword>
+          <keyword>deep neural networks</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2014/karanasou14_interspeech.pdf</url>
+      </paper>
+    </papers>
+  </conference>
+  <conference>
+    <metadata>
+      <confName abbr="interspeech">INTERSPEECH</confName>
+      <year>2015</year>
+    </metadata>
+    <papers>
+      <paper>
+        <title>Anomaly-based annotation errors detection in TTS corpora</title>
+        <abstract>In this paper we adopt several anomaly detection methods to detect annotation errors in single-speaker read-speech corpora used for text-to-speech (TTS) synthesis. Correctly annotated words are considered as normal examples on which the detection methods are trained. Misannotated words are then taken as anomalous examples which do not conform to normal patterns of the trained detection models. Word-level feature sets including basic features derived from forced alignment, and various acoustic, spectral, phonetic, and positional features were examined. Dimensionality reduction techniques were also applied to reduce the number of features. The first results with F1 score being almost 89% show that anomaly detection could help in detecting annotation errors in read-speech corpora for TTS synthesis.</abstract>
+        <authors>
+          <author>Jindřich Matoušek</author>
+          <author>Daniel Tihelka</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of West Bohemia</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>annotation error detection</keyword>
+          <keyword>anomaly detection</keyword>
+          <keyword>read speech corpora</keyword>
+          <keyword>speech synthesis</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2015/matousek15_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Frequency offset correction in single sideband (SSB) speech by deep neural network for speaker verification</title>
+        <abstract>Communication system mismatch represents a major influence for loss in speaker recognition performance. This paper considers a type of nonlinear communication system mismatch- modulation/ demodulation (Mod/DeMod) carrier drift in single sideband (SSB) speech signals. We focus on the problem of estimating frequency offset in SSB speech in order to improve speaker verification performance of the drifted speech. Based on a two-step framework from previous work, we propose using a multi-layered neural network architecture, stacked denoising autoencoder (SDA), to determine the unique interval of the offset value in the first step. Experimental results demonstrate that the SDA based system can produce up to a +16.1% relative improvement in frequency offset estimation accuracy. A speaker verification evaluation shows a +65.9% relative improvement in EER when SSB speech signal is compensated with the frequency offset value estimated by the proposed method.</abstract>
+        <authors>
+          <author>Hua Xing</author>
+          <author>Gang Liu</author>
+          <author>John H. L. Hansen</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Texas at Dallas</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>frequency offset</keyword>
+          <keyword>single sideband</keyword>
+          <keyword>speaker verification</keyword>
+          <keyword>denoising autoencoder</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2015/xing15_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Using F0 contours to assess nativeness in a sentence repeat task</title>
+        <abstract>In this paper, we conduct experiments using F0 contour features to assess the nativeness of responses provided by speakers from India and China to a Sentence Repeat task in an assessment of English speaking proficiency for non-native speakers. The results show that the coefficients from polynomial models of the pitch contours help distinguish between native and non-native speakers, especially among females. We find that the F0 contour can be represented adequately by using only basic statistical variables and the first three orders of polynomial coefficients. In addition, the most important features for classification are presented for each group of speakers. Finally, we discuss the differences among the gender-specific groups of the speakers.</abstract>
+        <authors>
+          <author>Min Ma</author>
+          <author>Keelan Evanini</author>
+          <author>Anastassia Loukina</author>
+          <author>Xinhao Wang</author>
+          <author>Klaus Zechner</author>
+        </authors>
+        <affiliations>
+          <affiliation>The City University of New York</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>f0 contour</keyword>
+          <keyword>prosody features</keyword>
+          <keyword>nativeness assessment</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2015/ma15c_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Robust pitch estimation in noisy speech using ZTW and group delay function</title>
+        <abstract>Identification of pitch for speech signals recorded in noisy environments is a fundamental and long persistent problem in speech research. Several time domain based techniques attempt to exploit the periodic nature of the waveform using autocorrelation function and its variants. Other set of techniques utilize the harmonic structure in the spectral domain to identify pitch values. Either of these techniques suffer significant degradation in their performance in cases of noisy speech signals with low SNRs. The paper presents a robust technique to identify pitch values for speech signals. The proposed algorithm utilizes a speech analysis method called zero-time windowing (ZTW) where the signal is processed using a heavily decaying window, and the spectral characteristics are highlighted using the numerator of the group delay function. The amplitude contour of dominant resonances in the spectra are extracted, and processed further using a Gaussian window. The resulting contour reflects the energy profile of the signal which is utilized for estimation of the pitch values. The proposed algorithm is robust to degradations, and has been tested on several utterances with added noises. The algorithm exhibits significant increment in performance when compared to existing techniques.</abstract>
+        <authors>
+          <author>RaviShankar Prasad</author>
+          <author>B. Yegnanarayana</author>
+        </authors>
+        <affiliations/>
+        <keywords>
+          <keyword>pitch</keyword>
+          <keyword>zero time windowing</keyword>
+          <keyword>numerator of group delay function</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2015/prasad15b_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Perceptual speech quality dimensions in a conversational situation</title>
+        <abstract>Speech telecommunication systems are most frequently used in conversational situations. In this regard, assessing the quality of conversational speech is the fundamental requirement for system developers to classify and evaluate their systems. However, it is not enough to provide information about the overall quality, but also to point out sources for possible quality-losses. We present a follow-up study to analyze such perceptual speech quality dimensions in a conversational situation. Until now, seven perceptual quality dimensions have been determined in separate studies. In this contribution, we review all dimensions and validate them in an extensive conversational experiment. This study leads to a deep analysis of perceptual speech quality in a conversational situation.</abstract>
+        <authors>
+          <author>Friedemann Köster</author>
+          <author>Sebastian Möller</author>
+        </authors>
+        <affiliations>
+          <affiliation>Friedemann Köster</affiliation>
+          <affiliation>Technische Universität Berlin</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>conversation</keyword>
+          <keyword>speech quality</keyword>
+          <keyword>perceptual quality dimensions</keyword>
+          <keyword>multidimensional analysis</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2015/koster15_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Attribute knowledge integration for speech recognition based on multi-task learning neural networks</title>
+        <abstract>It has been demonstrated that the speech recognition performance can be improved by adding extra articulatory information, and subsequently, how to use such information effectively becomes a challenging problem. In this paper, we propose an attribute-based knowledge integration architecture which is realized by modeling and learning both acoustic and articulatory cues simultaneously in a uniform framework. The framework promotes the performance by providing attribute-based knowledge in both feature and model domains. In model domain, the attribute classification is used as the secondary task to improve the performance of an MTL-DNN used for speech recognition by lifting the discriminative ability on pronunciation. In feature domain, an attribute-based feature is extracted from an MTL-DNN trained with attribute classification as its primary task and phonetic/tri-phone state classification as the secondary task. Experiments on TIMIT and WSJ corpuses show that the proposed framework achieves significant performance improvements compared with the baseline DNN-HMM systems.</abstract>
+        <authors>
+          <author>Hao Zheng</author>
+          <author>Zhanlei Yang</author>
+          <author>Liwei Qiao</author>
+          <author>Jianping Li</author>
+          <author>Wenju Liu</author>
+        </authors>
+        <affiliations>
+          <affiliation>Chinese Academy of Sciences</affiliation>
+          <affiliation>Electric Power Research Institute of ShanXi Electric Power Company</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>multi-task learning</keyword>
+          <keyword>automatic attribute transcription</keyword>
+          <keyword>deep neural networks</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2015/zheng15_interspeech.pdf</url>
+      </paper>
+    </papers>
+  </conference>
+  <conference>
+    <metadata>
+      <confName abbr="interspeech">INTERSPEECH</confName>
+      <year>2016</year>
+    </metadata>
+    <papers>
+      <paper>
+        <title>Retrieving Categorical Emotions Using a Probabilistic Framework to Define Preference Learning Samples</title>
+        <abstract>Preference learning is an appealing approach for affective recognition.
+Instead of predicting the underlying emotional class of a sample, this
+framework relies on pairwise comparisons to rank-order the testing
+data according to an emotional dimension. This framework is relevant
+not only for continuous attributes such as arousal or valence, but
+also for categorical classes (e.g., is this sample happier than the
+other?). A preference learning system for categorical classes can have
+applications in several domains including retrieving emotional behaviors
+conveying a target emotion, and defining the emotional intensity associated
+with a given class. One important challenge to build such a system
+is to define relative labels defining the preference between training
+samples. Instead of building these labels from scratch, we propose
+a probabilistic framework that creates relative labels from existing
+categorical annotations. The approach considers individual assessments
+instead of consensus labels, creating a metrics that is sensitive to
+the underlying ambiguity of emotional classes. The proposed metric
+quantifies the likelihood that a sample belong to a target emotion.
+We build  happy, angry and  sad rank-classifiers using this metric.
+We evaluate the approach over cross-corpus experiments, showing improved
+performance over binary classifiers and rank-based classifiers trained
+with consensus labels.</abstract>
+        <authors>
+          <author>Reza Lotfian</author>
+          <author>Carlos Busso</author>
+        </authors>
+        <affiliations>
+          <affiliation>The University of Texas at Dallas</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>emotion recognition</keyword>
+          <keyword>preference learning</keyword>
+          <keyword>information retrieval</keyword>
+          <keyword>basic emotions</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2016/lotfian16_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Coping with Unseen Data Conditions: Investigating Neural Net Architectures, Robust Features, and Information Fusion for Robust Speech Recognition</title>
+        <abstract>The introduction of deep neural networks has significantly improved
+automatic speech recognition performance. For real-world use, automatic
+speech recognition systems must cope with varying background conditions
+and unseen acoustic data. This work investigates the performance of
+traditional deep neural networks under varying acoustic conditions
+and evaluates their performance with speech recorded under realistic
+background conditions that are mismatched with respect to the training
+data. We explore using robust acoustic features, articulatory features,
+and traditional baseline features against both in-domain microphone
+channel-matched and channel-mismatched conditions as well as out-of-domain
+data recorded using far- and near-microphone setups containing both
+background noise and reverberation distortions. We investigate feature-combination
+techniques, both outside and inside the neural network, and explore
+neural-network-level combination at the output decision level. Results
+from this study indicate that robust features can significantly improve
+deep neural network performance under mismatched, noisy conditions,
+and that using multiple features reduces speech recognition error rates.
+Further, we observed that fusing multiple feature sets at the convolutional
+layer feature-map level was more effective than performing fusion at
+the input feature level or at the neural-network output decision level.</abstract>
+        <authors>
+          <author>Vikramjit Mitra</author>
+          <author>Horacio Franco</author>
+        </authors>
+        <affiliations>
+          <affiliation>SRI International</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>automatic speech recognition</keyword>
+          <keyword>robust speech recognition</keyword>
+          <keyword>reverberation robustness</keyword>
+          <keyword>noise robustness</keyword>
+          <keyword>convolutional neural networks</keyword>
+          <keyword>feature fusion</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2016/mitra16d_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Jointly Optimizing Activation Coefficients of Convolutive NMF Using DNN for Speech Separation</title>
+        <abstract>Convolutive non-negative matrix factorization (CNMF) and deep neural
+networks (DNN) are two efficient methods for monaural speech separation.
+Conventional DNN focuses on building the non-linear relationship between
+mixture and target speech. However, it ignores the prominent structure
+of the target speech. Conventional CNMF model concentrates on capturing
+prominent harmonic structures and temporal continuities of speech but
+it ignores the non-linear relationship between the mixture and target.
+Taking these two aspects into consideration at the same time may result
+in better performance. In this paper, we propose a joint optimization
+of DNN models with an extra CNMF layer for speech separation task.
+We also utilize an extra masking layer on the proposed model to constrain
+the speech reconstruction. Moreover, a discriminative training criterion
+is proposed to further enhance the performance of the separation. Experimental
+results show that the proposed model has significant improvement in
+PESQ, SAR, SIR and SDR compared with conventional methods.</abstract>
+        <authors>
+          <author>Hao Li</author>
+          <author>Shuai Nie</author>
+          <author>Xueliang Zhang</author>
+          <author>Hui Zhang</author>
+        </authors>
+        <affiliations>
+          <affiliation>Inner Mongolia University</affiliation>
+          <affiliation>Chinese Academy of Sciences</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech separation</keyword>
+          <keyword>convolutive non-negative matrix factorization (cnmf)</keyword>
+          <keyword>deep neural networks (dnn)</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2016/li16_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Context-Sensitive and Role-Dependent Spoken Language Understanding Using Bidirectional and Attention LSTMs</title>
+        <abstract>To understand speaker intentions accurately in a dialog, it is important
+to consider the context of the surrounding sequence of dialog turns.
+Furthermore, each speaker may play a different role in the conversation,
+such as agent versus client, and thus features related to these roles
+may be important to the context. In previous work, we proposed context-sensitive
+spoken language understanding (SLU) using role-dependent long short-term
+memory (LSTM) recurrent neural networks (RNNs), and showed improved
+performance at predicting concept tags representing the intentions
+of agent and client in a human-human hotel reservation task. In the
+present study, we use bidirectional and attention-based LSTMs to train
+a role-dependent context-sensitive model to jointly represent both
+the local word-level context within each utterance, and the left and
+right context within the dialog. The different roles of client and
+agent are modeled by switching between role-dependent layers. We evaluated
+label accuracies in the hotel reservation task using a variety of models,
+including logistic regression, RNNs, LSTMs, and the proposed bidirectional
+and attention-based LSTMs. The bidirectional and attention-based LSTMs
+yield significantly better performance in this task.</abstract>
+        <authors>
+          <author>Chiori Hori</author>
+          <author>Takaaki Hori</author>
+          <author>Shinji Watanabe</author>
+          <author>John R. Hershey</author>
+        </authors>
+        <affiliations/>
+        <keywords>
+          <keyword>spoken language understanding</keyword>
+          <keyword>context sensitive understanding</keyword>
+          <keyword>role-dependent model</keyword>
+          <keyword>bidirectional lstms</keyword>
+          <keyword>attention lstms</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2016/hori16_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>On Smoothing and Enhancing Dynamics of Pitch Contours Represented by Discrete Orthogonal Polynomials for Prosody Generation</title>
+        <abstract>This paper presents a new pitch contour generation algorithm for statistical
+syllable-based logF0 generation models which represent logF0 contours
+of syllables by coefficients of discrete orthogonal polynomials, i.e.
+orthogonal expansion coefficients (OECs). The conventional statistical
+logF0 models can generate smooth pitch contour within a syllable because
+of the continuity property of polynomials. However, the models do not
+ensure to produce continuous and smooth logF0 contours in the proximity
+of syllable junctures. Besides, dynamic range of the generated logF0
+contours is generally smaller than the one of real speech. The above
+two shortcomings would result in unnatural and monotonous prosody.
+To overcome these shortcomings, juncture-smooth and dynamics-enhancing
+OEC generation algorithms are hence proposed in this paper. Analysis
+on the generated logF0 contours by the proposed algorithm shows some
+improvements in logF0 smoothness at syllable junctures and enhanced
+logF0 dynamic range. In addition, a perceptual evaluation of the logF0
+contour generated by the proposed algorithm shows an improvement in
+naturalness of the synthesized speech.</abstract>
+        <authors>
+          <author>Chen-Yu Chiang</author>
+        </authors>
+        <affiliations>
+          <affiliation>can be found by</affiliation>
+          <affiliation>National Taipei University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>prosody</keyword>
+          <keyword>pitch contour</keyword>
+          <keyword>orthogonal expansion polynomial</keyword>
+          <keyword>text-to-speech system</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2016/chiang16_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Development of Mandarin Onset-Rime Detection in Relation to Age and Pinyin Instruction</title>
+        <abstract>Development of explicit phonological awareness (PA) is thought to be
+dependent on formal instruction in reading or spelling. However, the
+development of implicit PA emerges before literacy instruction and
+interacts with how the phonological representations are constructed
+within a certain language. The present study systematically investigated
+the development of implicit PA of Mandarin onset-rime detection in
+relation to age and Pinyin instruction, involving 70 four- to seven-year-old
+kindergarten and first-grade children. Results indicated that the overall
+rate of correct responses in the rime detection task was much higher
+than that in the onset detection one, with better discrimination ability
+of larger units. Moreover, the underlying factors facilitating the
+development of Mandarin onset and rime detection were different, although
+both correlated positively with Pinyin instruction. On one hand, with
+age, development of rime detection appeared to develop naturally through
+spoken language experience before schooling, and was further optimized
+to the best after Pinyin instruction. On the other hand, the accuracy
+of onset detection exhibited a drastic improvement, boosting from 66%
+among preschoolers to 93% among first graders, establishing the primacy
+of Pinyin instruction responsible for the development of implicit onset
+awareness in Mandarin.</abstract>
+        <authors>
+          <author>Fei Chen</author>
+          <author>Nan Yan</author>
+          <author>Xunan Huang</author>
+          <author>Hao Zhang</author>
+          <author>Lan Wang</author>
+          <author>Gang Peng</author>
+        </authors>
+        <affiliations>
+          <affiliation>Shenzhen Institutes</affiliation>
+          <affiliation>The Hong Kong Polytechnic University</affiliation>
+          <affiliation>Chinese Academy of Sciences</affiliation>
+          <affiliation>Nankai University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>phonological awareness</keyword>
+          <keyword>onset-rime detection</keyword>
+          <keyword>age</keyword>
+          <keyword>pinyin instruction</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2016/chen16b_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Automatic Estimation of Perceived Sincerity from Spoken Language</title>
+        <abstract>Sincerity is important in everyday human communication and perception
+of genuineness can greatly affect emotions and outcomes in social interactions.
+In this paper, submitted for the INTERSPEECH 2016 Sincerity Challenge,
+we examine a corpus of six different types of apologetic utterances
+from a variety of English speakers articulated in different prosodic
+styles, and we rate the sincerity of each remark. Since the utterances
+and semantic meaning in the examined database are controlled, we focus
+on tone of voice by exploring a plethora of acoustic and paralinguistic
+features not present in the baseline model and how well they contribute
+to human assessment of sincerity. We show that these additional features
+improve the performance using the baseline model, and furthermore that
+conditioning learning models on the prosody of utterances boosts the
+prediction accuracy. Our best system outperforms the challenge baseline
+and in principle can generalize well to other corpora.</abstract>
+        <authors>
+          <author>Brandon M. Booth</author>
+          <author>Rahul Gupta</author>
+          <author>Pavlos Papadopoulos</author>
+          <author>Ruchir Travadi</author>
+          <author>Shrikanth S. Narayanan</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Southern California</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>behavioral signal processing (bsp)</keyword>
+          <keyword>computational paralinguistics</keyword>
+          <keyword>speech assessment</keyword>
+          <keyword>sincerity</keyword>
+          <keyword>challenge</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2016/booth16_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Velum Control for Oral Sounds</title>
+        <abstract>Velum position during speech shows systematic variability within and
+across speakers, but has a binary phonological contrast (nasal and
+oral). Velum lowering is often thought to constitute an independent
+phonological unit, partly because of its robust prosodically-conditioned
+timing during nasal stops. Velum raising, on the other hand, is usually
+considered to be a non-phonological consequence of other vocal tract
+movements. Moreover, velum raising has almost always been observed
+in the context of nasals, and has rarely been studied in purely oral
+contexts. This experiment directly contrasts velum movement in oral
+and nasal contexts. The results show that temporal coordination of
+velum raising during oral stops resembles the temporal coordination
+of velum lowering during nasals, suggesting that velum position and
+movement are controlled for both raising and lowering. The results
+imply that some revisions to the Articulatory Phonology model may be
+appropriate, specifically with regards to the treatment of velum raising
+as an independent phonological unit.</abstract>
+        <authors>
+          <author>Reed Blaylock</author>
+          <author>Louis Goldstein</author>
+          <author>Shrikanth S. Narayanan</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Southern California</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech production</keyword>
+          <keyword>articulatory phonology</keyword>
+          <keyword>phonetics</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2016/blaylock16_interspeech.pdf</url>
+      </paper>
+    </papers>
+  </conference>
+  <conference>
+    <metadata>
+      <confName abbr="interspeech">INTERSPEECH</confName>
+      <year>2017</year>
+    </metadata>
+    <papers>
+      <paper>
+        <title>Extracting Situation Frames from Non-English Speech: Evaluation Framework and Pilot Results</title>
+        <abstract>This paper describes the first evaluation framework for the extraction
+of Situation Frames — structures describing humanitarian assistance
+needs — from non-English speech audio, conducted for the DARPA
+LORELEI (Low Resource Languages for Emergent Incidents) program. Participants
+in LORELEI had to process audio from a variety of sources, in non-English
+languages, and extract the information required to populate Situation
+Frames describing whether any need is mentioned, the type of need present
+and where the need exists. The evaluation was conducted over a period
+of 10 days and attracted submissions from 6 teams, each team spanning
+multiple organizations. Performance was evaluated using precision-recall
+curves. The results are encouraging, with most teams showing some capability
+to detect the type of situation discussed, but more work will be required
+to connect needs to specific locations.</abstract>
+        <authors>
+          <author>Nikolaos Malandrakis</author>
+          <author>Ondřej Glembek</author>
+          <author>Shrikanth S. Narayanan</author>
+        </authors>
+        <affiliations>
+          <affiliation>Brno University of Technology</affiliation>
+          <affiliation>USC</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech recognition</keyword>
+          <keyword>speech analysis</keyword>
+          <keyword>performance evaluation</keyword>
+          <keyword>natural language processing</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2017/malandrakis17_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>A Study on Replay Attack and Anti-Spoofing for Automatic Speaker Verification</title>
+        <abstract>For practical automatic speaker verification (ASV) systems, replay
+attack poses a true risk. By replaying a pre-recorded speech signal
+of the genuine speaker, ASV systems tend to be easily fooled. An effective
+replay detection method is therefore highly desirable. In this study,
+we investigate a major difficulty in replay detection: the over-fitting
+problem caused by variability factors in speech signal. An F-ratio
+probing tool is proposed and three variability factors are investigated
+using this tool: speaker identity, speech content and playback &amp;
+recording device. The analysis shows that device is the most influential
+factor that contributes the highest over-fitting risk. A frequency
+warping approach is studied to alleviate the over-fitting problem,
+as verified on the ASV-spoof 2017 database.</abstract>
+        <authors>
+          <author>Lantian Li</author>
+          <author>Yixiang Chen</author>
+          <author>Dong Wang</author>
+          <author>Thomas Fang Zheng</author>
+        </authors>
+        <affiliations>
+          <affiliation>Tsinghua University</affiliation>
+          <affiliation>Research Institute of Information Technology</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>replay attack</keyword>
+          <keyword>spoofing countermeasures</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2017/li17b_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Test-Retest Repeatability of Articulatory Strategies Using Real-Time Magnetic Resonance Imaging</title>
+        <abstract>Real-time magnetic resonance imaging (rtMRI) provides information about
+the dynamic shaping of the vocal tract during speech production. This
+paper introduces and evaluates a method for quantifying articulatory
+strategies using rtMRI. The method decomposes the formation and release
+of a constriction in the vocal tract into the contributions of individual
+articulators such as the jaw, tongue, lips, and velum. The method uses
+an anatomically guided factor analysis and dynamical principles from
+the framework of Task Dynamics. We evaluated the method within a test-retest
+repeatability framework. We imaged healthy volunteers (n = 8, 4 females,
+4 males) in two scans on the same day and quantified inter-study agreement
+with the intraclass correlation coefficient and mean within-subject
+standard deviation. The evaluation established a limit on effect size
+and intra-group differences in articulatory strategy which can be studied
+using the method.</abstract>
+        <authors>
+          <author>Tanner Sorensen</author>
+          <author>Asterios Toutios</author>
+          <author>Johannes Töger</author>
+          <author>Louis Goldstein</author>
+          <author>Shrikanth S. Narayanan</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Southern California</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech production</keyword>
+          <keyword>magnetic resonance imaging</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2017/sorensen17b_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Sociophonetic Realizations Guide Subsequent Lexical Access</title>
+        <abstract>Previous studies on spoken word recognition suggest that lexical access
+is facilitated when social information attributed to the voice is congruent
+with the social characteristics associated with the word. This paper
+builds on this work, presenting results from a lexical decision task
+in which target words associated with different age groups were preceded
+by sociophonetic primes. No age-related phonetic cues were provided
+within the target words; instead, the non-related prime words contained
+a sociophonetic variable involved in ongoing change. We found that
+age-associated words are recognized faster when preceded by an age-congruent
+phonetic variant in the prime word. The results demonstrate that lexical
+access is influenced by sociophonetic variation, a result which we
+argue arises from experience-based probabilities of covariation between
+sounds and words.</abstract>
+        <authors>
+          <author>Jonny Kim</author>
+          <author>Katie Drager</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Hawai‘i at Mānoa</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>lexical access</keyword>
+          <keyword>sociophonetics</keyword>
+          <keyword>sound change</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2017/kim17b_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Single-Ended Prediction of Listening Effort Based on Automatic Speech Recognition</title>
+        <abstract>A new, single-ended, i.e. reference-free measure for the prediction
+of perceived listening effort of noisy speech is presented. It is based
+on phoneme posterior probabilities (or posteriorgrams) obtained from
+a deep neural network of an automatic speech recognition system. Additive
+noisy or other distortions of speech tend to smear the posteriorgrams.
+The smearing is quantified by a performance measure, which is used
+as a predictor for the perceived listening effort required to understand
+the noisy speech. The proposed measure was evaluated using a database
+obtained from the subjective evaluation of noise reduction algorithms
+of commercial hearing aids. Listening effort ratings of processed noisy
+speech samples were gathered from 20 hearing-impaired subjects. Averaged
+subjective ratings were compared with corresponding predictions computed
+by the proposed new method, the ITU-T standard P.563 for single-ended
+speech quality assessment, the American National Standard ANIQUE+ for
+single-ended speech quality assessment, and a single-ended SNR estimator.
+The proposed method achieved a good correlation with mean subjective
+ratings and clearly outperformed the standard speech quality measures
+and the SNR estimator.</abstract>
+        <authors>
+          <author>Rainer Huber</author>
+          <author>Constantin Spille</author>
+          <author>Bernd T. Meyer</author>
+        </authors>
+        <affiliations>
+          <affiliation>Carl von Ossietzky Universität</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>automatic speech recognition</keyword>
+          <keyword>deep neural networks</keyword>
+          <keyword>listening effort prediction</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2017/huber17_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Improved Single System Conversational Telephone Speech Recognition with VGG Bottleneck Features</title>
+        <abstract>On small datasets, discriminatively trained bottleneck features from
+deep networks commonly outperform more traditional spectral or cepstral
+features. While these features are typically trained with small, fully-connected
+networks, recent studies have used more sophisticated networks with
+great success. We use the recent deep CNN (VGG) network for bottleneck
+feature extraction — previously used only for low-resource tasks
+— and apply it to the Switchboard English conversational telephone
+speech task. Unlike features derived from traditional MLP networks,
+the VGG features outperform cepstral features even when used with BLSTM
+acoustic models trained on large amounts of data. We achieve the best
+BBN single system performance when combining the VGG features with
+a BLSTM acoustic model. When decoding with an n-gram language model,
+which are used for deployable systems, we have a realistic production
+system with a WER of 7.4%. This result is competitive with the current
+state-of-the-art in the literature. While our focus is on realistic
+single system performance, we further reduce the WER to 6.1% through
+system combination and using expensive neural network language model
+rescoring.</abstract>
+        <authors>
+          <author>William Hartmann</author>
+          <author>Roger Hsiao</author>
+          <author>Tim Ng</author>
+          <author>Jeff Ma</author>
+          <author>Francis Keith</author>
+          <author>Man-Hung Siu</author>
+        </authors>
+        <affiliations>
+          <affiliation>VGG Bottleneck Features</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>conversational speech recognition</keyword>
+          <keyword>VGG</keyword>
+          <keyword>bottleneck features</keyword>
+          <keyword>switchboard</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2017/hartmann17_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Beyond the Listening Test: An Interactive Approach to TTS Evaluation</title>
+        <abstract>Traditionally, subjective text-to-speech (TTS) evaluation is performed
+through audio-only listening tests, where participants evaluate unrelated,
+context-free utterances. The ecological validity of these tests is
+questionable, as they do not represent real-world end-use scenarios.
+In this paper, we examine a novel approach to TTS evaluation in an
+imagined end-use, via a complex interaction with an avatar. 6 different
+voice conditions were tested: Natural speech, Unit Selection and Parametric
+Synthesis, in neutral and expressive realizations. Results were compared
+to a traditional audio-only evaluation baseline. Participants in both
+studies rated the voices for naturalness and expressivity. The baseline
+study showed canonical results for naturalness: Natural speech scored
+highest, followed by Unit Selection, then Parametric synthesis. Expressivity
+was clearly distinguishable in all conditions. In the avatar interaction
+study, participants rated naturalness in the same order as the baseline,
+though with smaller effect size; expressivity was not distinguishable.
+Further, no significant correlations were found between cognitive or
+affective responses and any voice conditions. This highlights 2 primary
+challenges in designing more valid TTS evaluations: in real-world use-cases
+involving interaction, listeners generally interact with a single voice,
+making comparative analysis unfeasible, and in complex interactions,
+the context and content may confound perception of voice quality.</abstract>
+        <authors>
+          <author>Joseph Mendelson</author>
+          <author>Matthew P. Aylett</author>
+        </authors>
+        <affiliations>
+          <affiliation>KTH Royal Institute of Technology</affiliation>
+          <affiliation>CereProc Ltd. and University of Edinburgh</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>tts evaluation</keyword>
+          <keyword>subjective evaluation</keyword>
+          <keyword>listening tests</keyword>
+          <keyword>interactive virtual agents</keyword>
+          <keyword>user experience</keyword>
+          <keyword>unit selection</keyword>
+          <keyword>statistical parametric speech synthesis</keyword>
+          <keyword>expressive speech synthesis</keyword>
+          <keyword>voice interface design</keyword>
+          <keyword>human-computer interaction</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2017/mendelson17_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Glottal Source Features for Automatic Speech-Based Depression Assessment</title>
+        <abstract>Depression is one of the most prominent mental disorders, with an increasing
+rate that makes it the fourth cause of disability worldwide. The field
+of automated depression assessment has emerged to aid clinicians in
+the form of a decision support system. Such a system could assist as
+a pre-screening tool, or even for monitoring high risk populations.
+Related work most commonly involves multimodal approaches, typically
+combining audio and visual signals to identify depression presence
+and/or severity. The current study explores categorical assessment
+of depression using audio features alone. Specifically, since depression-related
+vocal characteristics impact the glottal source signal, we examine
+Phase Distortion Deviation which has previously been applied to the
+recognition of voice qualities such as hoarseness, breathiness and
+creakiness, some of which are thought to be features of depressed speech.
+The proposed method uses as features DCT-coefficients of the Phase
+Distortion Deviation for each frequency band. An automated machine
+learning tool, Just Add Data, is used to classify speech samples. The
+method is evaluated on a benchmark dataset (AVEC2014), in two conditions:
+read-speech and spontaneous-speech. Our findings indicate that Phase
+Distortion Deviation is a promising audio-only feature for automated
+detection and assessment of depressed speech.</abstract>
+        <authors>
+          <author>Olympia Simantiraki</author>
+          <author>Paulos Charonyktakis</author>
+          <author>Anastasia Pampouchidou</author>
+          <author>Manolis Tsiknakis</author>
+          <author>Martin Cooke</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Burgundy</affiliation>
+          <affiliation>Universidad del Paı́s Vasco</affiliation>
+          <affiliation>Gnosis Data Analysis PC</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>glottal source</keyword>
+          <keyword>phase distortion deviation</keyword>
+          <keyword>binary classification</keyword>
+          <keyword>machine learning</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2017/simantiraki17_interspeech.pdf</url>
+      </paper>
+    </papers>
+  </conference>
+  <conference>
+    <metadata>
+      <confName abbr="interspeech">INTERSPEECH</confName>
+      <year>2018</year>
+    </metadata>
+    <papers>
+      <paper>
+        <title>A Convolutional Recurrent Neural Network for Real-Time Speech Enhancement</title>
+        <abstract>Many real-world applications of speech enhancement, such as hearing aids and cochlear implants, desire real-time processing, with no or low latency. In this paper, we propose a novel convolutional recurrent network (CRN) to address real-time monaural speech enhancement. We incorporate a convolutional encoder-decoder (CED) and long short-term memory (LSTM) into the CRN architecture, which leads to a causal system that is naturally suitable for real-time processing. Moreover, the proposed model is noise- and speaker-independent, i.e. noise types and speakers can be different between training and test. Our experiments suggest that the CRN leads to consistently better objective intelligibility and perceptual quality than an existing LSTM based model. Moreover, the CRN has much fewer trainable parameters.</abstract>
+        <authors>
+          <author>Ke Tan</author>
+          <author>DeLiang Wang</author>
+        </authors>
+        <affiliations>
+          <affiliation>The Ohio State University</affiliation>
+          <affiliation>Convolutional Recurrent Neural Network for Real-Time Speech</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>noiseand speaker-independent speech enhancement</keyword>
+          <keyword>real-time applications</keyword>
+          <keyword>convolutional encoder-decoder</keyword>
+          <keyword>long short-term memory</keyword>
+          <keyword>convolutional recurrent networks</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2018/tan18_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Emotion Identification from Raw Speech Signals Using DNNs</title>
+        <abstract>We investigate a number of Deep Neural Network (DNN) architectures for emotion identification with the IEMOCAP database. First we compare different feature extraction front-ends: we compare high-dimensional MFCC input (equivalent to filterbanks), versus frequency-domain and time-domain approaches to learning filters as part of the network. We obtain the best results with the time-domain filter-learning approach. Next we investigated different ways to aggregate information over the duration of an utterance. We tried approaches with a single label per utterance with time aggregation inside the network; and approaches where the label is repeated for each frame. Having a separate label per frame seemed to work best and the best architecture that we tried interleaves TDNN-LSTM with time-restricted self-attention, achieving a weighted accuracy of 70.6%, versus 61.8% for the best previously published system which used 257-dimensional Fourier log-energies as input.</abstract>
+        <authors>
+          <author>Mousmita Sarma</author>
+          <author>Pegah Ghahremani</author>
+          <author>Daniel Povey</author>
+          <author>Nagendra Kumar Goel</author>
+          <author>Kandarpa Kumar Sarma</author>
+          <author>Najim Dehak</author>
+        </authors>
+        <affiliations>
+          <affiliation>Gauhati University</affiliation>
+          <affiliation>Johns Hopkins University</affiliation>
+          <affiliation>Go-Vivace Inc</affiliation>
+        </affiliations>
+        <keywords/>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2018/sarma18_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Subword and Crossword Units for CTC Acoustic Models</title>
+        <abstract>This paper proposes a novel approach to create a unit set for CTC-based speech recognition systems. By using Byte-Pair Encoding we learn a unit set of an arbitrary size on a given training text. In contrast to using characters or words as units this allows us to find a good trade-off between the size of our unit set and the available training data. We investigate both Crossword units, that may span multiple word and Subword units. By evaluating these unit sets with decodings methods using a separate language model we are able to show improvements over a purely character-based unit set.</abstract>
+        <authors>
+          <author>Thomas Zenkel</author>
+          <author>Ramon Sanabria</author>
+          <author>Florian Metze</author>
+          <author>Alex Waibel</author>
+        </authors>
+        <affiliations>
+          <affiliation>Karlsruhe Institute of Technology</affiliation>
+          <affiliation>Carnegie Mellon University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>automatic speech recognition</keyword>
+          <keyword>decoding</keyword>
+          <keyword>neural networks</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2018/zenkel18_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>S4D: Speaker Diarization Toolkit in Python</title>
+        <abstract>In this paper, we present S4D, a new open-source Python toolkit dedicated to speaker diarization. S4D provides various state-of-the-art components and the possibility to easily develop end-to-end diarization prototype systems. S4D offers a large panel of clustering, segmentation, scoring and visualization algorithms. S4D has been thought to be easily understood, installed, modified and used in order to allow fast transfers of diarization technologies to industry and facilitate development of new approaches. Examples, benchmarks on standard tasks and tutorials are provided in this paper. S4D is an extension of the open-source toolkit for speaker recognition: SIDEKIT.</abstract>
+        <authors>
+          <author>Pierre-Alexandre Broux</author>
+          <author>Florent Desnous</author>
+          <author>Anthony Larcher</author>
+          <author>Simon Petitrenaud</author>
+          <author>Jean Carrive</author>
+          <author>Sylvain Meignier</author>
+        </authors>
+        <affiliations>
+          <affiliation>French National Audiovisual Institute (INA)</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>SIDEKIT</keyword>
+          <keyword>diarization</keyword>
+          <keyword>toolkit</keyword>
+          <keyword>python</keyword>
+          <keyword>opensource</keyword>
+          <keyword>tutorials</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2018/broux18_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>I-vector Transformation Using Conditional Generative Adversarial Networks for Short Utterance Speaker Verification</title>
+        <abstract>I-vector based text-independent speaker verification (SV) systems often have poor performance with short utterances, as the biased phonetic distribution in a short utterance makes the extracted i-vector unreliable. This paper proposes an i-vector compensation method using a generative adversarial network (GAN), where its generator network is trained to generate a compensated i-vector from a short-utterance i-vector and its discriminator network is trained to determine whether an i-vector is generated by the generator or the one extracted from a long utterance. Additionally, we assign two other learning tasks to the GAN to stabilize its training and to make the generated i-vector more speaker-specific. Speaker verification experiments on the NIST SRE 2008 “10sec-10sec” condition show that after applying our method, the equal error rate reduced by 11.3% from the conventional i-vector and PLDA system.</abstract>
+        <authors>
+          <author>Jiacen Zhang</author>
+          <author>Nakamasa Inoue</author>
+          <author>Koichi Shinoda</author>
+        </authors>
+        <affiliations>
+          <affiliation>Tokyo Institute of Technology</affiliation>
+          <affiliation>I-vector Transformation Using Conditional Generative Adversarial Networks</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speaker verification</keyword>
+          <keyword>short utterance</keyword>
+          <keyword>i-vector transformation</keyword>
+          <keyword>generative adversarial networks</keyword>
+          <keyword>multi-task learning</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2018/zhang18j_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Prediction of Turn-taking Using Multitask Learning with Prediction of Backchannels and Fillers</title>
+        <abstract>We address prediction of turn-taking considering related behaviors such as backchannels and fillers. Backchannels are used by listeners to acknowledge that the current speaker can hold the turn. On the other hand, fillers are used by prospective speakers to indicate a will to take a turn. We propose a turn-taking model based on multitask learning in conjunction with prediction of backchannels and fillers. The multitask learning of LSTM neural networks shared by these tasks allows for efficient and generalized learning and thus improves prediction accuracy. Evaluations with two kinds of dialogue corpora of human-robot interaction demonstrate that the proposed multitask learning scheme outperforms the conventional single-task learning.</abstract>
+        <authors>
+          <author>Kohei Hara</author>
+          <author>Koji Inoue</author>
+          <author>Katsuya Takanashi</author>
+          <author>Tatsuya Kawahara</author>
+        </authors>
+        <affiliations>
+          <affiliation>Kyoto University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>turn-taking</keyword>
+          <keyword>backchannel</keyword>
+          <keyword>filler</keyword>
+          <keyword>neural networks</keyword>
+          <keyword>multitask learning</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2018/hara18_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>A French-Spanish Multimodal Speech Communication Corpus Incorporating Acoustic Data, Facial, Hands and Arms Gestures Information</title>
+        <abstract>A Bilingual Multimodal Speech Communication Corpus incorporating acoustic data as well as visual data related to face, hands and arms gestures during speech, is presented in this paper. This corpus comprises different speaking modalities, including scripted text speech, natural conversation and free speech. The corpus has been compiled in two different languages, viz., French and Spanish. The experimental setups for the recording of the corpus, the acquisition protocols and the employed equipment are described. Statistics regarding the number and gender of the speakers, number of words, number of sentences and duration of the recording sessions, are also provided. Preliminary results from the analysis of the correlation among speech, head and hand movements during spontaneous speech are also presented in this paper, showing that acoustic prosodic features are related with head and hand gestures.</abstract>
+        <authors>
+          <author>Lucas D. Terissi</author>
+          <author>Gonzalo Sad</author>
+          <author>Mauricio Cerda</author>
+          <author>Slim Ouni</author>
+          <author>Rodrigo Galvez</author>
+          <author>Juan C. Gómez</author>
+          <author>Bernard Girau</author>
+          <author>Nancy Hitschfeld-Kahler</author>
+        </authors>
+        <affiliations>
+          <affiliation>Universidad de Chile</affiliation>
+          <affiliation>French-Spanish Multimodal Speech Communication Corpus Incorporating</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>multimodal speech</keyword>
+          <keyword>human-computer interaction</keyword>
+          <keyword>multimodal corpora</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2018/terissi18_interspeech.pdf</url>
+      </paper>
+    </papers>
+  </conference>
+  <conference>
+    <metadata>
+      <confName abbr="interspeech">INTERSPEECH</confName>
+      <year>2019</year>
+    </metadata>
+    <papers>
+      <paper>
+        <title>Fully-Convolutional Network for Pitch Estimation of Speech Signals</title>
+        <abstract>The estimation of fundamental frequency (F</abstract>
+        <authors>
+          <author>Luc Ardaillon</author>
+          <author>Axel Roebel</author>
+        </authors>
+        <affiliations/>
+        <keywords>
+          <keyword>speech analysis</keyword>
+          <keyword>f0 estimation</keyword>
+          <keyword>CNN</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2019/ardaillon19_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Into the Wild: Transitioning from Recognizing Mood in Clinical Interactions to Personal Conversations for Individuals with Bipolar Disorder</title>
+        <abstract>Bipolar Disorder, a mood disorder with recurrent mania and depression,
+requires ongoing monitoring and specialty management. Current monitoring
+strategies are clinically-based, engaging highly specialized medical
+professionals who are becoming increasingly scarce. Automatic speech-based
+monitoring via smartphones has the potential to augment clinical monitoring
+by providing inexpensive and unobtrusive measurements of a patient’s
+daily life. The success of such an approach is contingent on the ability
+to successfully utilize “in-the-wild” data. However, most
+existing work on automatic mood detection uses datasets collected in
+clinical or laboratory settings. This study presents experiments in
+automatically detecting depression severity in individuals with Bipolar
+Disorder using data derived from clinical interviews and from personal
+conversations. We find that mood assessment is more accurate using
+data collected from clinical interactions, in part because of their
+highly structured nature. We demonstrate that although the features
+that are most effective in clinical interactions do not extend well
+to personal conversational data, we can identify alternative features
+relevant in personal conversational speech to detect mood symptom severity.
+Our results highlight the challenges unique to working with “in-the-wild”
+data, providing insight into the degree to which the predictive ability
+of speech features is preserved outside of a clinical interview.</abstract>
+        <authors>
+          <author>Katie Matton</author>
+          <author>Melvin G. McInnis</author>
+          <author>Emily Mower Provost</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Michigan</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>bipolar disorder</keyword>
+          <keyword>mood prediction</keyword>
+          <keyword>computational paralinguistics</keyword>
+          <keyword>mobile health</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2019/matton19_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Survey Talk: End-to-End Deep Neural Network Based Speaker and Language Recognition</title>
+        <abstract>Speech signal not only contains lexicon information, but also delivers
+various kinds of paralinguistic speech attribute information, such
+as speaker, language, gender, age, emotion, etc. The core technique
+question behind it is utterance level supervised learning based on
+text independent or text dependent speech signal with flexible duration.
+In section 1, we will first formulate the problem of speaker and language
+recognition. In section 2, we introduce the traditional framework with
+different modules in a pipeline, namely, feature extraction, representation,
+variability compensation and backend classification. Then we naturally
+introduce the end-to-end idea and compare with the traditional framework.
+We will show the correspondence between feature extraction and CNN
+layers, representation and encoding layer, backend modeling and fully
+connected layers. Specifically, we will introduce the modules in the
+end-to-end frameworks with more details here, e.g. variable length
+data loader, frontend convolutional network structure design, encoding
+(or pooling) layer design, loss function design, data augmentation
+design, transfer learning and multitask learning, etc. In section 4,
+we will introduce some robust methods using the end-to-end framework
+for far-field and noisy conditions. Finally, we will connect the introduced
+end-to-end frameworks to other related tasks, e.g. speaker diarization,
+paralinguistic speech attribute recognition, anti-spoofing countermeasures,
+etc.</abstract>
+        <authors>
+          <author>Ming Li</author>
+          <author>Weicheng Cai</author>
+          <author>Danwei Cai</author>
+        </authors>
+        <affiliations/>
+        <keywords/>
+        <url>https://www.isca-speech.org/archive/interspeech_2019/li19d_interspeech.html</url>
+      </paper>
+      <paper>
+        <title>All Together Now: The Living Audio Dataset</title>
+        <abstract>The ongoing focus in speech technology research on machine learning
+based approaches leaves the community hungry for data. However, datasets
+tend to be recorded once and then released, sometimes behind registration
+requirements or paywalls. In this paper we describe our Living Audio
+Dataset. The aim is to provide audio data that is in the public domain,
+multilingual, and expandable by communities. We discuss the role of
+linguistic resources, given the success of systems such as Tacotron
+which use direct text-to-speech mappings, and consider how data provenance
+could be built into such resources. So far the data has been collected
+for TTS purposes, however, it is also suitable for ASR. At the time
+of publication audio resources already exist for Dutch, R.P. English,
+Irish, and Russian.</abstract>
+        <authors>
+          <author>David A. Braude</author>
+          <author>Matthew P. Aylett</author>
+          <author>Caoimhín Laoide-Kemp</author>
+          <author>Simone Ashby</author>
+          <author>Kristen M. Scott</author>
+          <author>Brian Ó Raghallaigh</author>
+          <author>Anna Braudo</author>
+          <author>Alex Brouwer</author>
+          <author>Adriana Stan</author>
+        </authors>
+        <affiliations>
+          <affiliation>Dublin City University</affiliation>
+          <affiliation>University of Edinburgh</affiliation>
+          <affiliation>University of Madeira</affiliation>
+          <affiliation>CereProc Ltd</affiliation>
+          <affiliation>Technical University of Cluj-Napoca</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>dataset</keyword>
+          <keyword>audio</keyword>
+          <keyword>multilingual</keyword>
+          <keyword>crowd building</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2019/braude19_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Robustness of Statistical Voice Conversion Based on Direct Waveform Modification Against Background Sounds</title>
+        <abstract>This paper presents an investigation of the robustness of statistical
+voice conversion (VC) under noisy environments. To develop various
+VC applications, such as augmented vocal production and augmented speech
+production, it is necessary to handle noisy input speech because some
+background sounds, such as external noise and an accompanying sound,
+usually exist in a real environment. In this paper, we investigate
+an impact of the background sounds on the conversion performance in
+singing voice conversion focusing on two main VC frameworks, 1) vocoder-based
+VC and 2) vocoder-free VC based on direct waveform modification. We
+conduct a subjective evaluation on the converted singing voice quality
+under noisy conditions and reveal that the vocoder-free VC is more
+robust against background sounds compared with the vocoder-based VC.
+We also analyze the robustness of statistical VC and show that a kurtosis
+ratio of power spectral components before and after conversion is useful
+as an objective metric to evaluate it without using any target reference
+signals.</abstract>
+        <authors>
+          <author>Yusuke Kurita</author>
+          <author>Kazuhiro Kobayashi</author>
+          <author>Kazuya Takeda</author>
+          <author>Tomoki Toda</author>
+        </authors>
+        <affiliations>
+          <affiliation>Nagoya University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>statistical voice conversion</keyword>
+          <keyword>background sounds</keyword>
+          <keyword>vocoder</keyword>
+          <keyword>direct waveform modification</keyword>
+          <keyword>kurtosis ratio</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2019/kurita19_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>An End-to-End Text-Independent Speaker Verification Framework with a Keyword Adversarial Network</title>
+        <abstract>This paper presents an end-to-end text-independent speaker verification
+framework by jointly considering the speaker embedding (SE) network
+and automatic speech recognition (ASR) network. The SE network learns
+to output an embedding vector which distinguishes the speaker characteristics
+of the input utterance, while the ASR network learns to recognize the
+phonetic context of the input. In training our speaker verification
+framework, we consider both the triplet loss minimization and adversarial
+gradient of the ASR network to obtain more discriminative and text-independent
+speaker embedding vectors. With the triplet loss, the distances between
+the embedding vectors of the same speaker are minimized while those
+of different speakers are maximized. Also, with the adversarial gradient
+of the ASR network, the text-dependency of the speaker embedding vector
+can be reduced. In the experiments, we evaluated our speaker verification
+framework using the LibriSpeech and CHiME 2013 dataset, and the evaluation
+results show that our speaker verification framework shows lower equal
+error rate and better text-independency compared to the other approaches.</abstract>
+        <authors>
+          <author>Sungrack Yun</author>
+          <author>Janghoon Cho</author>
+          <author>Jungyun Eum</author>
+          <author>Wonil Chang</author>
+          <author>Kyuwoong Hwang</author>
+        </authors>
+        <affiliations>
+          <affiliation>Qualcomm AI Research†</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>text-independent speaker verification</keyword>
+          <keyword>end-toend system</keyword>
+          <keyword>speaker embedding</keyword>
+          <keyword>adversarial training</keyword>
+          <keyword>triplet loss</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2019/yun19_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>End-to-End Adaptation with Backpropagation Through WFST for On-Device Speech Recognition System</title>
+        <abstract>An on-device DNN-HMM speech recognition system efficiently works with
+a limited vocabulary in the presence of a variety of predictable noise.
+In such a case, vocabulary and environment adaptation is highly effective.
+In this paper, we propose a novel method of end-to-end (E2E) adaptation,
+which adjusts not only an acoustic model (AM) but also a weighted finite-state
+transducer (WFST). We convert a pretrained WFST to a trainable neural
+network and adapt the system to target environments/vocabulary by E2E
+joint training with an AM. We replicate Viterbi decoding with forward-backward
+neural network computation, which is similar to recurrent neural networks
+(RNNs). By pooling output score sequences, a vocabulary posterior for
+each utterance is obtained and used for discriminative loss computation.
+Experiments using 2–10 hours of English/Japanese adaptation datasets
+indicate that the fine-tuning of only WFSTs and that of only AMs are
+both comparable to a state-of-the-art adaptation method, and E2E joint
+training of the two components achieves the best recognition performance.
+We also adapt each language system to the other language using the
+adaptation data, and the results show that the proposed method also
+works well for language adaptations.</abstract>
+        <authors>
+          <author>Emiru Tsunoo</author>
+          <author>Yosuke Kashiwagi</author>
+          <author>Satoshi Asakawa</author>
+          <author>Toshiyuki Kumakura</author>
+        </authors>
+        <affiliations>
+          <affiliation>Sony Corporation</affiliation>
+          <affiliation>Toshiyuki.Kumakura@sony.com</affiliation>
+          <affiliation>Emiru.Tsunoo@sony.com, Yosuke.Kashiwagi@sony.com, Satoshi.Asakawa@sony.com</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech recognition</keyword>
+          <keyword>end-to-end training</keyword>
+          <keyword>weighted finite-state transducer</keyword>
+          <keyword>environment adaptation</keyword>
+          <keyword>vocabulary adaptation</keyword>
+          <keyword>language adaptation</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2019/tsunoo19_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Survey Talk: Modeling in Automatic Speech Recognition: Beyond Hidden Markov Models</title>
+        <abstract>The general architecture and modeling of the state-of-the-art statistical
+approach to automatic speech recognition (ASR) have not been challenged
+significantly for decades. The classical statistical approach to ASR
+is based on Bayes decision rule, a separation of acoustic and language
+modeling, hidden Markov modeling (HMM), and a search organization based
+on dynamic programming and hypothesis pruning methods. Even when artificial
+neural networks for acoustic modeling and language modeling started
+to considerably boost ASR performance, the general architecture of
+state-of-the-art ASR systems was not altered considerably. The hybrid
+deep neural network (DNN)/HMM approach, together with recurrent long
+short-term memory (LSTM) neural network language modeling currently
+marks the state-of-the-art on many tasks, covering a wide range of
+training set sizes. However, currently more and more alternative approaches
+occur, moving gradually towards so-called end-to-end approaches. Gradually,
+these novel end-to-end approaches replace explicit time alignment modeling
+and dedicated search space organization by more implicit, integrated
+neural-network based representations, while also dropping the separation
+between acoustic and language modeling. Corresponding approaches show
+promising results, especially using large training sets. In this presentation,
+an overview of current modeling approaches to ASR will be given, including
+variations of both HMM-based and end-to-end modeling.</abstract>
+        <authors>
+          <author>Ralf Schlüter</author>
+        </authors>
+        <affiliations/>
+        <keywords/>
+        <url>https://www.isca-speech.org/archive/interspeech_2019/schluter19_interspeech.html</url>
+      </paper>
+      <paper>
+        <title>Learning Problem-Agnostic Speech Representations from Multiple Self-Supervised Tasks</title>
+        <abstract>Learning good representations without supervision is still an open
+issue in machine learning, and is particularly challenging for speech
+signals, which are often characterized by long sequences with a complex
+hierarchical structure. Some recent works, however, have shown that
+it is possible to derive useful speech representations by employing
+a self-supervised encoder-discriminator approach. This paper proposes
+an improved self-supervised method, where a single neural encoder is
+followed by multiple workers that jointly solve different self-supervised
+tasks. The needed consensus across different tasks naturally imposes
+meaningful constraints to the encoder, contributing to discover general
+representations and to minimize the risk of learning superficial ones.
+Experiments show that the proposed approach can learn transferable,
+robust, and problem-agnostic features that carry on relevant information
+from the speech signal, such as speaker identity, phonemes, and even
+higher-level features such as emotional cues. In addition, a number
+of design choices make the encoder easily exportable, facilitating
+its direct usage or adaptation to different problems.</abstract>
+        <authors>
+          <author>Santiago Pascual</author>
+          <author>Mirco Ravanelli</author>
+          <author>Joan Serrà</author>
+          <author>Antonio Bonafonte</author>
+          <author>Yoshua Bengio</author>
+        </authors>
+        <affiliations>
+          <affiliation>Université de Montréal</affiliation>
+          <affiliation>Telefónica Research</affiliation>
+          <affiliation>CIFAR</affiliation>
+          <affiliation>Universitat Politècnica de Catalunya</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech representation</keyword>
+          <keyword>speech classification</keyword>
+          <keyword>transfer learning</keyword>
+          <keyword>self-supervised learning</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2019/pascual19_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Expressiveness Influences Human Vocal Alignment Toward voice-AI</title>
+        <abstract>This study explores whether people align to expressive speech spoken
+by a voice-activated artificially intelligent device (voice-AI), specifically
+Amazon’s Alexa. Participants shadowed words produced by the Alexa
+voice in two acoustically distinct conditions: “regular”
+and “expressive”, containing more exaggerated pitch contours
+and longer word durations. Another group of participants rated the
+shadowed items, in an AXB perceptual similarity task, as an assessment
+of overall degree of vocal alignment. Results show greater vocal alignment
+toward expressive speech produced by the Alexa voice and, furthermore,
+systematic variation based on speaker gender. Overall, these findings
+have applications to the field of affective computing in understanding
+human responses to synthesized emotional expressiveness.</abstract>
+        <authors>
+          <author>Michelle Cohn</author>
+          <author>Georgia Zellou</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of California</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>vocal alignment</keyword>
+          <keyword>human-computer interaction</keyword>
+          <keyword>speech perception &amp; production</keyword>
+          <keyword>affective computing</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2019/cohn19_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Target Speaker Extraction for Multi-Talker Speaker Verification</title>
+        <abstract>The performance of speaker verification degrades significantly when
+the test speech is corrupted by interference from non-target speakers.
+Speaker diarization separates speakers well only if the speakers are
+not overlapped. However, if multiple talkers speak at the same time,
+we need a technique to separate the speech in the spectral domain.
+In this paper, we study a way to extract the target speaker’s
+speech from an overlapped multi-talker speech. Specifically, given
+some reference speech samples from the target speaker, the target speaker’s
+speech is firstly extracted from the overlapped multi-talker speech,
+then the extracted speech is processed in the speaker verification
+system. Experimental results show that the proposed approach significantly
+improves the performance of overlapped multi-talker speaker verification
+and achieves 64.4% relative EER reduction over the zero-effort baseline.</abstract>
+        <authors>
+          <author>Wei Rao</author>
+          <author>Chenglin Xu</author>
+          <author>Eng Siong Chng</author>
+          <author>Haizhou Li</author>
+        </authors>
+        <affiliations>
+          <affiliation>Nanyang Technological University</affiliation>
+          <affiliation>National University of Singapore</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>target speaker extraction</keyword>
+          <keyword>overlapped speech</keyword>
+          <keyword>speaker verification</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2019/rao19_interspeech.pdf</url>
+      </paper>
+    </papers>
+  </conference>
+  <conference>
+    <metadata>
+      <confName abbr="interspeech">INTERSPEECH</confName>
+      <year>2020</year>
+    </metadata>
+    <papers>
+      <paper>
+        <title>A Semi-Blind Source Separation Approach for Speech Dereverberation</title>
+        <abstract>This paper presents a novel semi-blind source separation approach for
+speech dereverberation. Based on a time independence assumption of
+the clean speech signals, direct sound and late reverberation are treated
+as separate sources and are separated using the auxiliary function
+based independent component analysis (Aux-ICA) algorithm. We show that
+the dereverberation performance is closely related to the underlying
+source probability density prior and the proposed approach generalizes
+to the popular weighted prediction error (WPE) algorithm, if the direct
+sound follows a Gaussian distribution with time-varying variances.
+The efficacy of the proposed approach is fully validated by speech
+quality and speech recognition experiments conducted on the REVERB
+Challenge dataset.</abstract>
+        <authors>
+          <author>Ziteng Wang</author>
+          <author>Yueyue Na</author>
+          <author>Zhang Liu</author>
+          <author>Yun Li</author>
+          <author>Biao Tian</author>
+          <author>Qiang Fu</author>
+        </authors>
+        <affiliations/>
+        <keywords>
+          <keyword>speech dereverberation</keyword>
+          <keyword>blind source separation</keyword>
+          <keyword>reverb challenge</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2020/wang20ca_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Mandarin Lexical Tones: A Corpus-Based Study of Word Length, Syllable Position and Prosodic Position on Duration</title>
+        <abstract>The present study aims to increase our knowledge of Mandarin lexical
+tones in fluent speech, more specifically their occurrence frequency
+distributions and their duration patterns. First, the occurrence frequency
+of each lexical tone was computed in a large speech corpus (~220
+hours). Then the duration of each lexical tone, as well as the impact
+of word length, syllable position and the prosodic position were investigated.
+Overall, results show that Tone 3 tends to have the longest duration
+among all lexical tones. Nonetheless, the factors word length, syllable
+position and prosodic position are found to impact tone duration. Monosyllabic
+words exhibit tone durations closer to those of word-final syllables
+(especially for disyllabic words) than to other syllable positions.
+Moreover, tone duration tends to be the longest at word’s right
+boundary in Mandarin, regardless of word length. An effect of prosodic
+position is also found: the duration of Mandarin lexical tones tends
+to increase with higher prosodic level. Tone durations are the longest
+in phrase-final position, followed by word-final position and word-medial
+position, regardless of the tone nature.</abstract>
+        <authors>
+          <author>Yaru Wu</author>
+          <author>Martine Adda-Decker</author>
+          <author>Lori Lamel</author>
+        </authors>
+        <affiliations>
+          <affiliation>CNRS-Sorbonne Nouvelle)</affiliation>
+          <affiliation>CNRS</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>mandarin</keyword>
+          <keyword>tone duration</keyword>
+          <keyword>word length</keyword>
+          <keyword>prosodic categories</keyword>
+          <keyword>large corpora</keyword>
+          <keyword>continuous speech</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2020/wu20h_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Very Short-Term Conflict Intensity Estimation Using Fisher Vectors</title>
+        <abstract>The automatic detection of conflict situations from human speech has
+several applications like obtaining feedback of employees in call centers,
+the surveillance of public spaces, and other roles in human-computer
+interactions. Although several methods have been developed to automatic
+conflict detection, they were designed to operate on relatively long
+utterances. In practice, however, it would be beneficial to process
+much shorter speech segments. With the traditional workflow of paralinguistic
+speech processing, this would require properly annotated training and
+testing material consisting of short clips. In this study we show that
+Support Vector Regression machine learning models using Fisher vectors
+as features, even when trained on longer utterances, allow us to efficiently
+and accurately detect conflict intensity from very short audio segments.
+Even without having reliable annotations of these such short chunks,
+the mean scores of the predictions corresponding to short segments
+of the same original, longer utterances correlate well to the reference
+manual annotation. We also verify the validity of this approach by
+comparing the SVM predictions of the chunks with a manual annotation
+for the full and the 5-second-long cases. Our findings allow the construction
+of conflict detection systems having smaller delay, therefore being
+more useful in practice.</abstract>
+        <authors>
+          <author>Gábor Gosztolya</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Szeged</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>conflict intensity estimation</keyword>
+          <keyword>computational paralinguistics</keyword>
+          <keyword>fisher vectors</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2020/gosztolya20_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Exploring Listeners’ Speech Rate Preferences</title>
+        <abstract>Fast speech may reduce intelligibility, but there is little agreement
+as to whether listeners benefit from slower speech in noisy conditions.
+The current study explored the relationship between speech rate and
+masker properties using a listening preference technique in which participants
+were able to control speech rate in real time. Spanish listeners adjusted
+speech rate while listening to word sequences in quiet, in stationary
+noise at signal-to-noise ratios of 0, +6 and +12 dB, and in modulated
+noise for 5 envelope modulation rates. Following selection of a preferred
+rate, participants went on to identify words presented at that rate.
+Listeners favoured faster speech in quiet, chose increasingly slower
+rates in increasing levels of stationary noise, and showed a preference
+for speech rates that led to a contrast with masker envelope modulation
+rates. Participants showed distinct preferences even when intelligibility
+was near ceiling levels. These outcomes suggest that individuals attempt
+to compensate for the decrement in cognitive resources availability
+in more adverse conditions by reducing speech rate and are able to
+exploit differences in modulation properties of the target speech and
+masker. The listening preference approach provides insights into factors
+such as listening effort that are not measured in intelligibility-based
+metrics.</abstract>
+        <authors>
+          <author>Olympia Simantiraki</author>
+          <author>Martin Cooke</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of the Basque Country</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech perception</keyword>
+          <keyword>speech rate</keyword>
+          <keyword>stationary noise</keyword>
+          <keyword>modulated noise</keyword>
+          <keyword>listener preferences</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2020/simantiraki20_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Generic Indic Text-to-Speech Synthesisers with Rapid Adaptation in an End-to-End Framework</title>
+        <abstract>Building text-to-speech (TTS) synthesisers for Indian languages is
+a difficult task owing to a large number of active languages. Indian
+languages can be classified into a finite set of families, prominent
+among them, Indo-Aryan and Dravidian. The proposed work exploits this
+property to build a generic TTS system using multiple languages from
+the same family in an end-to-end framework. Generic systems are quite
+robust as they are capable of capturing a variety of phonotactics across
+languages. These systems are then adapted to a new language in the
+same family using small amounts of adaptation data. Experiments indicate
+that good quality TTS systems can be built using only 7 minutes of
+adaptation data. An average degradation mean opinion score of 3.98
+is obtained for the adapted TTSes.</abstract>
+        <authors>
+          <author>Anusha Prakash</author>
+          <author>Hema A. Murthy</author>
+        </authors>
+        <affiliations>
+          <affiliation>Indian Institute of Technology Madras</affiliation>
+          <affiliation>Generic Indic Text-to-speech Synthesisers with Rapid Adaptation</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>generic voices</keyword>
+          <keyword>end-to-end tts</keyword>
+          <keyword>adaptation</keyword>
+          <keyword>indian languages</keyword>
+          <keyword>speaker embedding</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2020/prakash20_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>ASR Error Correction with Augmented Transformer for Entity Retrieval</title>
+        <abstract>Domain-agnostic Automatic Speech Recognition (ASR) systems suffer from
+the issue of mistranscribing domain-specific words, which leads to
+failures in downstream tasks. In this paper, we present a post-editing
+ASR error correction method using the Transformer model for entity
+mention correction and retrieval. Specifically, we propose a novel
+augmented variant of the Transformer model that encodes both the word
+and phoneme sequence of an entity, and attends to phoneme information
+in addition to word-level information during decoding to correct mistranscribed
+named entities. We evaluate our method on both the ASR error correction
+task and the downstream retrieval task. Our method achieves 48.08%
+entity error rate (EER) reduction in ASR error correction task and
+26.74% mean reciprocal rank (MRR) improvement for the retrieval task.
+In addition, our augmented Transformer model significantly outperforms
+the vanilla Transformer model with 17.89% EER reduction and 1.98% MRR
+increase, demonstrating the effectiveness of incorporating phoneme
+information in the correction model.</abstract>
+        <authors>
+          <author>Haoyu Wang</author>
+          <author>Shuyan Dong</author>
+          <author>Yue Liu</author>
+          <author>James Logan</author>
+          <author>Ashish Kumar Agrawal</author>
+          <author>Yang Liu</author>
+        </authors>
+        <affiliations>
+          <affiliation>Amazon Alexa</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech recognition</keyword>
+          <keyword>error correction</keyword>
+          <keyword>entity retrieval</keyword>
+          <keyword>transformer</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2020/wang20p_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Unsupervised Subword Modeling Using Autoregressive Pretraining and Cross-Lingual Phone-Aware Modeling</title>
+        <abstract>This study addresses unsupervised subword modeling, i.e., learning
+feature representations that can distinguish subword units of a language.
+The proposed approach adopts a two-stage bottleneck feature (BNF) learning
+framework, consisting of autoregressive predictive coding (APC) as
+a front-end and a DNN-BNF model as a back-end. APC pretrained features
+are set as input features to a DNN-BNF model. A language-mismatched
+ASR system is used to provide cross-lingual phone labels for DNN-BNF
+model training. Finally, BNFs are extracted as the subword-discriminative
+feature representation. A second aim of this work is to investigate
+the robustness of our approach’s effectiveness to different amounts
+of training data. The results on Libri-light and the ZeroSpeech 2017
+databases show that APC is effective in front-end feature pretraining.
+Our whole system outperforms the state of the art on both databases.
+Cross-lingual phone labels for English data by a Dutch ASR outperform
+those by a Mandarin ASR, possibly linked to the larger similarity of
+Dutch compared to Mandarin with English. Our system is less sensitive
+to training data amount when the training data is over 50 hours. APC
+pretraining leads to a reduction of needed training material from over
+5,000 hours to around 200 hours with little performance degradation.</abstract>
+        <authors>
+          <author>Siyuan Feng</author>
+          <author>Odette Scharenborg</author>
+        </authors>
+        <affiliations>
+          <affiliation>Delft University of Technology</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>unsupervised subword modeling</keyword>
+          <keyword>autoregressive predictive coding</keyword>
+          <keyword>cross-lingual knowledge transfer</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2020/feng20d_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>End-to-End Speech Emotion Recognition Combined with Acoustic-to-Word ASR Model</title>
+        <abstract>In this paper, we propose speech emotion recognition (SER) combined
+with an acoustic-to-word automatic speech recognition (ASR) model.
+While acoustic prosodic features are primarily used for SER, textual
+features are also useful but are error-prone, especially in emotional
+speech. To solve this problem, we integrate ASR model and SER model
+in an end-to-end manner. This is done by using an acoustic-to-word
+model. Specifically, we utilize the states of the decoder in the ASR
+model with the acoustic features and input them into the SER model.
+On top of a recurrent network to learn features from this input, we
+adopt a self-attention mechanism to focus on important feature frames.
+Finally, we finetune the ASR model on the new dataset using a multi-task
+learning method to jointly optimize ASR with the SER task. Our model
+has achieved a 68.63% weighted accuracy (WA) and 69.67% unweighted
+accuracy (UA) on the IEMOCAP database, which is state-of-the-art performance.</abstract>
+        <authors>
+          <author>Han Feng</author>
+          <author>Sei Ueno</author>
+          <author>Tatsuya Kawahara</author>
+        </authors>
+        <affiliations>
+          <affiliation>Kyoto University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech emotion recognition</keyword>
+          <keyword>acoustic-to-word speech recognition</keyword>
+          <keyword>end-to-end</keyword>
+          <keyword>self-attention mechanism</keyword>
+          <keyword>multi-task learning</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2020/feng20_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Depthwise Separable Convolutional ResNet with Squeeze-and-Excitation Blocks for Small-Footprint Keyword Spotting</title>
+        <abstract>One difficult problem of keyword spotting is how to miniaturize its
+memory footprint while maintain a high precision. Although convolutional
+neural networks have shown to be effective to the small-footprint keyword
+spotting problem, they still need hundreds of thousands of parameters
+to achieve good performance. In this paper, we propose an efficient
+model based on depthwise separable convolution layers and squeeze-and-excitation
+blocks. Specifically, we replace the standard convolution by the depthwise
+separable convolution, which reduces the number of the parameters of
+the standard convolution without significant performance degradation.
+We further improve the performance of the depthwise separable convolution
+by reweighting the output feature maps of the first convolution layer
+with a so-called squeeze-and-excitation block. We compared the proposed
+method with five representative models on two experimental settings
+of the Google Speech Commands dataset. Experimental results show that
+the proposed method achieves the state-of-the-art performance. For
+example, it achieves a classification error rate of 3.29% with a number
+of parameters of 72K in the first experiment, which significantly outperforms
+the comparison methods given a similar model size. It achieves an error
+rate of 3.97% with a number of parameters of 10K, which is also slightly
+better than the state-of-the-art comparison method given a similar
+model size.</abstract>
+        <authors>
+          <author>Menglong Xu</author>
+          <author>Xiao-Lei Zhang</author>
+        </authors>
+        <affiliations>
+          <affiliation>Northwestern Polytechnical University</affiliation>
+          <affiliation>Research &amp; Development Institute of Northwestern Polytechnical University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>keyword spotting</keyword>
+          <keyword>depthwise separable convolution</keyword>
+          <keyword>squeeze-and-excitation block</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2020/xu20d_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Domain-Invariant Speaker Vector Projection by Model-Agnostic Meta-Learning</title>
+        <abstract>Domain generalization remains a critical problem for speaker recognition,
+even with the state-of-the-art architectures based on deep neural nets.
+For example, a model trained on reading speech may largely fail when
+applied to scenarios of singing or movie. In this paper, we propose
+a domain-invariant projection to improve the generalizability of speaker
+vectors. This projection is a simple neural net and is trained following
+the Model-Agnostic Meta-Learning (MAML) principle, for which the objective
+is to classify speakers in one domain if it had been updated with speech
+data in another domain. We tested the proposed method on CNCeleb, a
+new dataset consisting of single-speaker multi-condition (SSMC) data.
+The results demonstrated that the MAML-based domain-invariant projection
+can produce more generalizable speaker vectors, and effectively improve
+the performance in unseen domains.</abstract>
+        <authors>
+          <author>Jiawen Kang</author>
+          <author>Ruiqi Liu</author>
+          <author>Lantian Li</author>
+          <author>Yunqi Cai</author>
+          <author>Dong Wang</author>
+          <author>Thomas Fang Zheng</author>
+        </authors>
+        <affiliations>
+          <affiliation>Tsinghua University</affiliation>
+          <affiliation>China University of Mining and Technology</affiliation>
+          <affiliation>Meta-Learning</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speaker recognition</keyword>
+          <keyword>meta-learning</keyword>
+          <keyword>domain generalization</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2020/kang20_interspeech.pdf</url>
+      </paper>
+    </papers>
+  </conference>
+  <conference>
+    <metadata>
+      <confName abbr="interspeech">INTERSPEECH</confName>
+      <year>2021</year>
+    </metadata>
+    <papers>
+      <paper>
+        <title>Advanced Semi-Blind Speaker Extraction and Tracking Implemented in Experimental Device with Revolving Dense Microphone Array</title>
+        <abstract>We present a new device for speaker extraction and physical tracking
+and demonstrate its use in real conditions. The device is equipped
+with a dense planar array consisting of 64 microphones mounted on a
+rotating platform. State-of-the-art blind source extraction algorithms
+controlled by x-vector piloting are used to extract the desired speaker,
+which is being tracked by the rotating microphone array. The audience
+will experience the functionality of the device and the potential of
+the blind algorithms to extract the speaker from multi-source noisy
+recordings in a live situation.</abstract>
+        <authors>
+          <author>J. Čmejla</author>
+          <author>T. Kounovský</author>
+          <author>J. Janský</author>
+          <author>Jiri Malek</author>
+          <author>M. Rozkovec</author>
+          <author>Z. Koldovský</author>
+        </authors>
+        <affiliations>
+          <affiliation>Technical University of Liberec</affiliation>
+        </affiliations>
+        <keywords/>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2021/cmejla21_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Audio-Visual Speech Emotion Recognition by Disentangling Emotion and Identity Attributes</title>
+        <abstract>In this paper, we propose an audio-visual speech emotion recognition
+(AV-SER) that can suppress the disturbance from an identity attribute
+by disentangling an emotion attribute and an identity one. We developed
+a model that first disentangles both attributes for each modality.
+In order to achieve the disentanglement, we introduce a co-attention
+module to our model. Our model disentangles the emotion attribute by
+giving the identity attribute as conditional features to the module.
+Conversely, the identity attribute is also obtained with the emotion
+attribute as a condition. Our model then makes a prediction for each
+attribute from these disentangled features by considering both modalities.
+In addition, to ensure the disentanglement capacity of our model, we
+train the model with an identification task as the auxiliary task and
+an SER task as the primary task alternately, and we update only the
+part of parameters responsible for each task. The experimental result
+shows the effectiveness of our method with the wild CMU-MOSEI dataset.</abstract>
+        <authors>
+          <author>Koichiro Ito</author>
+          <author>Takuya Fujioka</author>
+          <author>Qinghua Sun</author>
+          <author>Kenji Nagamatsu</author>
+        </authors>
+        <affiliations/>
+        <keywords>
+          <keyword>speech emotion recognition</keyword>
+          <keyword>audio-visual</keyword>
+          <keyword>MTL</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2021/ito21_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>In-Group Advantage in the Perception of Emotions: Evidence from Three Varieties of German</title>
+        <abstract>Various studies on the perception of vocally expressed emotions have
+shown that recognition rates are higher if speaker and listener belong
+to the same cultural or linguistic group. This so-called</abstract>
+        <authors>
+          <author>Moritz Jakob</author>
+          <author>Bettina Braun</author>
+          <author>Katharina Zahner-Ritter</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Trier</affiliation>
+          <affiliation>University of Konstanz</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>emotion perception</keyword>
+          <keyword>in-group advantage</keyword>
+          <keyword>speech prosody</keyword>
+          <keyword>varieties of german</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2021/jakob21_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>A Comparison of Acoustic Correlates of Voice Quality Across Different Recording Devices: A Cautionary Tale</title>
+        <abstract>There has been a recent increase in speech research utilizing data
+recorded with participants’ personal devices, particularly in
+light of the COVID-19 pandemic and restrictions on face-to-face interactions.
+This raises important questions about whether these recordings are
+comparable to those made in traditional lab-based settings. Some previous
+studies have compared the viability of recordings made with personal
+devices for the clinical evaluation of voice quality. However, these
+studies rely on simple statistical analyses and do not examine acoustic
+correlates of voice quality typically examined in the (socio-) phonetic
+literature (e.g. H1-H2). In this study, we compare recordings from
+a set of smartphones/laptops and a solid-state recorder to assess the
+reliability of a range of acoustic correlates of voice quality. The
+results show significant differences for many acoustic measures of
+voice quality across devices. Further exploratory analyses demonstrate
+that these differences are not simple offsets, but rather that their
+magnitude depends on the value of the measurement of interest. We therefore
+urge researchers to exercise caution when examining voice quality based
+on recordings made with participants’ devices, particularly when
+interested in small effect sizes. We also call on the speech research
+community to investigate these issues more thoroughly.</abstract>
+        <authors>
+          <author>Joshua Penney</author>
+          <author>Andy Gibson</author>
+          <author>Felicity Cox</author>
+          <author>Michael Proctor</author>
+          <author>Anita Szakay</author>
+        </authors>
+        <affiliations>
+          <affiliation>Macquarie University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>voice quality</keyword>
+          <keyword>non-modal phonation</keyword>
+          <keyword>creaky voice</keyword>
+          <keyword>COVID-19</keyword>
+          <keyword>home recordings</keyword>
+          <keyword>smartphone recordings</keyword>
+          <keyword>online research</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2021/penney21_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Detecting COVID-19 from Audio Recording of Coughs Using Random Forests and Support Vector Machines</title>
+        <abstract>The detection of COVID-19 is and will remain in the foreseeable future
+a crucial challenge, making the development of tools for the task important.
+One possible approach, on the confines of speech and audio processing,
+is detecting potential COVID-19 cases based on cough sounds. We propose
+a simple, yet robust method based on the well-known ComParE 2016 feature
+set, and two classical machine learning models, namely Random Forests,
+and Support Vector Machines (SVMs). Furthermore, we combine the two
+methods, by calculating the weighted average of their predictions.
+Our results in the DiCOVA challenge show that this simple approach
+leads to a robust solution while producing competitive results. Based
+on the Area Under the Receiver Operating Characteristic Curve (AUC
+ROC) score, both classical machine learning methods we applied markedly
+outperform the baseline provided by the challenge organisers. Moreover,
+their combination attains an AUC ROC score of 85.21, positioning us
+at fourth place on the leaderboard (where the second team attained
+a similar, 85.43 score). Here, we would describe this system in more
+detail, and analyse the resulting models, drawing conclusions, and
+determining future work directions.</abstract>
+        <authors>
+          <author>Isabella Södergren</author>
+          <author>Maryam Pahlavan Nodeh</author>
+          <author>Prakash Chandra Chhipa</author>
+          <author>Konstantina Nikolaidou</author>
+          <author>György Kovács</author>
+        </authors>
+        <affiliations>
+          <affiliation>Luleå University of Technology</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>COVID-19</keyword>
+          <keyword>acoustics</keyword>
+          <keyword>machine learning</keyword>
+          <keyword>respiratory diagnosis</keyword>
+          <keyword>random forest</keyword>
+          <keyword>SVM</keyword>
+          <keyword>opensmile</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2021/sodergren21_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>L1 Identification from L2 Speech Using Neural Spectrogram Analysis</title>
+        <abstract>It is well-known that the characteristics of L2 speech are highly influenced
+by the speakers’ L1. The main objective of this study was to
+uncover discriminative speech features to identify the L1 background
+of a speaker from their L2 English speech. Traditional phonetic approaches
+tend to compare speakers based on a pre-selected set of acoustic features,
+which may not be sufficient to capture all the unique traces of the
+L1 in the L2 speech for forensic speaker profiling purposes. Convolutional
+Neural Network (CNN) has the potential to remedy this issue through
+the automatic processing of the visual spectrogram.</abstract>
+        <authors>
+          <author>Calbert Graham</author>
+        </authors>
+        <affiliations>
+          <affiliation>University of Cambridge</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speaker profiling</keyword>
+          <keyword>l1 identification</keyword>
+          <keyword>l2 speech</keyword>
+          <keyword>computational phonetics</keyword>
+          <keyword>forensic phonetics</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2021/graham21_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Cross-Linguistic Speaker Individuality of Long-Term Formant Distributions: Phonetic and Forensic Perspectives</title>
+        <abstract>This study considers issues of language- and speaker-specificity in
+long-term formant distributions (LTFDs) from phonetic and forensic
+perspectives and examines their potential value in cases of cross-language
+forensic voice comparison. Acoustic analysis of 60 male English–French
+bilinguals revealed systematic differences in LTFDs between the two
+languages, with higher LTF2–4 in French than in English. Cross-linguistic
+differences in the shapes of LTFDs were also found. These differences
+are argued to reflect not only vowel inventories of each language but
+also language-specific phonetic settings. At the same time, a high
+degree of within-speaker consistency was found across languages. Likelihood
+ratio based testing was carried out to examine the effect of language
+mismatch on the utility of LTFDs as speaker discriminants. Results
+showed that while the performance of LTFDs was worse in cross-language
+comparisons than in same-language comparisons, they were still capable
+of providing speaker-specific information. These findings demonstrate
+that, in spite of deteriorated performance, LTFDs are still potentially
+useful speaker discriminants in cases of language mismatch. These findings
+thus call for further empirical investigation into the use of linguistic-phonetic
+features in cross-language comparisons.</abstract>
+        <authors>
+          <author>Justin J.H. Lo</author>
+        </authors>
+        <affiliations>
+          <affiliation>Cross-linguistic Speaker Individuality of Long-term Formant Distributions</affiliation>
+          <affiliation>Justin J. H. Lo</affiliation>
+          <affiliation>University of York</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>long-term formant distributions</keyword>
+          <keyword>bilingual</keyword>
+          <keyword>forensic voice comparison</keyword>
+          <keyword>speaker specificity</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2021/lo21_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Protecting Gender and Identity with Disentangled Speech Representations</title>
+        <abstract>Besides its linguistic content, our speech is rich in biometric information
+that can be inferred by classifiers. Learning privacy-preserving representations
+for speech signals enables downstream tasks without sharing unnecessary,
+private information about an individual. In this paper, we show that
+protecting gender information in speech is more effective than modelling
+speaker-identity information only when generating a non-sensitive representation
+of speech. Our method relies on reconstructing speech by decoding linguistic
+content along with gender information using a variational autoencoder.
+Specifically, we exploit disentangled representation learning to encode
+information about different attributes into separate subspaces that
+can be factorised independently. We present a novel way to encode gender
+information and disentangle two sensitive biometric identifiers, namely
+gender and identity, in a privacy-protecting setting. Experiments on
+the LibriSpeech dataset show that gender recognition and speaker verification
+can be reduced to a random guess, protecting against classification-based
+attacks.</abstract>
+        <authors>
+          <author>Dimitrios Stoidis</author>
+          <author>Andrea Cavallaro</author>
+        </authors>
+        <affiliations>
+          <affiliation>Mary University of London</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>privacy</keyword>
+          <keyword>soft biometrics</keyword>
+          <keyword>disentangled representation learning</keyword>
+          <keyword>variational autoencoder</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2021/stoidis21_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Alternate Endings: Improving Prosody for Incremental Neural TTS with Predicted Future Text Input</title>
+        <abstract>Inferring the prosody of a word in text-to-speech synthesis requires
+information about its surrounding context. In incremental text-to-speech
+synthesis, where the synthesizer produces an output before it has access
+to the complete input, the full context is often unknown which can
+result in a loss of naturalness. In this paper, we investigate whether
+the use of predicted future text from a transformer language model
+can attenuate this loss in a neural TTS system. We compare several
+test conditions of next future word: (a) unknown (zero-word), (b) language
+model predicted, (c) randomly predicted and (d) ground-truth. We measure
+the prosodic features (pitch, energy and duration) and find that predicted
+text provides significant improvements over a zero-word lookahead,
+but only slight gains over random-word lookahead. We confirm these
+results with a perceptive test.</abstract>
+        <authors>
+          <author>Brooke Stephenson</author>
+          <author>Thomas Hueber</author>
+          <author>Laurent Girin</author>
+          <author>Laurent Besacier</author>
+        </authors>
+        <affiliations>
+          <affiliation>Neural TTS with</affiliation>
+          <affiliation>NAVER LABS Europe</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>incremental text-to-speech</keyword>
+          <keyword>prosody</keyword>
+          <keyword>neural language models</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2021/stephenson21_interspeech.pdf</url>
+      </paper>
+      <paper>
+        <title>Many-Speakers Single Channel Speech Separation with Optimal Permutation Training</title>
+        <abstract>Single channel speech separation has experienced great progress in
+the last few years. However, training neural speech separation for
+a large number of speakers (e.g., more than 10 speakers) is out of
+reach for the current methods, which rely on the Permutation Invariant
+Training (PIT). In this work, we present a permutation invariant training
+that employs the Hungarian algorithm in order to train with an O(C</abstract>
+        <authors>
+          <author>Shaked Dovrat</author>
+          <author>Eliya Nachmani</author>
+          <author>Lior Wolf</author>
+        </authors>
+        <affiliations>
+          <affiliation>Tel Aviv University</affiliation>
+        </affiliations>
+        <keywords>
+          <keyword>speech separation</keyword>
+          <keyword>single channel</keyword>
+          <keyword>deep learning</keyword>
+        </keywords>
+        <url>https://www.isca-speech.org/archive/pdfs/interspeech_2021/dovrat21_interspeech.pdf</url>
+      </paper>
+    </papers>
+  </conference>
+</conferences>
