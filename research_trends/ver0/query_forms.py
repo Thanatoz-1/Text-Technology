@@ -28,8 +28,26 @@ class ResearchFilterForm(forms.Form):
     author: the name of one author
     """
 
-    topk = forms.CharField(label="topk", initial=5)
-    author = forms.CharField(label="author")
+    topk = forms.IntegerField(
+        min_value=1,
+        max_value=50,
+        widget=forms.NumberInput(
+            attrs={
+                "placeholder": "topK",
+                "style": "width: 300px;",
+                "class": "form-control",
+            }
+        ),
+    )
+    author = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "author",
+                "style": "width: 300px;",
+                "class": "form-control",
+            }
+        )
+    )
 
 
 class AffiliationFilterForm(forms.Form):
@@ -38,5 +56,23 @@ class AffiliationFilterForm(forms.Form):
     affiliation: the name of one affiliation
     """
 
-    topk = forms.IntegerField(label="topk", initial=5)
-    affiliation = forms.CharField(label="affiliation")
+    topk = forms.IntegerField(
+        min_value=1,
+        max_value=50,
+        widget=forms.NumberInput(
+            attrs={
+                "placeholder": "topK",
+                "style": "width: 300px;",
+                "class": "form-control",
+            }
+        ),
+    )
+    affiliation = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "affiliation",
+                "style": "width: 300px;",
+                "class": "form-control",
+            }
+        )
+    )

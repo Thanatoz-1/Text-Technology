@@ -52,24 +52,102 @@ def ran_color():
     return color
 
 
+def plot_keyword_change_curve(curves, st, ed):
+    """Prepare the dict object for plotting dataset in chart.js
+    one datapoint format: [key, [num of paper at year1, num of paper at year2, ...]
+
+    Inputs:
+    ---
+    curves, [list] the keyword and the number of related papers published each year
+        Example curves:
+        ['ASR', [100, 24, 145]],
+        ['TTS', [32, 41, 45]],
+        ['RNN', [38, 214, 155]]
+    st: [int] start year
+    ed: [int] end year
+
+    Outputs:
+    ---
+    A python dictionary object required by Chart.js, including the chart config and
+    the data set.
+    """
+    plot_data = {}
+    plot_data["labels"] = list(range(st, ed + 1))
+    datasets = []
+    for key, papers in curves:
+        key_data = {}
+        key_data["data"] = papers
+        key_data["label"] = key
+        key_data["fill"] = False
+        key_data["borderColor"] = ran_color()
+        datasets.append(key_data)
+    plot_data["datasets"] = datasets
+    return plot_data
+
+
+def fetch_display_given_keywords(st, ed, keywords):
+    """Given a list of keywords, find the change curve with those topics
+
+    Inputs
+    ---
+    st: [int] start year
+    ed: [int] end year
+    keyword: a list of keywords, e.g.['HMM', 'LSTM']
+
+    Outputs:
+    ---
+    A python dictionary object required by Chart.js, including the chart config and
+    the data set.
+    """
+    curves = []
+    for key in keywords:
+        key_year_count = (
+            Paper.objects.filter(keys__name=key)
+            .values("conference__year")
+            .filter(Q(conference__year__gte=st) & Q(conference__year__lte=ed))
+            .annotate(total=Count("id"))
+            .order_by("conference__year")
+        )
+        if len(key_year_count) == 0:
+            continue
+        cur_year = st
+        curve = []
+        for sample in key_year_count:
+            year = sample["conference__year"]
+            num_papers = sample["total"]
+            while cur_year < year:
+                curve.append(0)
+                cur_year += 1
+            curve.append(num_papers)
+            cur_year += 1
+        curves.append([key, curve])
+    return plot_keyword_change_curve(curves, st, ed)
+
+
 def _fetch_keyword_paper_tuple_impl(st, ed, topk):
     """An optimized method to obtain keyword paper tuple
     Inputs:
     ---
-    st: [Int] The start year to filter results (value between 2010-2021)
+    st: [int] The start year to filter results (value between 2010-2021)
     example: 2017
-    ed: [Int] End year to filter result (value between 2010-2021)
+    ed: [int] End year to filter result (value between 2010-2021)
     example: 2020
-    topk: [Int] TopK results to return.
+    topk: [int] TopK results to return.
     example: 5
 
 
     Outputs:
-    A list tuples: [List] containing: [Tuple]:
-    Keyword [Str]
-    Total num papers [Int] containing keyword between st and ed
-    Annually published papers [Int] related to the keyword
-
+    ---
+    A list tuples: [List] containing:
+        [Tuple]:
+        Keyword [str]
+        Total num papers [Int] containing keyword between st and ed
+        Annually published papers [Int] related to the keyword
+    example:
+    [
+        ['HMM', 300, [100, 150, 50]],
+        ['LSTM', 400, [100, 150, 150]],
+    ]
     """
     tst = time.time()
     ted = time.time()
@@ -88,15 +166,12 @@ def _fetch_keyword_paper_tuple_impl(st, ed, topk):
     prev_key = None
     prev_yr = 0
     key_paper = []
-    tst = time.time()
     for sample in key_year_count:
         key = sample["keys"]
         yr = sample["conference__year"]
         count = sample["total"]
         if key is None:
             continue
-        # key = keywords[key].name
-        # print(prev_key, key, yr, count)
         if key != prev_key:
             key_paper.append([key, count, [0] * (ed - st + 1)])
             key_paper[-1][2][yr - st] = count
@@ -106,9 +181,6 @@ def _fetch_keyword_paper_tuple_impl(st, ed, topk):
             assert key == key_paper[-1][0]
             key_paper[-1][1] += count
             key_paper[-1][2][yr - st] = count
-    ted = time.time()
-    # print(f'----loop over results {ted - tst}----')
-    # print(f'year range {st} - {ed}')
     return key_paper
 
 
@@ -116,18 +188,28 @@ def fetch_keyword_paper_tuple(start_year=2015, end_year=2020, topk=5):
     """
     Inputs:
     ---
-    NONE
+    start_year: [int]
+    end_year: [int]
+    topk: [int]
 
     Returns:
     ---
-    Result of _fetch_keyword_paper_tuple_impl function
+    Same as `_fetch_keyword_paper_tuple_impl`
+    A list tuples: [List] containing:
+        [Tuple]:
+        Keyword [str]
+        Total num papers [Int] containing keyword between st and ed
+        Annually published papers [Int] related to the keyword
+    example:
+    [
+        ['HMM', 300, [100, 150, 50]],
+        ['LSTM', 400, [100, 150, 150]],
+    ]
     """
-    # TODO: sanity check for the year range
-
     return _fetch_keyword_paper_tuple_impl(start_year, end_year, topk)
 
 
-def display_topk(key_paper, start_year, end_year, k, key_set=None):
+def display_topk(key_paper, st, ed, k, key_set=None):
     """
     Returns a dictionary obj for char display
 
@@ -135,45 +217,116 @@ def display_topk(key_paper, start_year, end_year, k, key_set=None):
     ---
     key_paper: [list] a list of tuples containing keyword [String] and keyword counts [Int] and
     annually published papers [Int] related to the keyword
-    start_year: [Int] start year for filter
+    start_year: [int] start year for filter
     Example: 2012
-    end_year: [Int] end year for filter
+    end_year: [int] end year for filter
     Example: 2019
-    k: [Int] K An integer to obtain slice of 0-k results in key_paper
+    k: [int] K An integer to obtain slice of 0-k results in key_paper
     Example: 5
     key_set: [None] or [List] list of keywords
 
     Return:
-    plot_data: [Dictionary] a dictionary object to display topk results
+    plot_data: [dict] a dictionary object to display topk results
     Example:
 
     {datasets: [list] containing key_data dictionary
-    [{'data': [integer] nums,
-     'label': [string] keyword,
-     'fill': [Bool] False,
+    [{'data': [int] nums,
+     'label': [str] keyword,
+     'fill': [bool] False,
      'borderColor': Random color e.g. #EB700E}]
      }
 
     """
-    # TODO: use database to fullfill this feature?
     key_paper.sort(key=lambda x: x[1], reverse=True)
     key_paper = key_paper[:k]
-    plot_data = {}
-    plot_data["labels"] = list(range(start_year, end_year + 1))
-    datasets = []
-    keywords = Keyword.objects.all()
+
+    curves = []
     for key, _, nums in key_paper:
-        if key_set is not None and key not in key_set:
-            continue
-        key_data = {}
-        key_data["data"] = nums
-        key_data["label"] = keywords[key].name
-        key_data["fill"] = False
-        # TODO: random color
-        key_data["borderColor"] = ran_color()
-        datasets.append(key_data)
+        name = Keyword.objects.get(id=key).name
+        curves.append([name, nums])
+    return plot_keyword_change_curve(curves, st, ed)
+
+
+def generate_empty_pie(name="none", key_name="none"):
+    """For researcher and affiliation page.
+    If the database doesn't contain any data related to
+    the given author or affiliation, we need a empty
+    pie object to notify the front end.
+
+    Inputs:
+    ---
+    key_name: [str] the table name, "author" or "affiliation"
+    Example: 'author'
+    name: [str] the query, an author or affiliation name given by the user
+    Example: 'Michael Smith'
+
+    Outputs:
+    ---
+    plot_data: [dict] A dictionary object which includes all the data needed
+    to draw the pit chart at the front-end side.
+    """
+    plot_data = {}
+    plot_data["labels"] = []
+    datasets = {}
+    datasets["label"] = []
+    datasets["data"] = []
+    datasets["backgroundColor"] = []
     plot_data["datasets"] = datasets
+    plot_data[key_name] = name
     return plot_data
+
+
+def display_interest_pie(target_name, topk, model, key_name):
+    """For research and affiliation page.
+    Display the interest distribution pie chart for `target_name`
+    Only show the top k fileds of interests.
+
+    Inputs:
+    ---
+    target_name: [str] the query, an author or affiliation name given by the user
+    Example: 'Carnegie Mellon University'
+    topk: [int] only show top k fileds of interests
+    Example: 5
+    model: [django.db.models.Model] the table, Django use a "Model" object to represent a table
+    key_name: [str] the table name, could be "author" or "affiliation"
+    Example: 'Affiliation'
+
+    Outputs:
+    ---
+    plot_data: [dict] A dictionary object which includes all the data needed
+    to draw the pie chart at the front-end side.
+    """
+    if len(target_name) == 0:
+        return generate_empty_pie(target_name, key_name), []
+    target = model.objects.filter(name=target_name)
+    if target.count() == 0:
+        return generate_empty_pie(target_name, key_name), []
+    else:
+        target = target[0]
+
+    keys_counter = Counter()
+    paper_list = []
+
+    for paper in target.papers.all():
+        keynames = []
+        for key in paper.keys.all():
+            keyname = key.name
+            keys_counter[keyname] += 1
+            keynames.append(keyname)
+        paper_list.append([paper.title, paper.url, ";".join(keynames)])
+
+    list_keys_count = keys_counter.most_common(topk)
+    keys, counts = zip(*list_keys_count)
+    plot_data = {}
+    plot_data["labels"] = keys
+
+    datasets = {}
+    datasets["label"] = "# of papers"
+    datasets["data"] = counts
+    datasets["backgroundColor"] = [ran_color() for x in counts]
+    plot_data["datasets"] = datasets
+    plot_data[key_name] = target_name
+    return plot_data, paper_list
 
 
 def keywords_page(request):
@@ -196,127 +349,39 @@ def keywords_page(request):
     }
 
     With KeywordsFilter form for querying top k keywords trends
-
-    TODO: support showing the trend of a specific keyword
     """
-    st_year, ed_year, topk = 2015, 2020, 5
+    st_year, ed_year, topk = 2010, 2021, 5
     keywords = None
+    form = KeywordsFilterForm()
     if request.method == "POST":
-        form = KeywordsFilterForm(request.GET)
+        form = KeywordsFilterForm(request.POST)
 
         if form.is_valid():
             topk = form.cleaned_data["topk"]
             keywords = str(form.cleaned_data["keywords"]).split(";")
             if keywords == ["x"]:
                 keywords = None
+            else:
+                topk = len(keywords)
             st_year = form.cleaned_data["st_year"]
             ed_year = form.cleaned_data["ed_year"]
 
-    st = time.time()
-    print(
-        f"------------------fetch_keyword_paper_tuple() start------------------------"
-    )
-    key_paper = fetch_keyword_paper_tuple(st_year, ed_year)
-    ed = time.time()
-    print(
-        f"------------------fetch_keyword_paper_tuple(): {ed-st}------------------------"
-    )
-    plot_data = display_topk(key_paper, st_year, ed_year, topk, keywords)
+    if keywords is None:
+        key_paper = fetch_keyword_paper_tuple(st_year, ed_year)
+        plot_data = display_topk(key_paper, st_year, ed_year, topk, keywords)
+    else:
+        plot_data = fetch_display_given_keywords(st_year, ed_year, keywords)
     return render(
         request,
         "ver0/keywords.html",
         {
             "keyword_data": plot_data,
-            "form": KeywordsFilterForm(),
+            "form": form,
             "topk": topk,
             "st_year": st_year,
             "ed_year": ed_year,
         },
     )
-
-
-# TODO: make it static var
-def generate_empty_pie(name="none", key_name="none"):
-    """For researcher and affiliation page.
-    If the database doesn't contain any data related to
-    the given author or affiliation, we need a empty
-    pie object to notify the front end.
-
-    Inputs:
-    ---
-    key_name: [String] the table name, "author" or "affiliation"
-    Example: 'author'
-    name: [String] the query, an author or affiliation name given by the user
-    Example: 'Michael Smith'
-
-    Outputs:
-    ---
-    plot_data: [Dictionary] A dictionary object which includes all the data needed
-    to draw the pit chart at the front-end side.
-    """
-    plot_data = {}
-    plot_data["labels"] = []
-    datasets = {}
-    datasets["label"] = []
-    datasets["data"] = []
-    datasets["backgroundColor"] = []
-    plot_data["datasets"] = datasets
-    plot_data[key_name] = name
-    return plot_data
-
-
-def display_interest_pie(target_name, topk, model, key_name):
-    """For research and affiliation page.
-    Display the interest distribution pie chart for `target_name`
-    Only show the top k fileds of interests.
-
-    Inputs:
-    ---
-    target_name: [String] the query, an author or affiliation name given by the user
-    Example: 'Carnegie Mellon University'
-    topk: [Integer] only show top k fileds of interests
-    Example: 5
-    model: [django.db.models.Model] the table, Django use a "Model" object to represent a table
-    key_name: [String] the table name, could be "author" or "affiliation"
-    Example: 'Affiliation'
-
-    Outputs:
-    ---
-    plot_data: [Dictionary] A dictionary object which includes all the data needed
-    to draw the pie chart at the front-end side.
-
-    TODO:
-    - [ ] input validation
-    - [ ] for one target name, what if the db returns multiple results?
-    - [ ] allow user to choose top k
-    """
-    target = model.objects.filter(name=target_name)
-    if target.count() == 0:
-        return generate_empty_pie(target_name, key_name)
-    elif target.count() == 1:
-        target = target[0]
-    else:
-        # TODO: what if more than one user
-        target = target[0]
-
-    keys_counter = Counter()
-
-    for paper in target.papers.all():
-        for key in paper.keys.all():
-            keys_counter[key.name] += 1
-
-    list_keys_count = keys_counter.most_common(topk)
-    keys, counts = zip(*list_keys_count)
-    plot_data = {}
-    plot_data["labels"] = keys
-
-    datasets = {}
-    datasets["label"] = "# of papers"
-    datasets["data"] = counts
-    datasets["backgroundColor"] = [ran_color() for x in counts]
-    plot_data["datasets"] = datasets
-    plot_data[key_name] = target_name
-    return plot_data
 
 
 def researchers_page(request):
@@ -347,6 +412,7 @@ def researchers_page(request):
             topk = int(form.cleaned_data["topk"])
             author = form.cleaned_data["author"]
     print(topk, author)
+    print("Pie data: --->", display_interest_pie(author, topk, Author, "author"))
     return render(
         request,
         "ver0/researchers.html",
@@ -375,9 +441,10 @@ def affiliations_page(request):
     With AffiliationFilterForm() to query research interest distribution of an affiliation.
 
     """
-    aff = "Google"
-    topk = 5
+    aff = ""
+    topk = 0
 
+    form = AffiliationFilterForm()
     if request.method == "POST":
         form = AffiliationFilterForm(request.POST)
 

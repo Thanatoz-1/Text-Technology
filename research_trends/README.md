@@ -1,6 +1,6 @@
 # Access
 
-- requirement:
+- Requirements:
   - [Django](https://www.djangoproject.com/)
   - [Chart.js](https://www.chartjs.org/)
   
@@ -15,26 +15,33 @@ We use [Django](https://www.djangoproject.com/) for better interaction and data 
 Four types of query will be supported in this website
 
 ### Keywords Page 
-![keyword](../static/keyword.png)
 1. How do the publication number of top k keywords change over years?
    - filters: start year, end year, top k 
    - return: line chart 
    - notice: `keyword` must be set to `x` in this case, otherwise it will fall into the second type of query.
+   - example:
+     - start year=2012, end year=2020, top k=8
+![keyword_basic](../static/keyword_basic.gif)
 2. How do the publication number of a given keyword change over years?
-   - *work-in-process*
    - filters: start year, end year, keyword 
-   - return: line chart 
+   - return: line chart
+   - example: 
+     - start year = 2013, end year=2021, keyword=LSTM;HMM
+![keyword_lstmhmm](../static/keyword_lstmhmm.gif)
+
 
 ### Researchers and Affiliations Pages
-![](../static/author.png)
 1. What's the research interest distribution of a researcher within the given years? Only show the top k results
    - filters: topk, author
    - return: pie chart
+   - example: topk=7, author="Ngoc Thang Vu"
+   ![ProfVu](../static/Prof_Vu.gif)
 
-![](../static/affiliation.png)
 1. What's the research interest distribution of an affiliation within the given years? Only show the top k results
    - filters: topk, affiliation 
    - return: pie chart
+   - example: topk=6, affiliation="University of Stuttgart"
+   ![UniStuttgart](../static/UniStuttgart.gif)
 
 
 ## Usage: Test It Locally
