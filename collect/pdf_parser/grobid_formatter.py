@@ -23,12 +23,39 @@ url = "%s/api/processFulltextDocument" % grobid_url
 
 
 def get_root(pdf_url):
+    '''
+    Returns a parsed document from pdf_url passed
+    as argument to function.
+
+    Inputs:
+    ----
+    pdf_url: [string] URL to PDF of conference paper.
+
+    Outputs:
+    ----
+    root: [BeautifulSoup Object] Representing parsed document. BeautifulSoup() takes
+    a string to representation of document to parse in first argument position, and
+    name of specific parser in second arguement position.
+
+    '''
     page = urllib.request.urlopen(pdf_url).read()
     parsed_article = requests.post(url, files={"input": page}).text
     root = BeautifulSoup(parsed_article, 'lxml')
     return root
 
 def get_authors(root):
+    '''
+    This function returns a list of authors' full names
+    from root.
+
+    Input:
+    ----
+    root: [BeautifulSoup Object] lxml parsed document to search.
+
+    Outputs:
+    ----
+    Authors: [List] A list of authors' names [string] (first, middle, and last)
+    '''
     author_names = root.find("sourcedesc").findAll("persname")
     authors = set()
     for author in author_names:
@@ -46,6 +73,17 @@ def get_authors(root):
     return authors
 
 def get_affs(root):
+    '''
+    Returns list of affiliations from root.
+
+    Inputs:
+    ----
+    root: [BeautifulSoup Object] lxml parsed document to search.
+
+    Outputs:
+    ----
+    affs: [list] Returns a list of affiliations [String]
+    '''
     aff_nodes = root.find("sourcedesc").findAll("orgname")
     affs = set()
     for aff in aff_nodes:
@@ -53,6 +91,16 @@ def get_affs(root):
     return list(affs)
 
 def get_keywords(root):
+    '''
+    Returns list of index terms from root.
+    Inputs:
+    ----
+    root: [BeautifulSoup Object] lxml parsed document to search.
+
+    Outputs:
+    ----
+    kwords: [list] Returns a list of key words [string]
+    '''
     key_nodes = root.find("profiledesc").find("keywords").findAll("term")
     kwords = set()
     for kword in key_nodes:
@@ -75,11 +123,37 @@ class Formatter:
         self.format()
         
     def upload_failed(self):
+        '''
+        Writes file to self.failed for re-processing
+        if Grobid fails to process PDF.
+
+        Inputs:
+        ----
+        None
+        
+        Outputs:
+        ----
+        None
+        '''
         with open('failed.lst', 'a') as f:
             for x in self.failed:
                 f.write(f'{x}\n')
         
     def format(self):
+        '''
+         The formatter parses Grobid results as dictionaries and
+         stores them in the Formatter.results list which can be further 
+         transformed to standard XML by the converter. 
+
+         Inputs:
+         ----
+         None
+
+         Outputs:
+         ----
+         None
+
+        '''
         for x in tqdm(self.items):
             title, abstract, author, url = x
             if not url.endswith('pdf'):

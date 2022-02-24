@@ -26,7 +26,7 @@ if __name__ == '__main__':
         xml_loader.read_xmls('xml_paths')
         print(f'processing {yr}')
 
-        # use Formatter to extract affliation and index term from 
+        # use Formatter to extract affliation and index terms from 
         # the pdf files, and combine all info, including title, 
         # abstract, authors, affiliations, index terms and url, 
         # in a python dictionary. 
@@ -42,8 +42,8 @@ if __name__ == '__main__':
         # append all years' result to [results] list
         results += formatter.results
 
-    # results is a list of python dictionary object, each object contains
-    # all info descibring a paper(title, abstract, etc)
+    # results is a list of python dictionary objects. Each object contains
+    # all info describing a paper(title, abstract, etc)
     # Converter can dump such objects a one single xml files
     cvter = Converter(results)
     with open('all_years.xml', 'w') as f:

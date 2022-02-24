@@ -16,6 +16,15 @@ class XMLLoader:
         one line for one xml path
         each xml file will be parsed and stored as a BeautifulSoup
         parsed object in self.xmls
+
+        Inputs:
+        ----
+        xmls_path: [list] A list of file paths [string] to xml file.
+
+        Outputs:
+        ----
+        None
+
         """
         print('loading...')
         with open(xmls_path, 'r') as f:
@@ -34,7 +43,16 @@ class XMLLoader:
                 
     def _read_one_xml(self, xml_path):
         """
-        return the BeautifulSoup parsed result of a given xml file
+        Returns the BeautifulSoup parsed result of a given xml file
+
+        Input:
+        ----
+        xml_path: [string] path to XML file.
+
+        Output:
+        ----
+        bs_content: [BeautifulSoup object] The parsed result of XML file.
+
         """
         xml_path = xml_path.strip()
         with open(xml_path, 'r') as f:
