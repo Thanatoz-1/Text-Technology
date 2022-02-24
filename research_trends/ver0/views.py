@@ -73,9 +73,6 @@ def fetch_display_given_keywords(st, ed, keywords):
     ed: end year 
     keyword: a list of keywords
     """
-    # Naive method, quiry len(keywords) times 
-    # TODO: remind users than some keywords doesn't exist
-
     curves = []
     for key in keywords: 
         key_year_count = Paper.objects.filter(keys__name=key).values('conference__year').filter(Q(conference__year__gte=st)&Q(conference__year__lte=ed)).annotate(total=Count('id')).order_by('conference__year')
@@ -113,25 +110,16 @@ def _fetch_keyword_paper_tuple_impl(st, ed, topk):
     Annually published papers [Int] related to the keyword
 
     """
-    tst = time.time()
-    ted = time.time()
-    print(f'---fetch keywords {ted - tst} ----')
-    tst = time.time()
     key_year_count = Paper.objects.values('keys', 'conference__year').filter(Q(conference__year__gte=st)&Q(conference__year__lte=ed)).annotate(total=Count('id')).order_by('keys', 'conference__year')
-    ted = time.time()
-    print(f'----fetch key year count {ted - tst} ----')
-    # key_year_count = list(key_year_count)
     
     prev_key = None
     prev_yr = 0
     key_paper = []
-    tst = time.time()
     for sample in key_year_count:
         key = sample['keys']
         yr = sample['conference__year']
         count = sample['total']
         if key is None: continue 
-        # key = keywords[key].name
         if key != prev_key:
             key_paper.append([key, count, [0]*(ed-st+1)])
             key_paper[-1][2][yr-st] = count
@@ -141,9 +129,6 @@ def _fetch_keyword_paper_tuple_impl(st, ed, topk):
             assert key == key_paper[-1][0]
             key_paper[-1][1] += count 
             key_paper[-1][2][yr-st] = count
-    ted = time.time()
-    # print(f'----loop over results {ted - tst}----')
-    # print(f'year range {st} - {ed}')
     return key_paper
 
 def fetch_keyword_paper_tuple(start_year=2015, end_year=2020, topk=5):
@@ -156,8 +141,6 @@ def fetch_keyword_paper_tuple(start_year=2015, end_year=2020, topk=5):
     ---
     Result of _fetch_keyword_paper_tuple_impl function
     """
-    # TODO: sanity check for the year range
-
     return _fetch_keyword_paper_tuple_impl(start_year, end_year, topk)
 
 
@@ -189,15 +172,12 @@ def display_topk(key_paper, st, ed, k, key_set=None):
      }
 
     """
-    # TODO: use database to fullfill this feature? 
     key_paper.sort(key=lambda x:x[1], reverse=True)
     key_paper = key_paper[:k]
-    # keywords = Keyword.objects.all()
     
     curves = []
     for key, _, nums in key_paper:
         name = Keyword.objects.get(id=key).name
-        print(key, name, nums)
         curves.append([name, nums])
     return plot_keyword_change_curve(curves, st, ed)
 
@@ -238,12 +218,8 @@ def keywords_page(request):
             ed_year = form.cleaned_data["ed_year"]
 
     if keywords is None:
-        print(f'------------------fetch_keyword_paper_tuple() start------------------------')
-        st = time.time()
         key_paper = fetch_keyword_paper_tuple(st_year, ed_year)
-        ed = time.time()
         plot_data = display_topk(key_paper, st_year, ed_year, topk, keywords)
-        print(f'------------------fetch_keyword_paper_tuple(): {ed-st}------------------------')
     else:
         plot_data = fetch_display_given_keywords(st_year, ed_year, keywords)
     return render(request, "ver0/keywords.html", {
@@ -306,10 +282,7 @@ def display_interest_pie(target_name, topk, model, key_name):
     target = model.objects.filter(name=target_name)
     if target.count() == 0:
         return generate_empty_pie(target_name, key_name), []
-    elif target.count() == 1:
-        target = target[0]
     else:
-        # TODO: what if more than one user 
         target = target[0]
     
     keys_counter = Counter()
@@ -321,7 +294,6 @@ def display_interest_pie(target_name, topk, model, key_name):
             keyname = key.name
             keys_counter[keyname] += 1
             keynames.append(keyname)
-        # print(paper.title)
         paper_list.append([paper.title, paper.url, ';'.join(keynames)])
 
     list_keys_count = keys_counter.most_common(topk)
@@ -401,7 +373,6 @@ def affiliations_page(request):
         if form.is_valid():
             topk = form.cleaned_data["topk"]
             aff = form.cleaned_data["affiliation"]
-        print(f'topk {topk}, aff {aff}') 
 
     pie_data, paper_list = display_interest_pie(aff, topk, Affiliation, 'affiliation')
     return render(request, "ver0/affiliations.html", {
@@ -409,22 +380,3 @@ def affiliations_page(request):
         "paper_list" : paper_list, 
         "form": form
     })
-
-def download_file(request):
-    """ WIP: a download link, enable users to download the query results in XML format.
-    Inputs: 
-    ---
-    A request object: [django.http.HttpRequest]
-
-    Outputs:
-    ---
-    A response object: [django.http.HtttpResonse] with path to download query results in XML format.
-    """
-    fl_path = 'x' 
-    fl_name = 'somename.py'
-
-    fl = open(fl_path, 'r')
-    mime_type = mimetypes.guess_type(fl_path)
-    response = HttpResponse(fl, content_type=mime_type)
-    response['Content-Disposition'] = 'attachment; filename=%s' % fl_name
-    return response

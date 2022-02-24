@@ -49,12 +49,6 @@ class KeywordAugment:
     def add_all_cap(self, item):
         aug = []
         abstract = item['abstract']
-        """
-        for word in abstract.split(' '):
-            if word.isupper() and word in self.all_cap_dict:
-                aug.append(word)
-        """
-        # we should use these, for HMMs, HMM. "HMM"
         for allcap in self.all_cap_dict:
             if allcap in abstract:
                 aug.append(allcap) 

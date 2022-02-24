@@ -85,7 +85,6 @@ for conf in confs:
     year = conf.find('.//year').text
     conf_id = conf_dict[year]
     print(conf_id)
-    # print(conf_name.confname)
     for paper in conf.findall('.//paper'):
         title = paper.find('title').text
         if title is None:
@@ -109,7 +108,6 @@ for conf in confs:
         paper_dict = {'model': 'ver0.paper', 'pk': paper_cnt+1, 'fields': field}
         papers_dict.append(paper_dict)
         paper_cnt += 1
-        # print(paper_cnt)
 with open(f'{prefix}/paper.json', 'w') as f:
     f.write(json.dumps(papers_dict))
         

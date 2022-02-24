@@ -43,7 +43,6 @@ class InfoExtractor:
                 aff = status
                 status = True
                 
-        # print(aff, status, '..............')
         iterms = self.extract_index_terms(page)
         if iterms is False:
             iterms = []
@@ -80,9 +79,6 @@ class InfoExtractor:
                 ed = i
                 break
                 
-            # if i < 50:
-            #     print('---', line)
-        # print(st, ed)
         if st == -1 or ed == -1:
             return False
         
@@ -108,19 +104,16 @@ class InfoExtractor:
     def extract_affiliation(self, candidate):
         # affiliations
         ret = []
-        # print(candidate)
         for aff in candidate:
             parsed_article = requests.post(self.api, 
                                        data={"affiliations": aff}).text
             xml_text = '<root>'+parsed_article.strip()+'</root>'
-            # print(xml_text)
             root = ET.fromstring(xml_text)
             orgs = root.findall(".//*[@type='institution']")
             if len(orgs) != 1:
                 continue
             ret.append(orgs[0].text)
 
-        # ret = [org.text for org in orgs]
         if len(ret) == 0:
             return False
         return list(set(ret))
@@ -137,7 +130,6 @@ class InfoExtractor:
             line = line.strip()
             if len(line) == 0:
                 continue
-            # print('---', line)
             cnt += 1
             if cnt > 100:
                 # speed up
@@ -146,22 +138,16 @@ class InfoExtractor:
                 st = i
             if '1. introduction' == line.lower():
                 ed = i
-                # print(line)
                 break
-            # if i < 100:
-                # print('---', line)
         if st == -1 or ed == -1:
             return False
-        # print(st, ed)
         candidate = ' '.join(lines[st:ed]).split(':')[1]
         iterms = candidate.split(',')
         for i, iterm in enumerate(iterms):
             if not iterm.isupper():
                 iterm = iterm.lower()
-            # print('before', iterm)
             iterm = re.sub('\s+', ' ', iterm)
             iterm = re.sub('\.', '', iterm)
             iterm = re.sub('- ', '', iterm)
-            # print('after', iterm)
             iterms[i] = iterm.strip()
         return iterms

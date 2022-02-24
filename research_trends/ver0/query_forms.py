@@ -21,7 +21,6 @@ class ResearchFilterForm(forms.Form):
     """
     topk = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': 'topK', 'style': 'width: 300px;', 'class': 'form-control'}))
     author = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'author', 'style': 'width: 300px;', 'class': 'form-control'}))
-    # author = forms.CharField(widget=forms.TextInput(attrs={'class': 'myfieldclass'}))
 
 class AffiliationFilterForm(forms.Form):
     """ For querying the research interest distribution of an affiliation
