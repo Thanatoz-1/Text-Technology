@@ -85,8 +85,10 @@ Database:
 
 - [Documentation](research_trends/README.md)
 - Directory: `./research_trends`
+- Example database
+  - [mini.sql](research_trends/examples/mini.sql): This mini-database is extracted from a larger one. It has 100 papers and contains 5 main tables and the many-to-many relations. 
   
-Finally, to make our entire pipeline accessable to the end-user, we used the python **Django** Framework as it is based on Model View Architecture [(MVC)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). For Rendering the visual features, charts, and plots in our project, we also used [Chart.js](https://www.chartjs.org/).
+Finally, to make our entire pipeline accessible to the end-user, we used the python **Django** Framework as it is based on Model View Architecture [(MVC)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). For Rendering the visual features, charts, and plots in our project, we also used [Chart.js](https://www.chartjs.org/).
 
 
 ## Running the application

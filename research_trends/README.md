@@ -1,6 +1,6 @@
 # Access
 
-- requirement:
+- Requirements:
   - [Django](https://www.djangoproject.com/)
   - [Chart.js](https://www.chartjs.org/)
   
