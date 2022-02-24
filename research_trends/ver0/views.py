@@ -338,14 +338,15 @@ def researchers_page(request):
     """
     author = "Jay Mahadeokar"
     topk = 5
-
-    if request.method == "POST":
-        form = ResearchFilterForm(request.POST)
+    print(f"Request Method: {request.method}, {request.GET}")
+    if request.method == "GET":
+        form = ResearchFilterForm(request.GET)
+        print(f"form: {form}, {form.is_valid()}, {dir(form)}")
 
         if form.is_valid():
-            topk = form.cleaned_data["topk"]
+            topk = int(form.cleaned_data["topk"])
             author = form.cleaned_data["author"]
-
+    print(topk, author)
     return render(
         request,
         "ver0/researchers.html",
@@ -420,19 +421,18 @@ def search_researcher(request):
     payload = []
     if researcher:
         researcher_objects = Author.objects.filter(name__icontains=researcher)
-        for researcher_object in researcher_objects:
-            payload.append(researcher_object.name)
-    return JsonResponse({"status": 200, "data": payload})
+        payload = [researcher_object.name for researcher_object in researcher_objects]
+    return JsonResponse({"status": 200, "data": payload[:50]})
 
 
 def search_keyword(request):
     keyword = request.GET.get("keywords")
+    print(f"From search_keyword: {keyword}")
     payload = []
     if keyword:
         keyword_objects = Keyword.objects.filter(name__icontains=keyword)
-        for keyword_object in keyword_objects:
-            payload.append(keyword_object.name)
-    return JsonResponse({"status": 200, "data": payload})
+        payload = [keyword_object.name for keyword_object in keyword_objects][:50]
+    return JsonResponse({"status": 200, "data": payload[:50]})
 
 
 def search_affiliations(request):
@@ -440,6 +440,7 @@ def search_affiliations(request):
     payload = []
     if affiliations:
         affiliations_objects = Affiliation.objects.filter(name__icontains=affiliations)
-        for affiliations_object in affiliations_objects:
-            payload.append(affiliations_object.name)
-    return JsonResponse({"status": 200, "data": payload})
+        payload = [
+            affiliations_object.name for affiliations_object in affiliations_objects
+        ]
+    return JsonResponse({"status": 200, "data": payload[:50]})
