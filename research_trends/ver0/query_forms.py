@@ -23,7 +23,7 @@ class ResearchFilterForm(forms.Form):
     author = forms.CharField(label="author")
 
 class AffiliationFilterForm(forms.Form):
-    """ For querying the research interst distribution of an affiliation
+    """ For querying the research interest distribution of an affiliation
     topk: only present top k fields of interest
     affiliation: the name of one affiliation
     """
