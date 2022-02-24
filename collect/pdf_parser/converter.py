@@ -10,7 +10,9 @@ from xml.dom import minidom
 from copy import deepcopy
 import logging 
 
+
 class Paper:
+
     keys = ["conf", "year", "title", "abstract", "authors", "affiliations", "keywords", "url"]
     status = dict(ok=0, missing_key=1, invalid_value=2)
 
@@ -44,6 +46,7 @@ class Paper:
                 
         
 class Converter:
+
     conf_to_abbr = {
         'INTERSPEECH': 'interspeech',
         'Association for Computational Linguistics': 'acl'
@@ -132,7 +135,7 @@ class Converter:
         
     def _add_xml_node(self, parent, name, text):
         kid = SubElement(parent, name)
-        kid.text = text
+        kid.text = text.strip()
         return kid
         
     def _add_xml_list(self, parent, name, list_name, elements):
