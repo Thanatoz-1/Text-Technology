@@ -24,7 +24,6 @@ class PdfSpider(scrapy.Spider):
         """
         urls = response.xpath('/html/body/div[8]/div[3]/div/a')
         year_links = []
-        self.log(f'XXXXXXXXXXXXXXXXXXXXtarget_year{self.target_year}XXXXXXXXXXXXXXXXXXXXXXXXXX')
         for url in urls:
             year = url.xpath('text()').extract()[0]
             link = url.xpath('@href').extract()[0]
@@ -49,7 +48,6 @@ class PdfSpider(scrapy.Spider):
             title = ' '.join(title)
             title = title.strip()
             href = paper.xpath('@href').extract()[0]
-            # self.log(f'========== {title} ==========')
             new_link = response.urljoin(href)
             yield scrapy.Request(url=new_link, callback=self.download_one_pdf)
 

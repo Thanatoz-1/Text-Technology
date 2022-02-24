@@ -1,1 +1,5 @@
 Django==3.1.2
+pdftotext=2.2.2
+tika=1.24
+beautifulsoup4=4.10.0
+lxml=4.8.0

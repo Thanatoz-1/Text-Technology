@@ -74,10 +74,17 @@ WSGI_APPLICATION = 'research_trends.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# please use local_settings.py, the following is an example to set the 
+# database config
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '[name of database]',
+        'USER': '[user name of db]', 
+        'PASSWORD' : '[password of db]',
+        'HOST': 'localhost',
+        'PORT': '8888',
+        'OPTIONS': {'charset': 'utf8mb4'}
     }
 }
 
@@ -119,3 +126,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
