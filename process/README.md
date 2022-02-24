@@ -79,7 +79,6 @@ Each row is a JSON object, and one table is stored in one single JSON file. So t
 prepare the keyword-replaced XML file produced in [step 1](#step1-keyword-extraction) and run the following command, the results will be stored in the *tables* directory, they're `conference.json, author.json, aff.json, keywords.json, paper.json`
    ```
    mkdir tables
-   python to_json.py input.xml
+   python to_json.py papers.xml tables
    ```
-
-We can change to output directory by editing the `prefix` variable in [to_json.py](to_json.py)
+   Suppose `papers.xml` is the name of step1's output.
