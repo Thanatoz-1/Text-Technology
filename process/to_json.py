@@ -18,11 +18,37 @@ import json
 
 
 def name_to_id(item_count):
-    # all id should starts from 1 in mysql
+    '''
+    Takes list as input and returns dictionary with list items as
+    keys and an ID value. 
+
+    Inputs:
+    ----
+    item_count: [List] List of items to create IDs.
+    example: A list of authors
+
+    Outputs:
+    ----
+    [Dictionary] with list items as keys and IDs (int) as values. 
+    '''
     return {x[0]:i+1 for i, x in enumerate(item_count)}
 
-
 def load_and_count(root, item_name):
+    '''
+    Finds and returns list of elements and count
+    matching item_name in root Element.
+
+    Inputs:
+    ----
+    prefix: [str] output directory
+    root: [xml.etree.ElementTree.Element]
+    item_name: [String] Name of item to find.
+
+    Outputs:
+    ----
+    res: [list] A list of items and count of item.
+
+    '''
     nodes = root.findall(f'.//{item_name}')
     items = Counter()
     for item in nodes:
@@ -34,8 +60,22 @@ def load_and_count(root, item_name):
     return res
 
 
-# write to author table
+#Write to authors' table
 def load_author(prefix, root):
+    '''
+    Returns dictionary of authors and IDs. 
+    Also dump the json file.
+
+    Inputs:
+    ---
+    prefix: [str] output directory
+    root: [xml.etree.ElementTree.Element]
+
+    Outputs:
+    ---
+    name_to_id(authors): [Dictionary] Returns dictionary of authors and IDs.  
+
+    '''
     authors = load_and_count(root, 'author')
     author_dict = [{'model':'ver0.author', 'pk':i+1, 'fields': {'name':x[0]}} for i, x in enumerate(authors)]
     with open(f'{prefix}/author.json', 'w') as f:
@@ -43,8 +83,21 @@ def load_author(prefix, root):
     return name_to_id(authors)
 
 
-# write to affliation table
+#Write to affilitations table
 def load_aff(prefix, root):
+    '''
+    Returns dictionary of affiliation names and IDs.
+    Also dump the json file.
+
+    Inputs:
+    ----
+    prefix: [str] output directory
+    root: [xml.etree.ElementTree.Element]
+
+    Outputs:
+    ----
+    name_to_id(affs): [Dictionary] Returns dictionary of affiliations and IDs.
+    '''
     affs = load_and_count(root, 'affiliation')
     aff_dict = [{'model':'ver0.affiliation', 'pk':i+1, 'fields':{'name': x[0]}} for i, x in enumerate(affs)]
     with open(f'{prefix}/aff.json', 'w') as f:
@@ -52,8 +105,21 @@ def load_aff(prefix, root):
     return name_to_id(affs)
 
 
-# write to conference table
+# Write to conference table
 def load_interspeech(prefix, root):
+    '''
+    Returns dictionary of years and IDs
+    Also dump the json file.
+
+    Inputs:
+    ----
+    prefix: [str] output directory
+    root: [xml.etree.ElementTree.Element]
+    
+    Outputs:
+    ----
+    name_to_id(yrs): [Dictionary] Returns dictionary of years and IDs.
+    '''
     yrs = load_and_count(root, 'year')
     yr_dict = [{'model': 'ver0.conference', 'pk':i+1, 'fields':{'name':'INTERSPEECH', 'year':int(x[0]), 'abbr': 'interspeech'}} for i, x in enumerate(yrs)]
     with open(f'{prefix}/conf.json', 'w') as f:
@@ -63,6 +129,21 @@ def load_interspeech(prefix, root):
 
 # write to key table 
 def load_key(prefix, root):
+    '''
+    Returns dictionary of key words and IDs
+    Also dump the json file.
+
+    Inputs:
+    ----
+    prefix: [str] output directory
+    root: [xml.etree.ElementTree.Element]
+    
+    Outputs:
+    ----
+    name_to_id(keys): [Dictionary] Returns dictionary of key words and IDs.
+
+    '''
+
     keys = load_and_count(root, 'keyword')
     key_dict = [{'model': 'ver0.keyword', 'pk':i+1, 'fields': {'name': x[0]}} for i, x in enumerate(keys)]
     with open(f'{prefix}/key.json', 'w') as f:
@@ -71,6 +152,19 @@ def load_key(prefix, root):
 
 
 def extract_ids(item_node, name, item_dict):
+    '''
+    Extract a list IDs from dictionary and return a list as
+    result.
+
+    Inputs:
+    ----
+    item_node: [xml.etree.ElementTree.Element]
+    Example: paper.find('authors')
+    name: [String] Name of element
+    Example: 'author'
+    item_dict: [Dictionary] Dicitonary to search for name matches.
+    Example: author_dict
+    '''
     res = []
     for item in item_node.findall(f'.//{name}'):
         res.append(item_dict[item.text])
@@ -78,6 +172,19 @@ def extract_ids(item_node, name, item_dict):
 
 # write to paper table
 def load_paper(prefix, author_dict, aff_dict, conf_dict, key_dict, froot):
+    '''
+    Given the name-to-id dictionaries of author/aff/conf/key tables, build
+    the paper table and dump the json file.
+
+    Inputs:
+    ----
+    prefix: [str] output directory
+    author_dict: [dict] map an author to it's primary key/ID.
+    aff_dict: [dict] map an affiliation to it's primary key/ID.
+    conf_dict: [dict] map a conference to it's primary key/ID.
+    key_dict: [dict] map a keyword to it's primary key/ID.
+    froot: [xml.etree.ElementTree.Element]
+    '''
     confs = froot.findall('.//conference')
     paper_cnt = 0
     papers_dict = []
