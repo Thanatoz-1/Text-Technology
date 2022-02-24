@@ -20,7 +20,7 @@ This project is designed to help you select and analyse your research interests 
 
 - [Documentation](collect/README.md)
 - Directory: `./collect`
-- Example inputs/outputs
+- Example outputs
   - Step1 outputs: 
     - [raw xml](collect/examples/2010.xml), Scrapy's outputs in XML format. This file only contains papers published in 2010.
     - [papers.xml](collect/examples/step1_papers.xml), formatted Scrapy's outputs for better observation, lacking affiliation and index term information. This file only contains 100 papers.
@@ -43,6 +43,14 @@ From each research publication, we collected the following data-points:
 ## Data Processing 
 - [Documentation](process/README.md)
 - Directory: `./process`
+- Example outputs:
+  - [papers.xml](process/examples/papers.xml): 100 example papers with augmented keywords. 
+  - XML to JSON results: 100 example papers. We later use Django commands to load these JSON files to MySQL database.
+    - [Affiliation](process/examples/json/aff.json)
+    - [Author](process/examples/json/author.json)
+    - [Conference](process/examples/json/conf.json)
+    - [Keyword](process/examples/json/key.json)
+    - [Paper](process/examples/json/paper.json)
 
 This module compares the write and read efficiency of three database types: [MySQL](https://www.mysql.com/), [MangoDB](https://www.mongodb.com/) and [ElasticSearch](https://www.elastic.co/). This comparison gives us insights as to which database backend we should plug in to the Django framework.
 
@@ -63,6 +71,15 @@ Workflow:
 We use a relational database and **Django** for **accessing the application**, therefore we needed to decouple the XML files into 5 tables: **conference**, **author**, **affiliations**, **keywords**, and **paper**. 
 Because **Django** comes with its own modelling functionality for **JSON** files in the databases, we used **JSON** to represent these 5 tables. 
 
+There are three many-to-many relations:
+- *paper* and *author*
+- *paper* and *keyword*
+- *paper* and *affiliation*
+
+The *conference_id* is a foreign key in *paper* table.
+
+Database:
+![database](static/database.png)
 
 ## Accessing the Application 
 
