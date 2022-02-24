@@ -10,21 +10,6 @@ import time
 from django.db.models import Q, Count
 import mimetypes
 
-def index(request):
-    """ The home page, hosting the documentation
-    Inputs: 
-    ---
-    A request object: [django.http.HttpRequest]
-
-    Outputs:
-    ---
-    Returns a rendered html template as a response. The render()
-    function takes a request object and maps it to the URL pattern
-    specified in the second argument place to return the result.
-
-    """
-    return render(request, "ver0/index.html")
-
 def ran_color():
     """ Generate a color id for each data point. 
     It's used at the front-end side for plotting charts.
@@ -41,6 +26,7 @@ def ran_color():
     """
     color = "#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
     return color
+
 
 def plot_keyword_change_curve(curves, st, ed):
     """ Prepare the dict object for plotting dataset in chart.js 
@@ -91,6 +77,7 @@ def fetch_display_given_keywords(st, ed, keywords):
         curves.append([key, curve])
     return plot_keyword_change_curve(curves, st, ed)
 
+
 def _fetch_keyword_paper_tuple_impl(st, ed, topk):
     """ An optimized method to obtain keyword paper tuple
     Inputs:
@@ -130,6 +117,7 @@ def _fetch_keyword_paper_tuple_impl(st, ed, topk):
             key_paper[-1][1] += count 
             key_paper[-1][2][yr-st] = count
     return key_paper
+
 
 def fetch_keyword_paper_tuple(start_year=2015, end_year=2020, topk=5):
     """
@@ -181,55 +169,6 @@ def display_topk(key_paper, st, ed, k, key_set=None):
         curves.append([name, nums])
     return plot_keyword_change_curve(curves, st, ed)
 
-def keywords_page(request):
-    """ This function renders the keywords page. 
-    Inputs: 
-    ---
-    A request object: [django.http.HttpRequest]
-
-    Outputs:
-    ---
-     Returns a rendered html template as a response. The render()
-    function takes a request object and maps it to the URL pattern
-    specified in the second argument place to return the result. and passes dictionary:
-    {
-        "keyword_data" : plot_data,
-        "form": KeywordsFilterForm(),
-        "topk": topk, 
-        "st_year": st_year, 
-        "ed_year": ed_year
-    }
-
-    With KeywordsFilter form for querying top k keywords trends
-    """
-    st_year, ed_year, topk = 2010, 2021, 5
-    keywords = None 
-    form = KeywordsFilterForm()
-    if request.method == "POST":
-        form = KeywordsFilterForm(request.POST)
-
-        if form.is_valid():
-            topk = form.cleaned_data["topk"]
-            keywords = str(form.cleaned_data["keywords"]).split(';')
-            if keywords == ['x']:
-                keywords = None
-            else:
-                topk = len(keywords)
-            st_year = form.cleaned_data["st_year"]
-            ed_year = form.cleaned_data["ed_year"]
-
-    if keywords is None:
-        key_paper = fetch_keyword_paper_tuple(st_year, ed_year)
-        plot_data = display_topk(key_paper, st_year, ed_year, topk, keywords)
-    else:
-        plot_data = fetch_display_given_keywords(st_year, ed_year, keywords)
-    return render(request, "ver0/keywords.html", {
-        "keyword_data" : plot_data,
-        "form": form,
-        "topk": topk, 
-        "st_year": st_year, 
-        "ed_year": ed_year
-    })
 
 def generate_empty_pie(name='none', key_name='none'):
     """ For researcher and affiliation page. 
@@ -311,6 +250,58 @@ def display_interest_pie(target_name, topk, model, key_name):
     plot_data["datasets"] = datasets
     plot_data[key_name] = target_name 
     return plot_data, paper_list
+
+
+def keywords_page(request):
+    """ This function renders the keywords page. 
+    Inputs: 
+    ---
+    A request object: [django.http.HttpRequest]
+
+    Outputs:
+    ---
+     Returns a rendered html template as a response. The render()
+    function takes a request object and maps it to the URL pattern
+    specified in the second argument place to return the result. and passes dictionary:
+    {
+        "keyword_data" : plot_data,
+        "form": KeywordsFilterForm(),
+        "topk": topk, 
+        "st_year": st_year, 
+        "ed_year": ed_year
+    }
+
+    With KeywordsFilter form for querying top k keywords trends
+    """
+    st_year, ed_year, topk = 2010, 2021, 5
+    keywords = None 
+    form = KeywordsFilterForm()
+    if request.method == "POST":
+        form = KeywordsFilterForm(request.POST)
+
+        if form.is_valid():
+            topk = form.cleaned_data["topk"]
+            keywords = str(form.cleaned_data["keywords"]).split(';')
+            if keywords == ['x']:
+                keywords = None
+            else:
+                topk = len(keywords)
+            st_year = form.cleaned_data["st_year"]
+            ed_year = form.cleaned_data["ed_year"]
+
+    if keywords is None:
+        key_paper = fetch_keyword_paper_tuple(st_year, ed_year)
+        plot_data = display_topk(key_paper, st_year, ed_year, topk, keywords)
+    else:
+        plot_data = fetch_display_given_keywords(st_year, ed_year, keywords)
+    return render(request, "ver0/keywords.html", {
+        "keyword_data" : plot_data,
+        "form": form,
+        "topk": topk, 
+        "st_year": st_year, 
+        "ed_year": ed_year
+    })
+
 
 def researchers_page(request):
     """ Render the researcher page.

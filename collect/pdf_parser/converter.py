@@ -10,7 +10,9 @@ from xml.dom import minidom
 from copy import deepcopy
 import logging 
 
+
 class Paper:
+
     keys = ["conf", "year", "title", "abstract", "authors", "affiliations", "keywords", "url"]
     status = dict(ok=0, missing_key=1, invalid_value=2)
 
@@ -44,6 +46,7 @@ class Paper:
                 
         
 class Converter:
+
     conf_to_abbr = {
         'INTERSPEECH': 'interspeech',
         'Association for Computational Linguistics': 'acl'

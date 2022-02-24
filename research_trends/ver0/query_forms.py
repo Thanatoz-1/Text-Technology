@@ -14,6 +14,7 @@ class KeywordsFilterForm(forms.Form):
     st_year = forms.IntegerField(label="start year", min_value=2010, max_value=2021, initial=2015)
     ed_year = forms.IntegerField(label="end year", min_value=2010, max_value=2021, initial=2020)
 
+
 class ResearchFilterForm(forms.Form):
     """ For querying the research interst distribution of an author
     topk: only present top k fields of interest
@@ -21,6 +22,7 @@ class ResearchFilterForm(forms.Form):
     """
     topk = forms.IntegerField(min_value=1, max_value=50, widget=forms.NumberInput(attrs={'placeholder': 'topK', 'style': 'width: 300px;', 'class': 'form-control'}))
     author = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'author', 'style': 'width: 300px;', 'class': 'form-control'}))
+
 
 class AffiliationFilterForm(forms.Form):
     """ For querying the research interest distribution of an affiliation

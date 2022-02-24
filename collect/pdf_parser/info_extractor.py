@@ -9,7 +9,9 @@ from tika import parser
 import pdftotext
 from tqdm import tqdm
 
+
 class InfoExtractor:
+
     def __init__(self):
         """ This class will extract affiliations and index terms from pdf url
         using Grobid service and tika pdf parser.
@@ -21,12 +23,11 @@ class InfoExtractor:
         grobid_url = "http://localhost:8070"
         self.api = "%s/api/processAffiliations" % grobid_url
         self.failed_list = []
-    
-    
+        
     def extract_affiliation_iterms(self, title, in_author, url):
         if not url.endswith('.pdf'):
             self.failed_list.append([url, title])
-            return
+            return None, None
         
         author = copy.deepcopy(in_author)
         author = [a.lower() for a in author]
@@ -50,7 +51,6 @@ class InfoExtractor:
         if not status:
             self.failed_list.append([url, title])
         return aff, iterms
-        
         
     def extract_text_from_url(self, url):
         page = urllib.request.urlopen(url).read()
@@ -92,14 +92,12 @@ class InfoExtractor:
             return False
         return ret
     
-    
     def __has_author(self, in_line, author):
         line = in_line.lower()
         for a in author:
             if a in line:
                 return True
         return False
-    
     
     def extract_affiliation(self, candidate):
         # affiliations
@@ -117,7 +115,6 @@ class InfoExtractor:
         if len(ret) == 0:
             return False
         return list(set(ret))
-    
     
     def extract_index_terms(self, page):
         raw = parser.from_buffer(page)

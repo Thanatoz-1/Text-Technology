@@ -5,8 +5,9 @@ import pickle
 # We use XMLLoader to load all raw xml files
 class XMLLoader:
     """
-    Load XML files into bs4 content
+    Load XML files
     """
+
     def __init__(self):
         self.xmls = []
         self.items = []

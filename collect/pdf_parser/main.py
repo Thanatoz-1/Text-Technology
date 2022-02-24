@@ -33,6 +33,7 @@ def load_raw_data():
         xml_path = f'xmls/{yr}.xml'
         xml_loader.read_xml(yr, xml_path)
     return xml_loader
+    
 
 if __name__ == '__main__':
     xml_loader = load_raw_data()
@@ -47,6 +48,9 @@ if __name__ == '__main__':
         title, author, url = item['title'], item['authors'], item['url']
         try:
             affs, iterms = info_extractor.extract_affiliation_iterms(title, author, url)
+            if affs is None:
+                # invalid url links
+                continue
             # insert aff and index term to the ith item
             xml_loader.add_ans(i, affs, iterms)
             # prevent this program from sending too many queries to the remote server

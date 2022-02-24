@@ -5,6 +5,7 @@ sys.path.append('../collect/pdf_parser')
 from xml_loader import XMLLoader
 from converter import Converter
 
+
 class KeywordAugment:
     def __init__(self, items, all_cap_dict, cluster_dict):
         """ Given the list of paper items, all cap dict and cluster dict, 
@@ -68,7 +69,6 @@ class KeywordAugment:
             keys.append(key)
         item['keywords'] = list(set(keys))
         
-
 
 if __name__ == '__main__':
     xml_load_path, all_cap_path, cluster_dict_path = sys.argv[1], sys.argv[2], sys.argv[3]
