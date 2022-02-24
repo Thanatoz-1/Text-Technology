@@ -202,8 +202,9 @@ def keywords_page(request):
 
     With KeywordsFilter form for querying top k keywords trends
     """
-    st_year, ed_year, topk = 2015, 2020, 5
+    st_year, ed_year, topk = 2010, 2021, 5
     keywords = None 
+    form = KeywordsFilterForm()
     if request.method == "POST":
         form = KeywordsFilterForm(request.POST)
 
@@ -224,7 +225,7 @@ def keywords_page(request):
         plot_data = fetch_display_given_keywords(st_year, ed_year, keywords)
     return render(request, "ver0/keywords.html", {
         "keyword_data" : plot_data,
-        "form": KeywordsFilterForm(),
+        "form": form,
         "topk": topk, 
         "st_year": st_year, 
         "ed_year": ed_year
@@ -279,6 +280,8 @@ def display_interest_pie(target_name, topk, model, key_name):
     plot_data: [Dictionary] A dictionary object which includes all the data needed 
     to draw the pie chart at the front-end side.
     """
+    if len(target_name) == 0:
+        return generate_empty_pie(target_name, key_name), []
     target = model.objects.filter(name=target_name)
     if target.count() == 0:
         return generate_empty_pie(target_name, key_name), []
@@ -326,8 +329,8 @@ def researchers_page(request):
     }
     With ResearchFilterForm() to query the research interest distribution for a single given author
     """
-    author = 'Jay Mahadeokar'
-    topk = 5
+    author = ""
+    topk = 0
     
     form = ResearchFilterForm()
     if request.method == "POST":
@@ -363,8 +366,8 @@ def affiliations_page(request):
     With AffiliationFilterForm() to query research interest distribution of an affiliation.
     
     """
-    aff = "Google Research"
-    topk = 5
+    aff = ""
+    topk = 0
 
     form = AffiliationFilterForm()
     if request.method == "POST":
