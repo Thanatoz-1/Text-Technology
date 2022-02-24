@@ -20,17 +20,23 @@ This project is designed to help you select and analyse your research interests 
 
 - [Documentation](collect/README.md)
 - Directory: `./collect`
+- Example inputs/outputs
+  - Step1 outputs: 
+    - [raw xml](collect/examples/2010.xml), Scrapy's outputs in XML format. This file only contains papers published in 2010.
+    - [papers.xml](collect/examples/step1_papers.xml), formatted Scrapy's outputs for better observation, lacking affiliation and index term information. This file only contains 100 papers.
+  - Step2 output: 
+    - [papers.xml](collect/examples/step2_papers.xml), 100 papers, sampled Scrapy's outputs + PDF information in XML format. 
 
 The aim of data collection was to build a corpus of all the publically available research publications from research conference websites. In order to achieve this goal, we used the following flow:
 
-![](static/collect%20diagram.svg)
+![collect](static/collect%20diagram.svg)
 
 From each research publication, we collected the following data-points:
 - Title of the paper
 - Abstract of the paper 
 - List of authors 
 - URL
-- Lis of Affliliated Institutions 
+- List of affliliated Institutions 
 - Keywords/Index terms 
 
 
@@ -50,7 +56,7 @@ In addition to extracting information using the above mentioned techniques, we a
 Since the index terms dataset is sparse and has the long-tail phenomenon, it was necessary to employ the above-mentioned techniques for the dataset. 
 
 Workflow:
-![](static/keyward%20extraction.svg)
+![workflow](static/keyward%20extraction.svg)
 
 ### XML to JSON 
 
