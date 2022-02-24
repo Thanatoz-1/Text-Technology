@@ -12,8 +12,9 @@ This project is designed to help you select and analyse your research interests 
   - [Keyword Extraction](#keyword-extraction)
   - [XML to JSON](#xml-to-json)
 - [Accessing the Application](#accessing-the-application)
-- [Running the application](#running-the-application)
+- [Running the Application](#running-the-application)
 - [System Diagram](#system-diagram)
+- [Extension](#extension)
 
 ## Data Collection 
 
@@ -90,7 +91,7 @@ Database:
 Finally, to make our entire pipeline accessible to the end-user, we used the python **Django** Framework as it is based on Model View Architecture [(MVC)](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). For Rendering the visual features, charts, and plots in our project, we also used [Chart.js](https://www.chartjs.org/).
 
 
-## Running the application
+## Running the Application
 The application is based on Django framework and this means that running the application is exactly the same. However, in order to install the dependencies of the project, we advise you to install a [virtual environment](https://docs.python.org/3/library/venv.html) and create the virtual environment as follows:
 ```bash
 pip install -r requirements.txt
@@ -104,3 +105,9 @@ Once all the packages have been installed, you can navigate to the `research_tre
 ![system](./static/system_diagram.svg)
 
 ---
+
+## Extension
+
+Django is a flexible framework and supports many database backends. In order to decide which database should we use, we have compared different databases efficiency, including MySQL, MongoDB and ElasticSearch. 
+
+A detailed report could be found [here](extension/README.md)
