@@ -2,17 +2,39 @@ import lxml
 from bs4 import BeautifulSoup
 import pickle
 
-# We use XMLLoader to load all raw xml files
 class XMLLoader:
     """
-    Load XML files
+    Load raw XML files to the list.
+    Input xml is the result of Scrapy. It has the following structure:
+    <items>
+        <item>
+            <title>text</title>
+            <abstract>text</abstract>
+            <author>text,text,text</author>
+            <url>link</url>
+        </item>
+        ...
+    </items>
+
+    A member of the self.items list is a python dictionary. 
+    An example member:
+    {'conf': 'INTERSPEECH', 
+        'year': 2020, 
+        'title': 'paper title', 
+        'abstract': 'this is an abstract', 
+        'authors': ['alice', 'bob'],
+        'affiliations': ['uni stuttgart', 'uni freiburgh'],
+        'keywords': ['speaker verification', 'x-vector'],
+        'url':'https://isitnewyearsday.com'}
     """
 
     def __init__(self):
-        self.xmls = []
         self.items = []
         
     def add_ans(self, i, affs, iterms):
+        """ Insert the affiliation list and index term list to 
+        the i_th item.
+        """
         self.items[i]['affiliations'] = affs
         self.items[i]['keywords'] = iterms
         
@@ -21,8 +43,8 @@ class XMLLoader:
             pickle.dump(self.items, f)
                 
     def read_xml(self, year, xml_path):
-        """
-        return the BeautifulSoup parsed result of a given xml file
+        """ Load the Scrapy outputs(the results scrawled down from the 
+        year_th archive) to a python dictionary.
         """
         xml_path = xml_path.strip()
         with open(xml_path, 'r') as f:

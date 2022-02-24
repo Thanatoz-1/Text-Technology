@@ -7,6 +7,7 @@ from converter import Converter
 
 
 class KeywordAugment:
+    
     def __init__(self, items, all_cap_dict, cluster_dict):
         """ Given the list of paper items, all cap dict and cluster dict, 
         this class will augment the keyword session with:

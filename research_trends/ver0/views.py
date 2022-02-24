@@ -10,7 +10,7 @@ import time
 from django.db.models import Q, Count
 import mimetypes
 
-def ran_color():
+def ran_color() -> str:
     """ Generate a color id for each data point. 
     It's used at the front-end side for plotting charts.
 
@@ -31,10 +31,21 @@ def ran_color():
 def plot_keyword_change_curve(curves, st, ed):
     """ Prepare the dict object for plotting dataset in chart.js 
     one datapoint format: [key, [num of paper at year1, num of paper at year2, ...]
-    Example curves:
-    ['ASR', [100, 24, 145]],
-    ['TTS', [32, 41, 45]],
-    ['RNN', [38, 214, 155]]
+
+    Inputs:
+    ---
+    curves, [list] the keyword and the number of related papers published each year
+        Example curves:
+        ['ASR', [100, 24, 145]],
+        ['TTS', [32, 41, 45]],
+        ['RNN', [38, 214, 155]]
+    st: [int] start year
+    ed: [int] end year
+
+    Outputs:
+    ---
+    A python dictionary object required by Chart.js, including the chart config and
+    the data set. 
     """
     plot_data = {}
     plot_data["labels"] = list(range(st, ed+1))
@@ -53,11 +64,16 @@ def plot_keyword_change_curve(curves, st, ed):
 def fetch_display_given_keywords(st, ed, keywords):
     """ Given a list of keywords, find the change curve with those topics 
 
-    Parameters
-    ----------
-    st: start year
-    ed: end year 
-    keyword: a list of keywords
+    Inputs
+    ---
+    st: [int] start year
+    ed: [int] end year 
+    keyword: a list of keywords, e.g.['HMM', 'LSTM']
+
+    Outputs:
+    ---
+    A python dictionary object required by Chart.js, including the chart config and
+    the data set. 
     """
     curves = []
     for key in keywords: 
@@ -82,20 +98,26 @@ def _fetch_keyword_paper_tuple_impl(st, ed, topk):
     """ An optimized method to obtain keyword paper tuple
     Inputs:
     ---
-    st: [Int] The start year to filter results (value between 2010-2021)
+    st: [int] The start year to filter results (value between 2010-2021)
     example: 2017
-    ed: [Int] End year to filter result (value between 2010-2021)
+    ed: [int] End year to filter result (value between 2010-2021)
     example: 2020
-    topk: [Int] TopK results to return.
+    topk: [int] TopK results to return.
     example: 5
 
 
     Outputs:
-    A list tuples: [List] containing: [Tuple]:
-    Keyword [Str]
-    Total num papers [Int] containing keyword between st and ed
-    Annually published papers [Int] related to the keyword
-
+    ---
+    A list tuples: [List] containing: 
+        [Tuple]:
+        Keyword [str]
+        Total num papers [Int] containing keyword between st and ed
+        Annually published papers [Int] related to the keyword
+    example:
+    [
+        ['HMM', 300, [100, 150, 50]],
+        ['LSTM', 400, [100, 150, 150]],
+    ]
     """
     key_year_count = Paper.objects.values('keys', 'conference__year').filter(Q(conference__year__gte=st)&Q(conference__year__lte=ed)).annotate(total=Count('id')).order_by('keys', 'conference__year')
     
@@ -123,11 +145,23 @@ def fetch_keyword_paper_tuple(start_year=2015, end_year=2020, topk=5):
     """
     Inputs:
     ---
-    NONE
+    start_year: [int] 
+    end_year: [int]
+    topk: [int]
 
     Returns: 
     ---
-    Result of _fetch_keyword_paper_tuple_impl function
+    Same as `_fetch_keyword_paper_tuple_impl`
+    A list tuples: [List] containing: 
+        [Tuple]:
+        Keyword [str]
+        Total num papers [Int] containing keyword between st and ed
+        Annually published papers [Int] related to the keyword
+    example:
+    [
+        ['HMM', 300, [100, 150, 50]],
+        ['LSTM', 400, [100, 150, 150]],
+    ]
     """
     return _fetch_keyword_paper_tuple_impl(start_year, end_year, topk)
 
@@ -140,22 +174,22 @@ def display_topk(key_paper, st, ed, k, key_set=None):
     ---
     key_paper: [list] a list of tuples containing keyword [String] and keyword counts [Int] and
     annually published papers [Int] related to the keyword
-    start_year: [Int] start year for filter
+    start_year: [int] start year for filter
     Example: 2012
-    end_year: [Int] end year for filter
+    end_year: [int] end year for filter
     Example: 2019
-    k: [Int] K An integer to obtain slice of 0-k results in key_paper
+    k: [int] K An integer to obtain slice of 0-k results in key_paper
     Example: 5
     key_set: [None] or [List] list of keywords
 
     Return:
-    plot_data: [Dictionary] a dictionary object to display topk results
+    plot_data: [dict] a dictionary object to display topk results
     Example:
     
     {datasets: [list] containing key_data dictionary
-    [{'data': [integer] nums,
-     'label': [string] keyword,
-     'fill': [Bool] False,
+    [{'data': [int] nums,
+     'label': [str] keyword,
+     'fill': [bool] False,
      'borderColor': Random color e.g. #EB700E}]
      }
 
@@ -178,14 +212,14 @@ def generate_empty_pie(name='none', key_name='none'):
 
     Inputs:
     ---
-    key_name: [String] the table name, "author" or "affiliation"
+    key_name: [str] the table name, "author" or "affiliation"
     Example: 'author'
-    name: [String] the query, an author or affiliation name given by the user
+    name: [str] the query, an author or affiliation name given by the user
     Example: 'Michael Smith'
 
     Outputs:
     ---
-    plot_data: [Dictionary] A dictionary object which includes all the data needed 
+    plot_data: [dict] A dictionary object which includes all the data needed 
     to draw the pit chart at the front-end side.
     """
     plot_data = {}
@@ -206,17 +240,17 @@ def display_interest_pie(target_name, topk, model, key_name):
 
     Inputs:
     ---
-    target_name: [String] the query, an author or affiliation name given by the user
+    target_name: [str] the query, an author or affiliation name given by the user
     Example: 'Carnegie Mellon University'
-    topk: [Integer] only show top k fileds of interests
+    topk: [int] only show top k fileds of interests
     Example: 5
     model: [django.db.models.Model] the table, Django use a "Model" object to represent a table
-    key_name: [String] the table name, could be "author" or "affiliation" 
+    key_name: [str] the table name, could be "author" or "affiliation" 
     Example: 'Affiliation'
 
     Outputs:
     ---
-    plot_data: [Dictionary] A dictionary object which includes all the data needed 
+    plot_data: [dict] A dictionary object which includes all the data needed 
     to draw the pie chart at the front-end side.
     """
     if len(target_name) == 0:
