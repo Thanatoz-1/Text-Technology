@@ -5,9 +5,8 @@ This project is designed to help you select and analyse your research interests 
 - View topics a particular researcher has been researching, based on his or her history of published research.
 - Target a particular institution and see the latest and most popular research being conducted there.
 
-## Quick links to Research Trends documentations:
+**Quick links to Research Trends documentations**
 
-- [Quick links to Research Trends documentations:](#quick-links-to-research-trends-documentations)
 - [Data Collection](#data-collection)
 - [Data Processing](#data-processing)
   - [Keyword Extraction](#keyword-extraction)
@@ -83,7 +82,7 @@ Database:
 
 ## Accessing the Application 
 
-- [Documentation](research_trends/README.md)
+- [Documentation](research_trends/README.md): screenshots and usages
 - Directory: `./research_trends`
 - Example database
   - [mini.sql](research_trends/examples/mini.sql): This mini-database is extracted from a larger one. It has 100 papers and contains 5 main tables and the many-to-many relations. 
