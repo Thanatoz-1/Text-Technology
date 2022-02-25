@@ -7,6 +7,7 @@ from xml_loader import XMLLoader
 from info_extractor import InfoExtractor
 from converter import Converter
 import pickle
+from tqdm import tqdm
 
 """ This file will extract index terms and affiliation list from the paper's
 pdf file. The pdf file could be accessed by the url link. 
@@ -33,7 +34,7 @@ def load_raw_data():
         xml_path = f'xmls/{yr}.xml'
         xml_loader.read_xml(yr, xml_path)
     return xml_loader
-    
+
 
 if __name__ == '__main__':
     xml_loader = load_raw_data()
