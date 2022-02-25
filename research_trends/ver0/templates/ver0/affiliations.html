@@ -4,42 +4,102 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let ctx = document.getElementById("chart").getContext("2d");
-        // todo: build a pie char?
         const pie_data = JSON.parse(document.getElementById('pie_data').textContent);
+        if (pie_data["labels"].length == 0 && pie_data["affiliation"].length != 0) {
+            alert("Sorry, the affiliation [" + pie_data['affiliation'] + "] is not in our database.")
+        } else {
+            const pie_data = JSON.parse(document.getElementById('pie_data').textContent);
 
-        let chart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: pie_data["labels"],
-                datasets: [
-                    pie_data["datasets"]
-                ]
-            },
-            options: {
-                responsive: false,
-                title: {
-                    display: true,
-                    text: 'Research Interests Distribution'
-                },
-                legend: {
-                    position: 'left'
-                }
-                
-            }
-        });
-    })
+            let chart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: pie_data["labels"],
+                    datasets: [
+                        pie_data["datasets"]
+                    ]
+                },//end data
+                options: {
+                    responsive: false,
+                    title: {
+                        display: true,
+                        text: 'The research interest distribution of [' + pie_data['affiliation'] + ']'
+                    }, // end title
+                    legend: {
+                        position: 'left'
+                    } // end legend
+
+                } // end options
+
+            } // end new chart input
+            ); // end new chart
+        } // end else
+    } // end function()
+    ) // end addEventListener
 </script>
 {% endblock %}
 
 {% block searchbox %}
 
-<form action="{% url 'ver0:affiliations' %}" method="post">
-    {% csrf_token %} 
-    {{form}}
-    <input type="submit">
-</form>
+<div class="container">
+    <div class="row" style="margin-top: 10px;">
+      <div class="col col-lg-2">
+          <form action="{% url 'ver0:affiliations' %}" autocomplete="off" method="GET" class="form-horizontal">
+          <div class="row">
+              <div id="aff_topk" class="form-group">
+                  <label for="topk">Top K:</label>
+                  <input type="number" class="autocomplete-input" name="topk" placeholder="Enter top k" aria-label="K"
+                      required>
+              </div>
+              <div id="affiliations" class="autocomplete">
+                  <label for="affiliation">Affiliation Name:</label>
+                  <input type="text" class="autocomplete-input" name="affiliation" placeholder="Enter Affiliation"
+                      aria-label="Affiliation name" required>
+                  <ul class="autocomplete-result-list"></ul>
+              </div>
+              <div id="affiliation_submit" class="col-sm-4" style="align-self:center;margin-top:20px;">
+                  <button type="submit" class="btn btn-primary mb-2">Submit</button>
+              </div>
+          </div>
+          </form>
+      </div>
+      <div class="col">
+          <div style="width:100%; text-align: center;">
+          {{ pie_data|json_script:"pie_data"}}
+              <canvas id="chart" width="600", height="600", style="display: inline;"></canvas>
+          </div>
+      </div>
+    </div>
+  </div>
 
-<p>need a form, display topk</p>
-{{ pie_data|json_script:"pie_data"}}
-<canvas id="chart" width="600" , height="600"></canvas>
+<script>
+        new Autocomplete("#affiliations", {
+            search: input => {
+                console.log(input)
+                const url = `./search/affiliations?affiliations=${input}`
+                return new Promise(resolve => {
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                            resolve(data.data)
+                        })
+                })
+            },
+            onSubmit: result => {
+                console.log(result)
+            }
+        })
+</script>
+
+{% for paper in paper_list %}
+<ul>
+    <li>
+        <a href="{{paper.1}}">{{paper.0}}</a>
+        <ul>
+            <li>keywords: {{paper.2}}</li>
+        </ul>
+    </li>
+</ul>
+{%endfor%}
+
 {% endblock %}

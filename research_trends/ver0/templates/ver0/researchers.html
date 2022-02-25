@@ -5,7 +5,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         // todo: build a pie char?
         const pie_data = JSON.parse(document.getElementById('pie_data').textContent);
-        if (pie_data["labels"].length == 0) {
+        if (pie_data["labels"].length == 0 && pie_data["author".length != 0]) {
             alert("Sorry, the author [" + pie_data['author'] + "] is not in our database.")
         } else {
             let ctx = document.getElementById("chart").getContext("2d");
@@ -26,22 +26,76 @@
                     },
                     legend: {
                         position: 'left'
-                    }
-                }
-            });
-        }
-
-    })
+                    } // end legend
+                } // end options
+            }); // end chart
+        } // end else
+    }) // end addEventListener
 </script>
 {% endblock %}
 
 {% block searchbox %}
-<form action="{% url 'ver0:researchers' %}" method="post">
-    {% csrf_token %} 
-    {{form}}
-    <input type="submit">
-</form>
+<div class="container">
+  <div class="row" style="margin-top: 10px;">
+    <div class="col col-lg-2">
+        <form action="{% url 'ver0:researchers' %}" autocomplete="off" method="GET" class="form-horizontal">
+        <div class="row">
+            <div id="researcher_topk" class="form-group">
+                <label for="topk">Top K:</label>
+                <input type="number" class="autocomplete-input" name="topk" placeholder="Enter top k" aria-label="K"
+                    required>
+            </div>
+            <div id="researchers" class="autocomplete">
+                <label for="author">Researcher Name:</label>
+                <input type="text" class="autocomplete-input" name="author" placeholder="Enter Researcher"
+                    aria-label="Researcher name" required>
+                <ul class="autocomplete-result-list"></ul>
+            </div>
+            <div id="researcher_submit" class="col-sm-4" style="align-self:center;margin-top:20px;">
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            </div>
+        </div>
+        </form>
+    </div>
+    <div class="col">
+        <div style="width:100%; text-align: center;">
+        {{ pie_data|json_script:"pie_data"}}
+            <canvas id="chart" width="600", height="600", style="display: inline;"></canvas>
+        </div>
+    </div>
+  </div>
+</div>
 
-{{ pie_data|json_script:"pie_data"}}
-<canvas id="chart" width="600" , height="600"></canvas>
+<script>
+    new Autocomplete("#researchers", {
+        search: input => {
+            console.log(input)
+            const url = `./search/researchers?researchers=${input}`
+            return new Promise(resolve => {
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)
+                        resolve(data.data)
+                    })
+            })
+        },
+        onSubmit: result => {
+            console.log(result)
+        }
+    })
+</script>
+
+
+{% for paper in paper_list %}
+<ul>
+    <li>
+        <a href="{{paper.1}}">{{paper.0}}</a>
+        <ul>
+            <li>keywords: {{paper.2}}</li>
+        </ul>
+    </li>
+</ul>
+{%endfor%}
+
 {% endblock %}
