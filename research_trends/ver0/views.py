@@ -330,8 +330,8 @@ def keywords_page(request):
     st_year, ed_year, topk = 2010, 2021, 5
     keywords = None
     form = KeywordsFilterForm()
-    if request.method == "POST":
-        form = KeywordsFilterForm(request.POST)
+    if request.method == "GET":
+        form = KeywordsFilterForm(request.GET)
 
         if form.is_valid():
             topk = form.cleaned_data["topk"]

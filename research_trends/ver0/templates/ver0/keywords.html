@@ -35,15 +35,16 @@
 {% endblock %}
 
 {% block searchbox %}
-<form action="{% url 'ver0:keywords' %}" autocomplete="off" method="GET" class="form-horizontal">
+<form action="{% url 'ver0:keywords' %}" autocomplete="off" method="GET" class="form-horizontal" onkeydown="return event.key != 'Enter';">
     <div class="row">
         <div id="keyword_topk" class="col-sm-1">
             <label for="topk">Top K:</label>
-            <input type="number" class="form-control" name="topk" placeholder="5" aria-label="K" required>
+            <input type="number" class="form-control" name="topk" placeholder="5" aria-label="K" value=5
+                required>
         </div>
         <div id="keywords" class="col-sm-4 autocomplete">
             <label for="keywords">Keyword:</label>
-            <input name="keywords" type="text" class="autocomplete-input" placeholder="Enter keyword"
+            <input name="keywords" type="text" class="autocomplete-input" placeholder="Enter keyword" value=x
                 aria-label="Keyword" required>
             <ul class="autocomplete-result-list"></ul>
         </div>
@@ -55,8 +56,8 @@
         </div>
         <div id="ed_year" class="col-sm-2 autocomplete">
             <label for="ed_year">End year:</label>
-            <input name="ed_year" type="ed_year" class="form-control" placeholder="2020" aria-label="End year"
-                value=2020 required>
+            <input name="ed_year" type="ed_year" class="form-control" placeholder="2020" aria-label="End year" value=2020 
+                required>
         </div>
         <div id="keyword_submit" class="col-sm-1" style="align-self:center;">
             <input type="submit">
@@ -70,20 +71,16 @@
 <script>
     new Autocomplete("#keywords", {
         search: input => {
-            console.log(input)
-            const url = `./search/keywords?keywords=${input}`
+            const inputArray = input.split(";")
+            const url = `./search/keywords?keywords=${inputArray[inputArray.length-1]}`
             return new Promise(resolve => {
                 fetch(url)
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data)
                         resolve(data.data)
                     })
             })
         },
-        onSubmit: result => {
-            console.log(result)
-        }
     })
 </script>
 {% endblock %}
