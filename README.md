@@ -52,7 +52,6 @@ From each research publication, we collected the following data-points:
     - [Keyword](process/examples/json/key.json)
     - [Paper](process/examples/json/paper.json)
 
-This module compares the write and read efficiency of three database types: [MySQL](https://www.mysql.com/), [MangoDB](https://www.mongodb.com/) and [ElasticSearch](https://www.elastic.co/). This comparison gives us insights as to which database backend we should plug in to the Django framework.
 
 ### Keyword Extraction 
 In addition to extracting information using the above mentioned techniques, we also employed several techniques to enhance our collection of keywords and to make the spectrum of keywords even wider. We applied the following techniques for Keyword extraction.
@@ -108,6 +107,6 @@ Once all the packages have been installed, you can navigate to the `research_tre
 
 ## Extension
 
-Django is a flexible framework and supports many database backends. In order to decide which database should we use, we have compared different databases efficiency, including MySQL, MongoDB and ElasticSearch. 
+This module compares the write and read efficiency of three database types: [MySQL](https://www.mysql.com/), [MongoDB](https://www.mongodb.com/) and [ElasticSearch](https://www.elastic.co/). This comparison gives us insights as to which database backend we should plug in to the Django framework.
 
 A detailed report could be found [here](extension/README.md)
