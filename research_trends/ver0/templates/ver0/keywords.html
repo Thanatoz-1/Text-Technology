@@ -13,18 +13,17 @@
                 datasets: keyword_data["datasets"]
             },
             options: {
-                // responsive: True,
                 title: {
                     display: true,
                     text: 'Keywords over years'
-                }, 
+                },
                 legend: {
                     position: 'left'
                 },
                 scales: {
                     yAxes: [{
                         ticks: {
-                            stepSize:10
+                            stepSize: 10
                         }
                     }]
                 }
@@ -32,18 +31,56 @@
         });
     })
 </script>
+
 {% endblock %}
 
 {% block searchbox %}
-<p>topk: {{topk}} start year: {{st_year}} end year: {{ed_year}}</p>
-<form action="{% url 'ver0:keywords' %}" method="post" autocomplete="off">
-    {% csrf_token %} 
-    {{form}}
-    <input type="submit">
+<form action="{% url 'ver0:keywords' %}" autocomplete="off" method="GET" class="form-horizontal" onkeydown="return event.key != 'Enter';">
+    <div class="row">
+        <div id="keyword_topk" class="col-sm-1">
+            <label for="topk">Top K:</label>
+            <input type="number" class="form-control" name="topk" placeholder="5" aria-label="K" value=5
+                required>
+        </div>
+        <div id="keywords" class="col-sm-4 autocomplete">
+            <label for="keywords">Keyword:</label>
+            <input name="keywords" type="text" class="autocomplete-input" placeholder="Enter keyword" value=x
+                aria-label="Keyword" required>
+            <ul class="autocomplete-result-list"></ul>
+        </div>
+        <div id="st_year" class="col-sm-2 autocomplete">
+            <label for="st_year">Start year:</label>
+            <input name="st_year" type="year" class="form-control" placeholder="2010" aria-label="start_date" value=2015
+                required>
+            <ul class="autocomplete-result-list"></ul>
+        </div>
+        <div id="ed_year" class="col-sm-2 autocomplete">
+            <label for="ed_year">End year:</label>
+            <input name="ed_year" type="ed_year" class="form-control" placeholder="2020" aria-label="End year" value=2020 
+                required>
+        </div>
+        <div id="keyword_submit" class="col-sm-1" style="align-self:center;">
+            <input type="submit">
+        </div>
+    </div>
 </form>
 {{ keyword_data|json_script:"keyword_data"}}
 <div class="chart-container" style="width:1000px;height:1000px;">
     <canvas id="chart"></canvas>
 </div>
-
+<script>
+    new Autocomplete("#keywords", {
+        search: input => {
+            const inputArray = input.split(";")
+            const url = `./search/keywords?keywords=${inputArray[inputArray.length-1]}`
+            return new Promise(resolve => {
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        resolve(data.data)
+                    })
+            })
+        },
+    })
+</script>
 {% endblock %}

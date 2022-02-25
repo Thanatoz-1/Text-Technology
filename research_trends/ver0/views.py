@@ -1,14 +1,23 @@
-from django.shortcuts import render
-from django.urls import reverse
-from django.http import HttpResponse
-from django.http.response import HttpResponseRedirect
-from .models import *
-import random
-from collections import Counter
-from .query_forms import *
-import time
-from django.db.models import Q, Count
+
 import mimetypes
+import random
+import time
+from collections import Counter
+
+from django.db.models import Count, Q
+from django.http import HttpResponse
+from django.http.response import HttpResponseRedirect, JsonResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse
+
+from .models import *
+from .query_forms import *
+
+
+def redirect_home(request):
+    response = redirect("/ver0/")
+    return response
+
 
 def ran_color() -> str:
     """ Generate a color id for each data point. 
@@ -24,12 +33,12 @@ def ran_color() -> str:
 
     Example: #EB700E
     """
-    color = "#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
+    color = "#" + "".join([random.choice("0123456789ABCDEF") for j in range(6)])
     return color
 
 
 def plot_keyword_change_curve(curves, st, ed):
-    """ Prepare the dict object for plotting dataset in chart.js 
+    """Prepare the dict object for plotting dataset in chart.js
     one datapoint format: [key, [num of paper at year1, num of paper at year2, ...]
 
     Inputs:
@@ -45,16 +54,16 @@ def plot_keyword_change_curve(curves, st, ed):
     Outputs:
     ---
     A python dictionary object required by Chart.js, including the chart config and
-    the data set. 
+    the data set.
     """
     plot_data = {}
-    plot_data["labels"] = list(range(st, ed+1))
+    plot_data["labels"] = list(range(st, ed + 1))
     datasets = []
     for key, papers in curves:
         key_data = {}
-        key_data["data"] =papers 
-        key_data["label"] = key 
-        key_data["fill"] = False 
+        key_data["data"] = papers
+        key_data["label"] = key
+        key_data["fill"] = False
         key_data["borderColor"] = ran_color()
         datasets.append(key_data)
     plot_data["datasets"] = datasets
@@ -62,29 +71,35 @@ def plot_keyword_change_curve(curves, st, ed):
 
 
 def fetch_display_given_keywords(st, ed, keywords):
-    """ Given a list of keywords, find the change curve with those topics 
+    """Given a list of keywords, find the change curve with those topics
 
     Inputs
     ---
     st: [int] start year
-    ed: [int] end year 
+    ed: [int] end year
     keyword: a list of keywords, e.g.['HMM', 'LSTM']
 
     Outputs:
     ---
     A python dictionary object required by Chart.js, including the chart config and
-    the data set. 
+    the data set.
     """
     curves = []
-    for key in keywords: 
-        key_year_count = Paper.objects.filter(keys__name=key).values('conference__year').filter(Q(conference__year__gte=st)&Q(conference__year__lte=ed)).annotate(total=Count('id')).order_by('conference__year')
+    for key in keywords:
+        key_year_count = (
+            Paper.objects.filter(keys__name=key)
+            .values("conference__year")
+            .filter(Q(conference__year__gte=st) & Q(conference__year__lte=ed))
+            .annotate(total=Count("id"))
+            .order_by("conference__year")
+        )
         if len(key_year_count) == 0:
-            continue 
+            continue
         cur_year = st
         curve = []
         for sample in key_year_count:
-            year = sample['conference__year']
-            num_papers = sample['total']
+            year = sample["conference__year"]
+            num_papers = sample["total"]
             while cur_year < year:
                 curve.append(0)
                 cur_year += 1
@@ -95,7 +110,7 @@ def fetch_display_given_keywords(st, ed, keywords):
 
 
 def _fetch_keyword_paper_tuple_impl(st, ed, topk):
-    """ An optimized method to obtain keyword paper tuple
+    """An optimized method to obtain keyword paper tuple
     Inputs:
     ---
     st: [int] The start year to filter results (value between 2010-2021)
@@ -108,7 +123,7 @@ def _fetch_keyword_paper_tuple_impl(st, ed, topk):
 
     Outputs:
     ---
-    A list tuples: [List] containing: 
+    A list tuples: [list] containing:
         [Tuple]:
         Keyword [str]
         Total num papers [Int] containing keyword between st and ed
@@ -119,25 +134,30 @@ def _fetch_keyword_paper_tuple_impl(st, ed, topk):
         ['LSTM', 400, [100, 150, 150]],
     ]
     """
-    key_year_count = Paper.objects.values('keys', 'conference__year').filter(Q(conference__year__gte=st)&Q(conference__year__lte=ed)).annotate(total=Count('id')).order_by('keys', 'conference__year')
-    
+    key_year_count = (
+        Paper.objects.values("keys", "conference__year")
+        .filter(Q(conference__year__gte=st) & Q(conference__year__lte=ed))
+        .annotate(total=Count("id"))
+        .order_by("keys", "conference__year")
+    )
     prev_key = None
     prev_yr = 0
     key_paper = []
     for sample in key_year_count:
-        key = sample['keys']
-        yr = sample['conference__year']
-        count = sample['total']
-        if key is None: continue 
+        key = sample["keys"]
+        yr = sample["conference__year"]
+        count = sample["total"]
+        if key is None:
+            continue
         if key != prev_key:
-            key_paper.append([key, count, [0]*(ed-st+1)])
-            key_paper[-1][2][yr-st] = count
-            prev_yr = yr 
+            key_paper.append([key, count, [0] * (ed - st + 1)])
+            key_paper[-1][2][yr - st] = count
+            prev_yr = yr
             prev_key = key
         if yr != prev_yr:
             assert key == key_paper[-1][0]
-            key_paper[-1][1] += count 
-            key_paper[-1][2][yr-st] = count
+            key_paper[-1][1] += count
+            key_paper[-1][2][yr - st] = count
     return key_paper
 
 
@@ -145,14 +165,14 @@ def fetch_keyword_paper_tuple(start_year=2015, end_year=2020, topk=5):
     """
     Inputs:
     ---
-    start_year: [int] 
+    start_year: [int]
     end_year: [int]
     topk: [int]
 
-    Returns: 
+    Returns:
     ---
     Same as `_fetch_keyword_paper_tuple_impl`
-    A list tuples: [List] containing: 
+    A list tuples: [list] containing:
         [Tuple]:
         Keyword [str]
         Total num papers [Int] containing keyword between st and ed
@@ -185,7 +205,7 @@ def display_topk(key_paper, st, ed, k, key_set=None):
     Return:
     plot_data: [dict] a dictionary object to display topk results
     Example:
-    
+
     {datasets: [list] containing key_data dictionary
     [{'data': [int] nums,
      'label': [str] keyword,
@@ -194,9 +214,9 @@ def display_topk(key_paper, st, ed, k, key_set=None):
      }
 
     """
-    key_paper.sort(key=lambda x:x[1], reverse=True)
+    key_paper.sort(key=lambda x: x[1], reverse=True)
     key_paper = key_paper[:k]
-    
+
     curves = []
     for key, _, nums in key_paper:
         name = Keyword.objects.get(id=key).name
@@ -204,10 +224,10 @@ def display_topk(key_paper, st, ed, k, key_set=None):
     return plot_keyword_change_curve(curves, st, ed)
 
 
-def generate_empty_pie(name='none', key_name='none'):
-    """ For researcher and affiliation page. 
+def generate_empty_pie(name="none", key_name="none"):
+    """For researcher and affiliation page.
     If the database doesn't contain any data related to
-    the given author or affiliation, we need a empty 
+    the given author or affiliation, we need a empty
     pie object to notify the front end.
 
     Inputs:
@@ -223,7 +243,7 @@ def generate_empty_pie(name='none', key_name='none'):
     to draw the pit chart at the front-end side.
     """
     plot_data = {}
-    plot_data['labels'] = []
+    plot_data["labels"] = []
     datasets = {}
     datasets["label"] = []
     datasets["data"] = []
@@ -231,10 +251,10 @@ def generate_empty_pie(name='none', key_name='none'):
     plot_data["datasets"] = datasets
     plot_data[key_name] = name
     return plot_data
-    
+
 
 def display_interest_pie(target_name, topk, model, key_name):
-    """ For research and affiliation page. 
+    """For research and affiliation page. 
     Display the interest distribution pie chart for `target_name`
     Only show the top k fileds of interests.
 
@@ -245,12 +265,12 @@ def display_interest_pie(target_name, topk, model, key_name):
     topk: [int] only show top k fileds of interests
     Example: 5
     model: [django.db.models.Model] the table, Django use a "Model" object to represent a table
-    key_name: [str] the table name, could be "author" or "affiliation" 
+    key_name: [str] the table name, could be "author" or "affiliation"
     Example: 'Affiliation'
 
     Outputs:
     ---
-    plot_data: [dict] A dictionary object which includes all the data needed 
+    plot_data: [dict] A dictionary object which includes all the data needed
     to draw the pie chart at the front-end side.
     """
     if len(target_name) == 0:
@@ -260,7 +280,7 @@ def display_interest_pie(target_name, topk, model, key_name):
         return generate_empty_pie(target_name, key_name), []
     else:
         target = target[0]
-    
+
     keys_counter = Counter()
     paper_list = []
 
@@ -270,25 +290,25 @@ def display_interest_pie(target_name, topk, model, key_name):
             keyname = key.name
             keys_counter[keyname] += 1
             keynames.append(keyname)
-        paper_list.append([paper.title, paper.url, ';'.join(keynames)])
+        paper_list.append([paper.title, paper.url, ";".join(keynames)])
 
     list_keys_count = keys_counter.most_common(topk)
     keys, counts = zip(*list_keys_count)
     plot_data = {}
-    plot_data["labels"] = keys 
+    plot_data["labels"] = keys
 
     datasets = {}
     datasets["label"] = "# of papers"
     datasets["data"] = counts
     datasets["backgroundColor"] = [ran_color() for x in counts]
     plot_data["datasets"] = datasets
-    plot_data[key_name] = target_name 
+    plot_data[key_name] = target_name
     return plot_data, paper_list
 
 
 def keywords_page(request):
-    """ This function renders the keywords page. 
-    Inputs: 
+    """This function renders the keywords page.
+    Inputs:
     ---
     A request object: [django.http.HttpRequest]
 
@@ -300,23 +320,23 @@ def keywords_page(request):
     {
         "keyword_data" : plot_data,
         "form": KeywordsFilterForm(),
-        "topk": topk, 
-        "st_year": st_year, 
+        "topk": topk,
+        "st_year": st_year,
         "ed_year": ed_year
     }
 
     With KeywordsFilter form for querying top k keywords trends
     """
     st_year, ed_year, topk = 2010, 2021, 5
-    keywords = None 
+    keywords = None
     form = KeywordsFilterForm()
-    if request.method == "POST":
-        form = KeywordsFilterForm(request.POST)
+    if request.method == "GET":
+        form = KeywordsFilterForm(request.GET)
 
         if form.is_valid():
             topk = form.cleaned_data["topk"]
-            keywords = str(form.cleaned_data["keywords"]).split(';')
-            if keywords == ['x']:
+            keywords = str(form.cleaned_data["keywords"]).split(";")
+            if keywords == ["x"]:
                 keywords = None
             else:
                 topk = len(keywords)
@@ -328,18 +348,21 @@ def keywords_page(request):
         plot_data = display_topk(key_paper, st_year, ed_year, topk, keywords)
     else:
         plot_data = fetch_display_given_keywords(st_year, ed_year, keywords)
-    return render(request, "ver0/keywords.html", {
-        "keyword_data" : plot_data,
-        "form": form,
-        "topk": topk, 
-        "st_year": st_year, 
-        "ed_year": ed_year
-    })
-
+    return render(
+        request,
+        "ver0/keywords.html",
+        {
+            "keyword_data": plot_data,
+            "form": form,
+            "topk": topk,
+            "st_year": st_year,
+            "ed_year": ed_year,
+        },
+    )
 
 def researchers_page(request):
-    """ Render the researcher page.
-     Inputs: 
+    """Render the researcher page.
+     Inputs:
     ---
     A request object: [django.http.HttpRequest]
 
@@ -358,9 +381,9 @@ def researchers_page(request):
     topk = 0
     
     form = ResearchFilterForm()
-    if request.method == "POST":
-        form = ResearchFilterForm(request.POST)
-    
+    if request.method == "GET":
+        form = ResearchFilterForm(request.GET)
+
         if form.is_valid():
             topk = form.cleaned_data["topk"]
             author = form.cleaned_data["author"]
@@ -374,8 +397,8 @@ def researchers_page(request):
 
 
 def affiliations_page(request):
-    """ Render the affiliation page.
-    Inputs: 
+    """Render the affiliation page.
+    Inputs:
     ---
     A request object: [django.http.HttpRequest]
 
@@ -389,22 +412,55 @@ def affiliations_page(request):
         "form": AffiliationFilterForm()
     }
     With AffiliationFilterForm() to query research interest distribution of an affiliation.
-    
+
     """
     aff = ""
     topk = 0
 
     form = AffiliationFilterForm()
-    if request.method == "POST":
-        form = AffiliationFilterForm(request.POST)
-    
+    if request.method == "GET":
+        form = AffiliationFilterForm(request.GET)
+
         if form.is_valid():
             topk = form.cleaned_data["topk"]
             aff = form.cleaned_data["affiliation"]
 
     pie_data, paper_list = display_interest_pie(aff, topk, Affiliation, 'affiliation')
-    return render(request, "ver0/affiliations.html", {
-        "pie_data" : pie_data,
-        "paper_list" : paper_list, 
-        "form": form
-    })
+    return render(
+        request,
+        "ver0/affiliations.html",
+        {
+            "pie_data" : pie_data,
+            "paper_list" : paper_list, 
+            "form": form
+        },
+    )
+
+def search_researcher(request):
+    researcher = request.GET.get("researchers")
+    payload = []
+    if researcher:
+        researcher_objects = Author.objects.filter(name__icontains=researcher)
+        payload = [researcher_object.name for researcher_object in researcher_objects]
+    return JsonResponse({"status": 200, "data": payload[:50]})
+
+
+def search_keyword(request):
+    keyword = request.GET.get("keywords")
+    print(f"From search_keyword: {keyword}")
+    payload = []
+    if keyword:
+        keyword_objects = Keyword.objects.filter(name__icontains=keyword)
+        payload = [keyword_object.name for keyword_object in keyword_objects][:50]
+    return JsonResponse({"status": 200, "data": payload[:50]})
+
+
+def search_affiliations(request):
+    affiliations = request.GET.get("affiliations")
+    payload = []
+    if affiliations:
+        affiliations_objects = Affiliation.objects.filter(name__icontains=affiliations)
+        payload = [
+            affiliations_object.name for affiliations_object in affiliations_objects
+        ]
+    return JsonResponse({"status": 200, "data": payload[:50]})

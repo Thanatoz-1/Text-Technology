@@ -17,49 +17,89 @@
                     datasets: [
                         pie_data["datasets"]
                     ]
-                },
+                },//end data
                 options: {
                     responsive: false,
                     title: {
                         display: true,
                         text: 'The research interest distribution of [' + pie_data['affiliation'] + ']'
-                    },
+                    }, // end title
                     legend: {
                         position: 'left'
-                    }
-                    
-                }
-            });
-        }
-    })
+                    } // end legend
+
+                } // end options
+
+            } // end new chart input
+            ); // end new chart
+        } // end else
+    } // end function()
+    ) // end addEventListener
 </script>
 {% endblock %}
 
 {% block searchbox %}
 
 <div class="container">
-  <div class="row" style="margin-top: 10px;">
-    <div class="col col-lg-2">
-        <form action="{% url 'ver0:affiliations' %}" method="post" autocomplete="off">
-            {% csrf_token %} 
-            {{form}}
-            <button type='submit' class='btn btn-primary' style="margin-top: 10px;">Submit</button>
-        </form>
-    </div>
-    <div class="col">
-        <div style="width:100%; text-align: center;">
-        {{ pie_data|json_script:"pie_data"}}
-            <canvas id="chart" width="600", height="600", style="display: inline;"></canvas>
-        </div>
+    <div class="row" style="margin-top: 10px;">
+      <div class="col col-lg-2">
+          <form action="{% url 'ver0:affiliations' %}" autocomplete="off" method="GET" class="form-horizontal">
+          <div class="row">
+              <div id="aff_topk" class="form-group">
+                  <label for="topk">Top K:</label>
+                  <input type="number" class="autocomplete-input" name="topk" placeholder="Enter top k" aria-label="K"
+                      required>
+              </div>
+              <div id="affiliations" class="autocomplete">
+                  <label for="affiliation">Affiliation Name:</label>
+                  <input type="text" class="autocomplete-input" name="affiliation" placeholder="Enter Affiliation"
+                      aria-label="Affiliation name" required>
+                  <ul class="autocomplete-result-list"></ul>
+              </div>
+              <div id="affiliation_submit" class="col-sm-4" style="align-self:center;">
+                  <input type="submit">
+              </div>
+          </div>
+          </form>
+      </div>
+      <div class="col">
+          <div style="width:100%; text-align: center;">
+          {{ pie_data|json_script:"pie_data"}}
+              <canvas id="chart" width="600", height="600", style="display: inline;"></canvas>
+          </div>
+      </div>
     </div>
   </div>
-</div>
+
+<script>
+        new Autocomplete("#affiliations", {
+            search: input => {
+                console.log(input)
+                const url = `./search/affiliations?affiliations=${input}`
+                return new Promise(resolve => {
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                            resolve(data.data)
+                        })
+                })
+            },
+            onSubmit: result => {
+                console.log(result)
+            }
+        })
+</script>
 
 {% for paper in paper_list %}
-<ul><li>
-    <a href="{{paper.1}}">{{paper.0}}</a>
-    <ul><li>keywords: {{paper.2}}</li></ul>
-</li></ul>
+<ul>
+    <li>
+        <a href="{{paper.1}}">{{paper.0}}</a>
+        <ul>
+            <li>keywords: {{paper.2}}</li>
+        </ul>
+    </li>
+</ul>
 {%endfor%}
 
 {% endblock %}

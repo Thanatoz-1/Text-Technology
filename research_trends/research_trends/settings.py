@@ -87,7 +87,7 @@ DATABASES = {
         'OPTIONS': {'charset': 'utf8mb4'}
     }
 }
-
+from local_settings import * 
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
