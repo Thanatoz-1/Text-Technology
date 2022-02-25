@@ -40,7 +40,7 @@ Four types of query will be supported in this website
 1. What's the research interest distribution of an affiliation within the given years? Only show the top k results
    - filters: topk, affiliation 
    - return: pie chart
-   - example: topk=6, affiliation="University of Suttgart"
+   - example: topk=6, affiliation="University of Stuttgart"
    ![UniStuttgart](../static/UniStuttgart.gif)
 
 

@@ -14,15 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
-from django.conf.urls.static import static
-from django.conf import settings
-from ajax_select import urls as ajax_select_urls
-
-admin.autodiscover()
+from django.urls import path, include
+from ver0.views import redirect_home
 
 urlpatterns = [
-    path('ajax_select/', include(ajax_select_urls)),
-    path('ver0/', include("ver0.urls")),
-    path('admin/', admin.site.urls),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path("", redirect_home),
+    path("ver0/", include("ver0.urls")),
+    path("admin/", admin.site.urls),
+]

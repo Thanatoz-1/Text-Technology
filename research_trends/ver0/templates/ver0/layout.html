@@ -10,6 +10,7 @@
         integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"
         integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css" />
     {% block display_chart %}
     {% endblock %}
 </head>
@@ -35,10 +36,11 @@
             </ul>
         </div>
     </nav>
+    <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
 
     <div class="container">
-    {% block searchbox %}
-    {% endblock %}
+        {% block searchbox %}
+        {% endblock %}
     </div>
 </body>
 
