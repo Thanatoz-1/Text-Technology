@@ -1,3 +1,4 @@
+
 import mimetypes
 import random
 import time
@@ -18,24 +19,8 @@ def redirect_home(request):
     return response
 
 
-def index(request):
-    """The home page, hosting the documentation
-    Inputs:
-    ---
-    A request object: [django.http.HttpRequest]
-
-    Outputs:
-    ---
-    Returns a rendered html template as a response. The render()
-    function takes a request object and maps it to the URL pattern
-    specified in the second argument place to return the result.
-
-    """
-    return render(request, "ver0/index.html")
-
-
-def ran_color():
-    """Generate a color id for each data point.
+def ran_color() -> str:
+    """ Generate a color id for each data point. 
     It's used at the front-end side for plotting charts.
 
     Inputs:
@@ -138,7 +123,7 @@ def _fetch_keyword_paper_tuple_impl(st, ed, topk):
 
     Outputs:
     ---
-    A list tuples: [List] containing:
+    A list tuples: [list] containing:
         [Tuple]:
         Keyword [str]
         Total num papers [Int] containing keyword between st and ed
@@ -149,20 +134,12 @@ def _fetch_keyword_paper_tuple_impl(st, ed, topk):
         ['LSTM', 400, [100, 150, 150]],
     ]
     """
-    tst = time.time()
-    ted = time.time()
-    print(f"---fetch keywords {ted - tst} ----")
-    tst = time.time()
     key_year_count = (
         Paper.objects.values("keys", "conference__year")
         .filter(Q(conference__year__gte=st) & Q(conference__year__lte=ed))
         .annotate(total=Count("id"))
         .order_by("keys", "conference__year")
     )
-    ted = time.time()
-    print(f"----fetch key year count {ted - tst} ----")
-    # key_year_count = list(key_year_count)
-
     prev_key = None
     prev_yr = 0
     key_paper = []
@@ -195,7 +172,7 @@ def fetch_keyword_paper_tuple(start_year=2015, end_year=2020, topk=5):
     Returns:
     ---
     Same as `_fetch_keyword_paper_tuple_impl`
-    A list tuples: [List] containing:
+    A list tuples: [list] containing:
         [Tuple]:
         Keyword [str]
         Total num papers [Int] containing keyword between st and ed
@@ -262,7 +239,7 @@ def generate_empty_pie(name="none", key_name="none"):
 
     Outputs:
     ---
-    plot_data: [dict] A dictionary object which includes all the data needed
+    plot_data: [dict] A dictionary object which includes all the data needed 
     to draw the pit chart at the front-end side.
     """
     plot_data = {}
@@ -277,7 +254,7 @@ def generate_empty_pie(name="none", key_name="none"):
 
 
 def display_interest_pie(target_name, topk, model, key_name):
-    """For research and affiliation page.
+    """For research and affiliation page. 
     Display the interest distribution pie chart for `target_name`
     Only show the top k fileds of interests.
 
@@ -383,7 +360,6 @@ def keywords_page(request):
         },
     )
 
-
 def researchers_page(request):
     """Render the researcher page.
      Inputs:
@@ -401,12 +377,12 @@ def researchers_page(request):
     }
     With ResearchFilterForm() to query the research interest distribution for a single given author
     """
-    author = "Jay Mahadeokar"
-    topk = 5
-    print(f"Request Method: {request.method}, {request.GET}")
+    author = ""
+    topk = 0
+    
+    form = ResearchFilterForm()
     if request.method == "GET":
         form = ResearchFilterForm(request.GET)
-        print(f"form: {form}, {form.is_valid()}, {dir(form)}")
 
         if form.is_valid():
             topk = form.cleaned_data["topk"]
@@ -449,35 +425,16 @@ def affiliations_page(request):
             topk = form.cleaned_data["topk"]
             aff = form.cleaned_data["affiliation"]
 
+    pie_data, paper_list = display_interest_pie(aff, topk, Affiliation, 'affiliation')
     return render(
         request,
         "ver0/affiliations.html",
         {
-            "pie_data": display_interest_pie(aff, topk, Affiliation, "affiliation"),
-            "form": AffiliationFilterForm(),
+            "pie_data" : pie_data,
+            "paper_list" : paper_list, 
+            "form": form
         },
     )
-
-
-def download_file(request):
-    """WIP: a download link, enable users to download the query results in XML format.
-    Inputs:
-    ---
-    A request object: [django.http.HttpRequest]
-
-    Outputs:
-    ---
-    A response object: [django.http.HtttpResonse] with path to download query results in XML format.
-    """
-    fl_path = "x"
-    fl_name = "somename.py"
-
-    fl = open(fl_path, "r")
-    mime_type = mimetypes.guess_type(fl_path)
-    response = HttpResponse(fl, content_type=mime_type)
-    response["Content-Disposition"] = "attachment; filename=%s" % fl_name
-    return response
-
 
 def search_researcher(request):
     researcher = request.GET.get("researchers")

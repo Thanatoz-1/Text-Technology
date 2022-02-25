@@ -13,7 +13,6 @@
                 datasets: keyword_data["datasets"]
             },
             options: {
-                // responsive: True,
                 title: {
                     display: true,
                     text: 'Keywords over years'
@@ -36,7 +35,6 @@
 {% endblock %}
 
 {% block searchbox %}
-<!-- <p>topk: {{topk}} start year: {{st_year}} end year: {{ed_year}}</p> -->
 <form action="{% url 'ver0:keywords' %}" autocomplete="off" method="GET" class="form-horizontal">
     <div class="row">
         <div id="keyword_topk" class="col-sm-1">
@@ -64,14 +62,7 @@
             <input type="submit">
         </div>
     </div>
-    <!-- {% csrf_token %} -->
-    <!-- {{form}} -->
 </form>
-<!-- <form action="{% url 'ver0:keywords' %}" method="post">
-    {% csrf_token %} 
-    {{form}}
-    <input type="submit">
-</form> -->
 {{ keyword_data|json_script:"keyword_data"}}
 <div class="chart-container" style="width:1000px;height:1000px;">
     <canvas id="chart"></canvas>

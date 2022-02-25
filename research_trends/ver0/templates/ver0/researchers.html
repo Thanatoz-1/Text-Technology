@@ -5,7 +5,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         // todo: build a pie char?
         const pie_data = JSON.parse(document.getElementById('pie_data').textContent);
-        if (pie_data["labels"].length == 0) {
+        if (pie_data["labels"].length == 0 && pie_data["author".length != 0]) {
             alert("Sorry, the author [" + pie_data['author'] + "] is not in our database.")
         } else {
             let ctx = document.getElementById("chart").getContext("2d");
