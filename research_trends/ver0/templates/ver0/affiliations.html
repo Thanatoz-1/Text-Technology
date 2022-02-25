@@ -42,38 +42,34 @@
 
 <div class="container">
     <div class="row" style="margin-top: 10px;">
-        <div class="col col-lg-2">
-            <form action="{% url 'ver0:affiliations' %}" method="post" autocomplete="off">
-                <form action="{% url 'ver0:affiliations' %}" autocomplete="off" method="GET" method="post">
-                    <div class="row">
-                        <div id="aff_topk" class="col-sm-1">
-                            <label for="topk">Top K:</label>
-                            <input type="number" class="form-control" name="topk" placeholder="5" aria-label="K"
-                                required>
-                        </div>
-                        <div id="affiliations" class="col-sm-4 autocomplete">
-                            <label for="affiliations">Affiliation Name:</label>
-                            <input name="affiliations" type="text" class="form-control autocomplete-input"
-                                placeholder="Enter institution name" aria-label="Affiliations" required>
-                            <ul class="autocomplete-result-list"></ul>
-                        </div>
-                        <div id="affiliations_submit" class="col-sm-1" style="align-self:center;">
-                            <input type="submit">
-                        </div>
-                    </div>
-                </form>
-                <button type='submit' class='btn btn-primary' style="margin-top: 10px;">Submit</button>
-            </form>
-        </div>
-        <div class="col">
-            <div style="width:100%; text-align: center;">
-                {{ pie_data|json_script:"pie_data"}}
-                <canvas id="chart" width="600" height="600" style="display: inline;"></canvas>
-            </div>
-        </div>
+      <div class="col col-lg-2">
+          <form action="{% url 'ver0:affiliations' %}" autocomplete="off" method="GET" class="form-horizontal">
+          <div class="row">
+              <div id="aff_topk" class="form-group">
+                  <label for="topk">Top K:</label>
+                  <input type="number" class="autocomplete-input" name="topk" placeholder="Enter top k" aria-label="K"
+                      required>
+              </div>
+              <div id="affiliations" class="autocomplete">
+                  <label for="affiliation">Affiliation Name:</label>
+                  <input type="text" class="autocomplete-input" name="affiliation" placeholder="Enter Affiliation"
+                      aria-label="Affiliation name" required>
+                  <ul class="autocomplete-result-list"></ul>
+              </div>
+              <div id="affiliation_submit" class="col-sm-4" style="align-self:center;">
+                  <input type="submit">
+              </div>
+          </div>
+          </form>
+      </div>
+      <div class="col">
+          <div style="width:100%; text-align: center;">
+          {{ pie_data|json_script:"pie_data"}}
+              <canvas id="chart" width="600", height="600", style="display: inline;"></canvas>
+          </div>
+      </div>
     </div>
-</div>
-
+  </div>
 
 <script>
         new Autocomplete("#affiliations", {

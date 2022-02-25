@@ -418,8 +418,8 @@ def affiliations_page(request):
     topk = 0
 
     form = AffiliationFilterForm()
-    if request.method == "POST":
-        form = AffiliationFilterForm(request.POST)
+    if request.method == "GET":
+        form = AffiliationFilterForm(request.GET)
 
         if form.is_valid():
             topk = form.cleaned_data["topk"]
